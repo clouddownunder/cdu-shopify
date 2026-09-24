@@ -1,0 +1,940 @@
+<section
+  class="{{ section.settings.section_class }} contact-us-page banner-sec white-bg-color"
+  id="{{ section.settings.section_id }}"
+>
+  <div class="banner-wrap-v1">
+    <div class="container">
+      <div class="contactUs-page-wrap">
+        <div class="row">
+
+          {%- comment -%}
+            Contact Form
+          {%- endcomment -%}
+          <div class="contact-us-form col-lg-7 col-md-12 col-sm-12 col-12">
+            {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+              <div class="form-group-main">
+
+                <div class="contact_us_top">
+
+                  <div class="contact_us_form-title">
+
+                    {% if section.settings.form_greeting != blank %}
+                      <div class="font-24 white_text">
+                        <span>{{ section.settings.form_greeting }}</span>
+                      </div>
+                    {% endif %}
+
+                    {% if section.settings.form_heading != blank %}
+                      <h2 class="theme-color-text mb-2">
+                        {{ section.settings.form_heading }}
+                      </h2>
+                    {% endif %}
+
+                    {% if section.settings.form_subheading != blank %}
+                      <h3 class="font-we-rg white_text">
+                        {{ section.settings.form_subheading }}
+                      </h3>
+                    {% endif %}
+
+                  </div>
+                  <div class="form-messages">
+                    {%- if form.posted_successfully? -%}
+                      <div class="contact-form-success mb-3" style="display: block;">
+                        {{ section.settings.success_message }}
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% for block in section.blocks %}
+                    {% if block.type == '@app' %}
+                      {% render block %}
+                    {% endif %}
+                  {% endfor %}
+                  {% comment %} <div class="row mb-4">
+
+                    {%- comment -%} First Name {%- endcomment -%}
+                    <div class="col-md-6 col-sm-12 col-12">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="contact[first_name]"
+                          id="ContactFormFirstName"
+                          placeholder="{{ section.settings.first_name_placeholder }}"
+                          class="form-control"
+                          autocomplete="given-name"
+                          data-field="first_name"
+                        >
+                        <div class="field-error" id="ContactFormFirstName-error"></div>
+                      </div>
+                    </div>
+
+                    {%- comment -%} Last Name {%- endcomment -%}
+                    <div class="col-md-6 col-sm-12 col-12">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="contact[last_name]"
+                          id="ContactFormLastName"
+                          placeholder="{{ section.settings.last_name_placeholder }}"
+                          class="form-control"
+                          autocomplete="family-name"
+                          data-field="last_name"
+                        >
+                        <div class="field-error" id="ContactFormLastName-error"></div>
+                      </div>
+                    </div>
+
+                    {%- comment -%} Email {%- endcomment -%}
+                    <div class="col-md-6 col-sm-12 col-12">
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          name="contact[email]"
+                          id="ContactFormEmail"
+                          placeholder="{{ section.settings.email_placeholder }}"
+                          class="form-control"
+                          autocomplete="email"
+                          data-field="email"
+                        >
+                        <div class="field-error" id="ContactFormEmail-error"></div>
+                      </div>
+                    </div>
+
+                    {%- comment -%} Phone {%- endcomment -%}
+                    <div class="col-md-6 col-sm-12 col-12">
+                      <div class="form-group">
+                        <input
+                          type="tel"
+                          name="contact[phone]"
+                          id="ContactFormPhone"
+                          placeholder="{{ section.settings.phone_placeholder }}"
+                          class="form-control"
+                          autocomplete="tel"
+                          data-field="phone"
+                        >
+                        <div class="field-error" id="ContactFormPhone-error"></div>
+                      </div>
+                    </div>
+
+                    {%- comment -%} Message {%- endcomment -%}
+                    <div class="col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <textarea
+                          name="contact[body]"
+                          id="ContactFormMessage"
+                          class="form-control"
+                          placeholder="{{ section.settings.message_placeholder }}"
+                          rows="5"
+                          data-field="message"
+                        ></textarea>
+                        <div class="field-error" id="ContactFormMessage-error"></div>
+                      </div>
+                    </div>
+
+                    {% if section.settings.form_bottom_text != blank %}
+                      <div class="col-md-12 col-sm-12 col-12">
+                        <p class="form-bottom-text white_text mb-0">
+                          {{ section.settings.form_bottom_text }}
+                        </p>
+                      </div>
+                    {% endif %}
+
+                  </div> {% endcomment %}
+                </div>
+
+                {% comment %} <div class="contact_us_bottom">
+                  <div class="row">
+
+                    <div class="col-md-6 col-sm-12 col-12">
+                      <div class="form-send-btn mt-3 mt-lg-5">
+                        <button type="submit" class="btn btn-with-arrow" id="contactFormSubmit">
+                          <span class="btn-text">{{ section.settings.submit_button_text }}</span>
+                          <span class="btn-spinner" style="display: none;">
+                            <svg class="spinner" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                              <circle class="spinner-circle" cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-12"></div>
+
+                  </div>
+                </div> {% endcomment %}
+
+              </div>
+
+            {%- endform -%}
+          </div>
+
+
+          {%- comment -%}
+            Right Side Contact Information
+          {%- endcomment -%}
+          <div class="contactUs-page-right col-lg-5 col-md-12 col-sm-12 col-12">
+
+            <div class="contactUs-page-info">
+
+              {% if section.settings.info_heading != blank %}
+                <h3 class="font-we-sb">
+                  {{ section.settings.info_heading }}
+                </h3>
+              {% endif %}
+
+              {% if section.settings.info_description != blank %}
+                <p class="text-black">
+                  {{ section.settings.info_description }}
+                </p>
+              {% endif %}
+
+
+              {%- comment -%}
+                How It Works
+              {%- endcomment -%}
+              {% if section.blocks.size > 0 %}
+                <ul class="banner-point">
+
+                  {% for block in section.blocks %}
+                    {% if block.type == 'process_step' %}
+                      {% if block.settings.text != blank %}
+                        <li {{ block.shopify_attributes }}>
+                          {{ block.settings.text }}
+                        </li>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                </ul>
+              {% endif %}
+
+
+              {% if section.settings.more_info_heading != blank %}
+                <h4 class="font-we-sb">
+                  {{ section.settings.more_info_heading }}
+                </h4>
+              {% endif %}
+
+              {% if section.settings.more_info_text != blank %}
+                <p class="text-black">
+                  {{ section.settings.more_info_text }}
+                </p>
+              {% endif %}
+
+
+              {%- comment -%}
+                Phone / Email
+              {%- endcomment -%}
+              <ul class="contact-us-link">
+
+                {% if settings.call_us_text != blank %}
+                  <li>
+
+                    <div class="call-mail-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 36 36"
+                      >
+                        <g transform="translate(-1179 -820)">
+                          <path
+                            d="M18,0A18,18,0,1,0,36,18,18.017,18.017,0,0,0,18,0Z"
+                            transform="translate(1179 820)"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            d="M15.057,7.195A.654.654,0,0,1,14.4,6.54,5.238,5.238,0,0,0,9.17,1.308.654.654,0,1,1,9.17,0,6.548,6.548,0,0,1,15.711,6.54.654.654,0,0,1,15.057,7.195ZM13.094,6.54A3.925,3.925,0,0,0,9.17,2.616a.654.654,0,1,0,0,1.308A2.616,2.616,0,0,1,11.786,6.54a.654.654,0,1,0,1.308,0ZM14.522,14.5l.6-.686a2.028,2.028,0,0,0,0-2.863c-.02-.02-1.594-1.231-1.594-1.231a2.028,2.028,0,0,0-2.8,0l-1.247,1.05A8.362,8.362,0,0,1,4.942,6.229L5.989,4.986a2.028,2.028,0,0,0,0-2.8S4.781.614,4.761.593a2.016,2.016,0,0,0-2.83-.03l-.752.654C-3.265,6.373,6.3,15.869,11.63,15.7a4.026,4.026,0,0,0,2.892-1.2Z"
+                            transform="translate(1188.568 830.15)"
+                            fill="#fcbc14"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+
+                    <div class="call-mail-info">
+                      <a
+                        class="call-mail"
+                        href="{{ settings.call_us_url }}"
+                      >
+                        {{ settings.call_us_text | remove: 'Call' | strip }}
+                      </a>
+                    </div>
+
+                  </li>
+                {% endif %}
+                {% if settings.email_text != blank %}
+                  <li>
+
+                    <div class="call-mail-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 36 36"
+                      >
+                        <g transform="translate(-1179 -875)">
+                          <path
+                            d="M18,0A18,18,0,1,0,36,18,18.017,18.017,0,0,0,18,0Z"
+                            transform="translate(1179 875)"
+                            fill-rule="evenodd"
+                          />
+                          <g transform="translate(1188 884.262)">
+                            <path
+                              d="M16.851,5.542l-5.922,5.922a3.522,3.522,0,0,1-4.975,0L.032,5.542C.023,5.653,0,5.754,0,5.864v8.442a3.522,3.522,0,0,0,3.517,3.517h9.849a3.522,3.522,0,0,0,3.517-3.517V5.864C16.883,5.754,16.861,5.653,16.851,5.542Z"
+                              transform="translate(0 -1.347)"
+                              fill="#fcbc14"
+                            />
+                            <path
+                              d="M10.155,9.122,16.581,2.7A3.508,3.508,0,0,0,13.587,1H3.738A3.508,3.508,0,0,0,.744,2.7L7.17,9.122a2.115,2.115,0,0,0,2.986,0Z"
+                              transform="translate(-0.221)"
+                              fill="#fcbc14"
+                            />
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+
+                    <div class="call-mail-info">
+                      <a
+                        class="call-mail"
+                        href="{{ settings.email_url }}"
+                      >
+                        {{ settings.email_text }}
+                      </a>
+                    </div>
+
+                  </li>
+                {% endif %}
+
+              </ul>
+
+
+              {%- comment -%}
+                Social Media
+              {%- endcomment -%}
+              {% if section.settings.social_heading != blank %}
+                <div class="social-media-cu social-link-main">
+
+                  <p class="text-black mb-2">
+                    {{ section.settings.social_heading }}
+                  </p>
+                  {% render 'social-icons-black' , class:'d-flex gap-3 flex-wrap' %}
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{%- comment -%}
+  Awards Section
+{%- endcomment -%}
+<section
+  class="{{ section.settings.awards_section_class }} cdu-awards-sec"
+  {% if section.settings.awards_section_id != blank %}
+    id="{{ section.settings.awards_section_id }}"
+  {% endif %}
+>
+  <div class="container">
+
+    <div class="cdu-awards-top">
+      <div class="section_heading">
+
+        <span class="sec_subtitle mb-0 theme_black">
+
+          <svg
+            class="sec_sub_icon"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+              fill="#000"
+            />
+          </svg>
+
+          {{ section.settings.awards_subtitle }}
+
+        </span>
+
+        {% if section.settings.awards_heading != blank %}
+          <h2 class="sec_typo mb-0 mt-1">
+            {{ section.settings.awards_heading }}
+          </h2>
+        {% endif %}
+
+      </div>
+    </div>
+
+
+    <div class="cdu-awards-wrap">
+      <div class="cdu-awards-row">
+
+        {% for block in section.blocks %}
+
+          {% if block.type == 'award' %}
+
+            <div class="cdu-awards-col" {{ block.shopify_attributes }}>
+
+              {% if block.settings.image != blank %}
+
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}">
+                {% endif %}
+                <img src="{{ block.settings.image | image_url : width:"1200" }}">
+                {% if block.settings.link != blank %}
+                  </a>
+                {% endif %}
+
+              {% endif %}
+
+            </div>
+
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .custom-field-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+    font-family: Geist, sans-serif;
+  }
+
+  .custom-field-error-input {
+    border: 1px solid #dc3545 !important;
+  }
+  .cf-field-wrap {
+    gap: 0px;
+  }
+  .contact-form-success {
+    color: #28a745;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+  }
+
+  #contactFormSubmit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  #contactFormSubmit.loading .btn-text {
+    display: none;
+  }
+
+  #contactFormSubmit.loading .btn-spinner {
+    display: inline-flex !important;
+  }
+  .cf-form-page.cf-page-0 {
+    display: block !important;
+    order:1;
+  }
+  .cf-submit-wrap{
+    order:2;
+  }
+  .cf-form-success.alert.alert-success{
+    order:0;
+    margin-top:0 !important;
+  }
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  .spinner-circle {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 50;
+    }
+    50% {
+      stroke-dashoffset: 25;
+    }
+    100% {
+      stroke-dashoffset: 50;
+    }
+  }
+
+  #contactFormSubmit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+(function () {
+
+    function setupCustomValidation() {
+
+        // Find all required fields created by the form app
+        const fields = document.querySelectorAll(
+            '.cf-input[data-cf-required="true"]'
+        );
+
+        fields.forEach(function (field) {
+
+            // Remove browser required validation
+            field.removeAttribute('required');
+
+            // Prevent adding duplicate error message
+            if (!field.parentElement.querySelector('.custom-field-error')) {
+
+                const error = document.createElement('div');
+
+                error.className = 'custom-field-error';
+                error.innerText = 'This field is required.';
+                error.style.display = 'none';
+
+                // Add error directly below input
+                field.insertAdjacentElement('afterend', error);
+            }
+
+            // Remove error when user starts typing
+            if (!field.dataset.validationAttached) {
+
+                field.dataset.validationAttached = 'true';
+
+                field.addEventListener('input', function () {
+
+                    const error = field.parentElement.querySelector(
+                        '.custom-field-error'
+                    );
+
+                    if (field.value.trim() !== '') {
+                        field.classList.remove('custom-field-error-input');
+
+                        if (error) {
+                            error.style.display = 'none';
+                        }
+                    }
+                });
+
+                field.addEventListener('blur', function () {
+
+                    validateField(field);
+
+                });
+            }
+        });
+    }
+
+
+    function validateField(field) {
+
+        const error = field.parentElement.querySelector(
+            '.custom-field-error'
+        );
+
+        if (!field.value.trim()) {
+
+            field.classList.add('custom-field-error-input');
+
+            if (error) {
+                error.style.display = 'block';
+            }
+
+            return false;
+
+        } else {
+
+            field.classList.remove('custom-field-error-input');
+
+            if (error) {
+                error.style.display = 'none';
+            }
+
+            return true;
+        }
+    }
+
+
+    function validateForm(form) {
+
+        let valid = true;
+        let firstInvalid = null;
+
+        const fields = form.querySelectorAll(
+            '.cf-input[data-cf-required="true"]'
+        );
+
+        fields.forEach(function (field) {
+
+            if (!validateField(field)) {
+
+                valid = false;
+
+                if (!firstInvalid) {
+                    firstInvalid = field;
+                }
+            }
+
+        });
+
+        if (!valid && firstInvalid) {
+            firstInvalid.focus();
+        }
+
+        return valid;
+    }
+
+
+    // Keep removing "required" even if the form app adds it again
+    setInterval(function () {
+        setupCustomValidation();
+    }, 300);
+
+
+    // Initial setup
+    setupCustomValidation();
+
+
+    // Watch dynamically added form fields
+    const observer = new MutationObserver(function () {
+        setupCustomValidation();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+
+    // Capture submit before other form handlers
+    document.addEventListener('submit', function (event) {
+
+        const form = event.target;
+
+        if (!form.querySelector('.cf-input[data-cf-required="true"]')) {
+            return;
+        }
+
+        // Disable browser's native validation
+        form.setAttribute('novalidate', 'novalidate');
+
+        if (!validateForm(form)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return false;
+        }
+
+    }, true);
+
+
+    // Also disable native validation on every form containing CF fields
+    setInterval(function () {
+
+        document.querySelectorAll('form').forEach(function (form) {
+
+            if (form.querySelector('.cf-input[data-cf-required="true"]')) {
+                form.setAttribute('novalidate', 'novalidate');
+            }
+
+        });
+
+    }, 300);
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Contact Us Page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "tag": "section",
+  "class": "contact-us-page-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_class",
+      "label": "Section class",
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID",
+      "default": "contact-us"
+    },
+
+    {
+      "type": "header",
+      "content": "Contact Form Content"
+    },
+    {
+      "type": "text",
+      "id": "form_greeting",
+      "label": "Greeting",
+      "default": "Hello 👋"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Got a vision?"
+    },
+    {
+      "type": "text",
+      "id": "form_subheading",
+      "label": "Form subheading",
+      "default": "We can bring it to life! Let’s work together."
+    },
+
+    {
+      "type": "text",
+      "id": "first_name_placeholder",
+      "label": "First name placeholder",
+      "default": "First Name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_placeholder",
+      "label": "Last name placeholder",
+      "default": "Last Name"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone placeholder",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message placeholder",
+      "default": "Discuss about your project…"
+    },
+    {
+      "type": "textarea",
+      "id": "form_bottom_text",
+      "label": "Form privacy text",
+      "default": "We will add your info to our CRM for contacting you regarding your request. For more info please consult our privacy policy."
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit button text",
+      "default": "SUBMIT ENQUIRY"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you! Your enquiry has been submitted successfully."
+    },
+
+    {
+      "type": "header",
+      "content": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Heading",
+      "default": "Here’s How It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "info_description",
+      "label": "Description",
+      "default": "Pop in your details, and we’ll get back to you within 24 hours. Keen to get moving? Scroll down for more ways to connect."
+    },
+
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "more_info_heading",
+      "label": "More info heading",
+      "default": "Need More Info?"
+    },
+    {
+      "type": "textarea",
+      "id": "more_info_text",
+      "label": "More info text",
+      "default": "We’re here for a chat anytime. Reach us on:"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "1300 699 571"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address",
+      "default": "hello@clouddownunder.com.au"
+    },
+
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social heading",
+      "default": "Stay connected:"
+    },
+    {
+      "type": "header",
+      "content": "Awards Section"
+    },
+    {
+      "type": "text",
+      "id": "awards_section_class",
+      "label": "Awards section class",
+    },
+    {
+      "type": "text",
+      "id": "awards_section_id",
+      "label": "Awards section ID",
+    },
+    {
+      "type": "text",
+      "id": "awards_subtitle",
+      "label": "Awards subtitle",
+      "default": "CDU Awards"
+    },
+    {
+      "type": "text",
+      "id": "awards_heading",
+      "label": "Awards heading",
+      "default": "Awards and recognition"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "process_step",
+      "name": "How It Works Step",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Step text",
+          "default": "Our friendly team will reach you within hours to organise a FREE chat about your project."
+        }
+      ]
+    },
+    {
+      "type": "award",
+      "name": "Award",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Award image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Image alt text",
+          "default": "CDU Award"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Award link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Contact Us Page",
+      "blocks": [
+        {
+          "type": "process_step",
+          "settings": {
+            "text": "Our friendly team will reach you within hours to organise a FREE chat about your project."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "text": "We lock down your idea with an NDA—your concept is safe as houses with us."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "text": "We’ll dive deep into what you need, have a good yarn about your vision, and answer any burning questions."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "text": "You’ll get a clear plan with costs, timelines, and next steps to get your project off the ground."
+          }
+        },
+        {
+          "type": "award"
+        },
+        {
+          "type": "award"
+        },
+        {
+          "type": "award"
+        },
+        {
+          "type": "award"
+        },
+        {
+          "type": "award"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

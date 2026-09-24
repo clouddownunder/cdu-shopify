@@ -1,0 +1,137 @@
+<section class="blogs-sec">
+  <div class="container">
+    <div class="row align-items-lg-end">
+      <div class="col-lg-7">
+        <div class="section_heading">
+          <span class="sec_subtitle mb-0">
+            <svg
+              class="sec_sub_icon"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                fill="#000" />
+            </svg>
+            {{ section.settings.section_subtitle }}
+          </span>
+          {% if section.settings.section_title != blank %}
+            <h2 class="sec_typo mb-0 mt-1">
+              {{ section.settings.section_title }}
+            </h2>
+          {% endif %}
+          {% if section.settings.section_description != blank %}
+            <p class="mb-0 p_font_color font-300 mt-lg-4 mt-3 method-disc">
+              {{ section.settings.section_description }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-5">
+        {% if section.settings.button_text != blank %}
+          <div class="btn-wp text-lg-end">
+            <a href="{{ section.settings.button_link | default: '#' }}" class="btn btn-with-arrow">
+              {{- section.settings.button_text -}}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="blogs-sl-main overflow-hidden">
+    <div class="container">
+      <div class="main-slick-slider">
+        <div class="blogs-rtl">
+          {% assign selected_blog = section.settings.blog %}
+          {% for article in selected_blog.articles limit: section.settings.posts_limit %}
+            <div class="blog-slide">
+              <div class="blog-card">
+                <div class="blog-img">
+                  <a href="{{ article.url }}" class="blog-img-link">
+                    <img src="{{ article.image | image_url: width: article.image.value.width }}" alt="blog image" width="{{ article.image.value.width }}" height="{{ article.image.value.height }}" class="img-fluid">
+                  </a>
+                </div>
+                <div class="blog-info">
+                  {% if article.tags.size > 0 %}
+                  <div class="blog-tags tech-stack">
+                    {% for tag in article.tags limit: 2 %}
+                    <span>{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <a href="{{ article.url }}">
+                    <h3 class="blog-title">{{ article.title }}</h3>
+                  </a>
+                  <div class="blog-disc mb-0 p_font_color">
+                    {{ article.content }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %} 
+{ 
+  "name": "Blogs", 
+  "tag": "section", 
+  "class": "section-blogs",
+  "settings": [ 
+    { 
+      "type": "text", 
+      "id": "section_subtitle",
+      "label": "Section Subtitle", 
+      "default": "Insights" 
+    }, 
+    { 
+      "type": "text", 
+      "id": "section_title", 
+      "label": "Section Title", 
+      "default": "Read from our CDU Experts" 
+    }, 
+    { 
+      "type": "text", 
+      "id": "section_description", 
+      "label": "Section Description", 
+      "default": "Real partnerships. Honest feedback. See why organisations across Australia trust Cloud Downunder to design, build, and support their digital products." 
+    }, 
+    { 
+      "type": "text", 
+      "id": "button_text", 
+      "label": "Button Text", 
+      "default": "Tell us about your project" 
+    }, 
+    { 
+      "type": "url", 
+      "id": "button_link", 
+      "label": "Button Link" 
+    }, 
+    { 
+      "type": "blog", 
+      "id": "blog", 
+      "label": "Select Blog" 
+    }, 
+    { 
+      "type": "range", 
+      "id": "posts_limit", 
+      "label": "Number of Blog Posts", 
+      "min": 1, 
+      "max": 12, 
+      "step": 1, 
+      "default": 3
+    } 
+  ], 
+  "presets": [ 
+    { 
+      "name": "Blogs" 
+    } 
+  ] 
+} 
+{% endschema %}

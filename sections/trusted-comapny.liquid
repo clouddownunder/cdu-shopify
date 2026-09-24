@@ -1,0 +1,100 @@
+<section class="trusted-companies">
+    <div class="container-fuild">
+        <div class="trusted-companies-top">
+            <div class="trusted-companies-row d-flex flex-wrap align-items-center">
+                <div class="trusted-companies-left">
+                    <div class="section_heading">
+                        <span class="sec_subtitle text-black">
+                            <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#000"></path>
+                            </svg>
+                            {{ section.settings.subtitle }}
+                        </span>
+                        <p class="mb-0">
+                            {{ section.settings.description }}
+                        </p>
+                    </div>
+                </div>
+                <div class="trusted-companies-right text-end align-self-center">
+                    <div class="trusted-companies-main">
+                        <div class="clients-logo-main">
+                            <div class="clients-logo-inner">
+                                {% for block in section.blocks %}
+                                    {% if block.type == 'logo' %}
+                                        <div class="client-logo-wrap" {{ block.shopify_attributes }}>
+                                            <div class="client-logo">
+                                                {% if block.settings.logo != blank %}
+                                                    <img src="{{ block.settings.logo | image_url }}" alt="{{ block.settings.logo.alt }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Trusted Companies",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "From concept to launch"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Trusted By 1800+ Global Clients, Including Fortune 500 Companies"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Client Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Client Logo"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text",
+          "default": "Client logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trusted Companies",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

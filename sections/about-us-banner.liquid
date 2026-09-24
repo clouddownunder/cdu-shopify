@@ -1,0 +1,149 @@
+<section class="banner-sec about-banner-sec">
+    <div class="banner-wrap  ">
+        <div class="container">
+            <div class="banner-links-main">
+                <ul class="breadcrumb">
+                    <li class="banner-links"><a href="{{ section.settings.home_link | default: '/' }}">{{ section.settings.home_text | default: 'Home' }}</a></li>
+                    <li class="banner-links"><span>/</span></li>
+                    <li class="banner-links active"><span class="link-title">{{ section.settings.current_page_text | default: 'About Us' }}</span></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="banner-text-wrap ">
+                        <div class="banner-text">
+                            <div class="banner-heading-wrap">
+                                <h1 class=" text-uppercase banner-about-heading mb-0"><span class="font-we-rg">{{ section.settings.heading_prefix | default: 'We Are' }}</span> <br><span class="d-lg-none font-blk">{{ section.settings.company_name_mobile | default: 'Cloud Down Under' }}</span></h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 align-self-center">
+                    <div class="about-banner-right">
+                        <p class="text-black">{{ section.settings.description_text | default: 'Cloud Downunder is a veteran IT solutions firm in Brisbane, since 2012, transforming raw ideas into innovative digital solutions, across Australia.' }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12">
+                    <div class="d-none d-lg-flex">
+                        <span class="text-uppercase banner-about-heading font-blk">{{ section.settings.company_name_desktop | default: 'Cloud Down Under' }}</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12">
+                    <div class="banner-btn-main d-flex flex-wrap justify-content-lg-end gap-3">
+                        <div class="btn-wp">
+                            <a href="tel:{{ section.settings.consultation_phone | default: '1300 699 571' }}" class="btn btn-with-arrow ">{{ section.settings.consultation_button_text | default: 'Book A FREE Consultation' }}</a>
+                        </div>
+                        <div class="btn-wp">
+                            <a href="{{ section.settings.portfolio_link | default: '#' }}" class="btn btn-with-arrow border-btn">{{ section.settings.portfolio_button_text | default: 'View Portfolio' }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "About Us Banner",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+    {
+      "type": "url",
+      "id": "home_link",
+      "label": "Home Link"
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "current_page_text",
+      "label": "Current Page Text",
+      "default": "About Us"
+    },
+    {
+      "type": "header",
+      "content": "Banner Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading Prefix",
+      "default": "We Are"
+    },
+    {
+      "type": "text",
+      "id": "company_name_mobile",
+      "label": "Company Name (Mobile)",
+      "default": "Cloud Down Under"
+    },
+    {
+      "type": "text",
+      "id": "company_name_desktop",
+      "label": "Company Name (Desktop)",
+      "default": "Cloud Down Under"
+    },
+    {
+      "type": "textarea",
+      "id": "description_text",
+      "label": "Description Text",
+      "default": "Cloud Downunder is a veteran IT solutions firm in Brisbane, since 2012, transforming raw ideas into innovative digital solutions, across Australia."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "consultation_phone",
+      "label": "Consultation Phone",
+      "default": "1300 699 571"
+    },
+    {
+      "type": "text",
+      "id": "consultation_button_text",
+      "label": "Consultation Button Text",
+      "default": "Book A FREE Consultation"
+    },
+    {
+      "type": "url",
+      "id": "portfolio_link",
+      "label": "Portfolio Link"
+    },
+    {
+      "type": "text",
+      "id": "portfolio_button_text",
+      "label": "Portfolio Button Text",
+      "default": "View Portfolio"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Banner",
+      "settings": {
+        "home_text": "Home",
+        "current_page_text": "About Us",
+        "heading_prefix": "We Are",
+        "company_name_mobile": "Cloud Down Under",
+        "company_name_desktop": "Cloud Down Under",
+        "description_text": "Cloud Downunder is a veteran IT solutions firm in Brisbane, since 2012, transforming raw ideas into innovative digital solutions, across Australia.",
+        "consultation_phone": "1300 699 571",
+        "consultation_button_text": "Book A FREE Consultation",
+        "portfolio_button_text": "View Portfolio"
+      }
+    }
+  ]
+}
+{% endschema %}

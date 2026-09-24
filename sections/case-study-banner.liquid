@@ -1,0 +1,29 @@
+<style>
+    .section-padding{
+        padding:200px 0;
+    }
+</style>
+<div class="section-padding">
+    <div class="container text-center">
+        <h1>{{ section.settings.heading }}</h1>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Case Study Banner",
+    "blocks": [],
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default":"Case Study Page"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Case Study Banner"
+        }
+    ]
+}
+{% endschema %}

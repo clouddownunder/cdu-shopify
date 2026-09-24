@@ -1,0 +1,939 @@
+{%- liquid
+  assign section_title = section.settings.section_title
+  assign highlight_word = section.settings.highlighted_word
+-%}
+
+<section class="contact_us_sec" id="ContactFormSection">
+  <div class="container">
+    <div class="row">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-lg-6 col-md-12 col-sm-12 col-12 pe-lg-5">
+        <div class="contact_us_sec_left">
+
+          {%- if section.settings.badge_title != blank or section.settings.badge_subtitle != blank -%}
+            <div class="d-flex">
+              <div class="footer-speak-team banner-speak-team d-flex align-items-center mt-0 mb-3">
+
+                <div class="flex-0-auto">
+                  {%- if section.settings.badge_image != blank -%}
+                    <img
+                      src="{{ section.settings.badge_image | image_url }}"
+                      alt="{{ section.settings.badge_title | escape }}"
+                    >
+                  {%- else -%}
+                    <img
+                      src="{{ 'speak-team-img.png' | asset_url }}"
+                      alt="{{ section.settings.badge_title | escape }}"
+                    >
+                  {%- endif -%}
+                </div>
+
+                <div class="w-100 ps-2 pe-3">
+                  {%- if section.settings.badge_title != blank -%}
+                    <span class="d-inline-block w-100 white_text font-md">
+                      {{ section.settings.badge_title }}
+                    </span>
+                  {%- endif -%}
+
+                  {%- if section.settings.badge_subtitle != blank -%}
+                    <p class="mb-0">
+                      {{ section.settings.badge_subtitle }}
+                    </p>
+                  {%- endif -%}
+                </div>
+
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="section_heading">
+
+            {%- if section_title != blank -%}
+              <h2 class="sec_typo text-white">
+                {%- if highlight_word != blank and section_title contains highlight_word -%}
+                  {%- assign title_parts = section_title | split: highlight_word -%}
+                  {{ title_parts[0] }}
+                  <span class="theme-color-text">{{ highlight_word }}</span>
+                  {{ title_parts[1] }}
+                {%- else -%}
+                  {{ section_title }}
+                {%- endif -%}
+              </h2>
+            {%- endif -%}
+
+            {%- if section.settings.section_description != blank -%}
+              <p class="mb-0 p_font_color mt-lg-3 mt-3">
+                {{ section.settings.section_description }}
+              </p>
+            {%- endif -%}
+
+            {%- assign stat_blocks = section.blocks | where: "type", "stat" -%}
+
+            {%- if stat_blocks.size > 0 -%}
+              <div class="f-icontext-main">
+
+                {%- for block in stat_blocks -%}
+                  <div
+                    class="f-icontext d-flex align-items-center white_text font-bl"
+                    {{ block.shopify_attributes }}
+                  >
+
+                    {%- if block.settings.icon != blank -%}
+                      <img
+                        class="flex-0-auto"
+                        src="{{ block.settings.icon | image_url: width: 32 }}"
+                        width="16"
+                        height="16"
+                        alt=""
+                        loading="lazy"
+                      >
+                    {%- else -%}
+
+                      <svg
+                        class="flex-0-auto"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.67 14V12.6667C10.67 11.9594 10.389 11.2811 9.88891 10.781C9.38877 10.281 8.71044 10 8.00314 10H4.00282C3.29552 10 2.61719 10.281 2.11705 10.781C1.61691 11.2811 1.33594 11.9594 1.33594 12.6667V14M10.67 2.08529C11.2419 2.23353 11.7484 2.56746 12.1099 3.03466C12.4715 3.50186 12.6676 4.07588 12.6676 4.66662C12.6676 5.25736 12.4715 5.83138 12.1099 6.29858C11.7484 6.76578 11.2419 7.09971 10.67 7.24795M14.6703 13.9999V12.6666C14.6699 12.0757 14.4732 11.5018 14.1112 11.0348C13.7492 10.5678 13.2423 10.2343 12.6702 10.0866M8.66986 4.66667C8.66986 6.13943 7.47585 7.33333 6.00298 7.33333C4.5301 7.33333 3.3361 6.13943 3.3361 4.66667C3.3361 3.19391 4.5301 2 6.00298 2C7.47585 2 8.66986 3.19391 8.66986 4.66667Z"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        ></path>
+                      </svg>
+
+                    {%- endif -%}
+
+                    {{ block.settings.text }}
+
+                  </div>
+                {%- endfor -%}
+
+              </div>
+            {%- endif -%}
+
+          </div>
+
+          {%- assign faq_blocks = section.blocks | where: "type", "faq_item" -%}
+
+          {%- if faq_blocks.size > 0 -%}
+            <div class="contact_us_text_row">
+
+              {%- for block in faq_blocks -%}
+                <div
+                  class="contact_us_text_col"
+                  {{ block.shopify_attributes }}
+                >
+
+                  {%- if block.settings.question != blank -%}
+                    <h5 class="white_text">
+                      {{ block.settings.question }}
+                    </h5>
+                  {%- endif -%}
+
+                  {%- if block.settings.answer != blank -%}
+                    <p>
+                      {{ block.settings.answer }}
+                    </p>
+                  {%- endif -%}
+
+                </div>
+              {%- endfor -%}
+
+            </div>
+          {%- endif -%}
+
+          {%- if settings.email_text != blank -%}
+            <div class="contact_mail_main">
+              <a
+                href="{{ settings.email_url }}"
+                class="contact_mail"
+              >
+                {{ settings.email_text }}
+              </a>
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-lg-6 col-md-12 col-sm-12 col-12 contact_us_form">
+        <div class="contact_us_form_main">
+
+          {%- if section.settings.form_title != blank -%}
+            <div class="contact_us_form-title">
+              <h2>
+                {{ section.settings.form_title }}
+              </h2>
+            </div>
+          {%- endif -%}
+
+          <!-- App Blocks -->
+          {% for block in section.blocks %}
+            {% if block.type == '@app' %}
+              {% render block %}
+            {% endif %}
+          {% endfor %}
+
+          <!-- Shopify Form (Commented Out) -->
+          {% comment %}
+          {% form 'contact' %}
+
+            <!--
+              IMPORTANT:
+              Shopify will redirect back to the current page and this section.
+            -->
+            <input
+              type="hidden"
+              name="return_to"
+              value="{{ request.path }}?contact_posted=true#ContactFormSection"
+            >
+
+
+            <!-- SUCCESS MESSAGE -->
+            {%- if form.posted_successfully? -%}
+              <div
+                class="form-status form-status--success alert alert-success"
+                role="status"
+                tabindex="-1"
+              >
+                <strong class="d-block mb-1">
+                  {{ section.settings.success_title | default: 'Thanks, we got it!' }}
+                </strong>
+
+                {{ section.settings.success_message | default: 'Your message has been sent — a member of our team will be in touch soon.' }}
+              </div>
+            {%- endif -%}
+
+
+            <!-- ERROR MESSAGE -->
+            {%- if form.errors -%}
+              <div
+                class="form-status form-status--error alert alert-danger"
+                role="alert"
+                tabindex="-1"
+              >
+
+                <ul class="mb-0">
+
+                  {%- for field in form.errors -%}
+                    <li>
+
+                      {%- if field == 'form' -%}
+                        {{ form.errors.messages[field] }}
+                      {%- else -%}
+                        {{ form.errors.translated_fields[field] | capitalize }}
+                        {{ form.errors.messages[field] }}
+                      {%- endif -%}
+
+                    </li>
+                  {%- endfor -%}
+
+                </ul>
+
+              </div>
+            {%- endif -%}
+
+
+            <div class="form-group-main">
+
+              <div class="row mb-4">
+
+                <!-- FIRST NAME -->
+                <div class="col-md-6 col-sm-12 col-12">
+                  <div class="form-group">
+
+                    <input
+                      type="text"
+                      name="contact[First Name]"
+                      id="ContactFormFirstNameSection"
+                      placeholder="{{ section.settings.first_name_label | default: 'First Name' }}"
+                      class="form-control"
+                      value="{% if form.first_name %}{{ form.first_name }}{% endif %}"
+                      data-field="first_name"
+                    >
+
+                    <div
+                      class="field-error"
+                      id="ContactFormFirstNameSection-error"
+                    ></div>
+
+                  </div>
+                </div>
+
+
+                <!-- LAST NAME -->
+                <div class="col-md-6 col-sm-12 col-12">
+                  <div class="form-group">
+
+                    <input
+                      type="text"
+                      name="contact[Last Name]"
+                      id="ContactFormLastNameSection"
+                      placeholder="{{ section.settings.last_name_label | default: 'Last Name' }}"
+                      class="form-control"
+                      value="{% if form.last_name %}{{ form.last_name }}{% endif %}"
+                      data-field="last_name"
+                    >
+
+                    <div
+                      class="field-error"
+                      id="ContactFormLastNameSection-error"
+                    ></div>
+
+                  </div>
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="col-md-6 col-sm-12 col-12">
+                  <div class="form-group">
+
+                    <input
+                      type="email"
+                      name="contact[email]"
+                      id="ContactFormEmailSection"
+                      placeholder="{{ section.settings.email_label | default: 'Email' }}"
+                      class="form-control"
+                      value="{% if form.email %}{{ form.email }}{% endif %}"
+                      autocomplete="email"
+                      data-field="email"
+                    >
+
+                    <div
+                      class="field-error"
+                      id="ContactFormEmailSection-error"
+                    ></div>
+
+                  </div>
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="col-md-6 col-sm-12 col-12">
+                  <div class="form-group">
+
+                    <input
+                      type="tel"
+                      name="contact[phone]"
+                      id="ContactFormPhoneSection"
+                      placeholder="{{ section.settings.phone_label | default: 'Phone' }}"
+                      class="form-control"
+                      value="{% if form.phone %}{{ form.phone }}{% endif %}"
+                      autocomplete="tel"
+                      data-field="phone"
+                    >
+
+                    <div
+                      class="field-error"
+                      id="ContactFormPhoneSection-error"
+                    ></div>
+
+                  </div>
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+
+                    <textarea
+                      name="contact[body]"
+                      id="ContactFormMessageSection"
+                      class="form-control"
+                      placeholder="{{ section.settings.message_label | default: 'Discuss about your project…' }}"
+                      data-field="message"
+                    >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+                    <div
+                      class="field-error"
+                      id="ContactFormMessageSection-error"
+                    ></div>
+
+                  </div>
+                </div>
+
+
+                <!-- HONEYPOT -->
+                <div
+                  class="form-group"
+                  style="position:absolute; left:-9999px; top:-9999px;"
+                  aria-hidden="true"
+                >
+
+                  <label for="ContactFormWebsiteSection">
+                    Leave this field empty
+                  </label>
+
+                  <input
+                    type="text"
+                    name="contact[website]"
+                    id="ContactFormWebsiteSection"
+                    tabindex="-1"
+                    autocomplete="off"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <!-- PRIVACY -->
+              {%- if section.settings.privacy_text != blank -%}
+                <div class="lock-privacy-policy mb-4 mb-md-5">
+
+                  <p class="form-bottom-text d-flex mb-0 black_text">
+
+                    <svg
+                      class="flex-0-auto me-2 mt-1"
+                      width="14"
+                      height="16"
+                      viewBox="0 0 14 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.66667 7.00048V4.3336C3.66667 3.44947 4.01786 2.60156 4.64298 1.97639C5.2681 1.35122 6.11595 1 7 1C7.88406 1 8.7319 1.35122 9.35702 1.97639C9.98214 2.60156 10.3333 3.44947 10.3333 4.3336V7.00048M2.33333 7.00048H11.6667C12.403 7.00048 13 7.59748 13 8.33392V13.001C13 13.7374 12.403 14.3344 11.6667 14.3344H2.33333C1.59695 14.3344 1 13.7374 1 13.001V8.33392C1 7.59748 1.59695 7.00048 2.33333 7.00048Z"
+                        stroke="#0B0C0E"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      ></path>
+                    </svg>
+
+                    {{ section.settings.privacy_text }}
+
+                  </p>
+
+                </div>
+              {%- endif -%}
+
+
+              <!-- SUBMIT BUTTON -->
+              <div class="form-send-btn text-center">
+
+                <button
+                  type="submit"
+                  class="btn text-center yellow-btn w-100"
+                  id="contactFormSubmitSection"
+                >
+
+                  <span class="btn-text">
+                    {{ section.settings.button_text | default: 'SEND MESSAGE' }}
+                  </span>
+
+                  <span
+                    class="btn-spinner"
+                    style="display:none;"
+                  >
+                    <svg
+                      class="spinner"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        class="spinner-circle"
+                        cx="10"
+                        cy="10"
+                        r="8"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      ></circle>
+                    </svg>
+                  </span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          {%- endform -%}
+          {% endcomment %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+  .custom-field-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+    font-family: Geist, sans-serif;
+  }
+
+  .custom-field-error-input {
+    border: 1px solid #dc3545 !important;
+  }
+  .cf-field-wrap {
+    gap: 0px;
+  }
+  #contactFormSubmitSection {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  #contactFormSubmitSection.loading .btn-spinner {
+    display: inline-flex !important;
+  }
+  .cf-form-page.cf-page-0 {
+    display: block !important;
+    order:1;
+  }
+  .cf-submit-wrap{
+    order:2;
+  }
+  .cf-form-success.alert.alert-success{
+    order:0;
+    margin-top:0 !important;
+  }
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  .spinner-circle {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  .cf-form-inner{
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 50;
+    }
+
+    50% {
+      stroke-dashoffset: 25;
+    }
+
+    100% {
+      stroke-dashoffset: 50;
+    }
+  }
+
+  #contactFormSubmitSection:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  #ContactFormSection {
+    scroll-margin-top: 100px;
+  }
+</style>
+<script>
+(function () {
+
+    function setupCustomValidation() {
+
+        // Find all required fields created by the form app
+        const fields = document.querySelectorAll(
+            '.cf-input[data-cf-required="true"]'
+        );
+
+        fields.forEach(function (field) {
+
+            // Remove browser required validation
+            field.removeAttribute('required');
+
+            // Prevent adding duplicate error message
+            if (!field.parentElement.querySelector('.custom-field-error')) {
+
+                const error = document.createElement('div');
+
+                error.className = 'custom-field-error';
+                error.innerText = 'This field is required.';
+                error.style.display = 'none';
+
+                // Add error directly below input
+                field.insertAdjacentElement('afterend', error);
+            }
+
+            // Remove error when user starts typing
+            if (!field.dataset.validationAttached) {
+
+                field.dataset.validationAttached = 'true';
+
+                field.addEventListener('input', function () {
+
+                    const error = field.parentElement.querySelector(
+                        '.custom-field-error'
+                    );
+
+                    if (field.value.trim() !== '') {
+                        field.classList.remove('custom-field-error-input');
+
+                        if (error) {
+                            error.style.display = 'none';
+                        }
+                    }
+                });
+
+                field.addEventListener('blur', function () {
+
+                    validateField(field);
+
+                });
+            }
+        });
+    }
+
+
+    function validateField(field) {
+
+        const error = field.parentElement.querySelector(
+            '.custom-field-error'
+        );
+
+        if (!field.value.trim()) {
+
+            field.classList.add('custom-field-error-input');
+
+            if (error) {
+                error.style.display = 'block';
+            }
+
+            return false;
+
+        } else {
+
+            field.classList.remove('custom-field-error-input');
+
+            if (error) {
+                error.style.display = 'none';
+            }
+
+            return true;
+        }
+    }
+
+
+    function validateForm(form) {
+
+        let valid = true;
+        let firstInvalid = null;
+
+        const fields = form.querySelectorAll(
+            '.cf-input[data-cf-required="true"]'
+        );
+
+        fields.forEach(function (field) {
+
+            if (!validateField(field)) {
+
+                valid = false;
+
+                if (!firstInvalid) {
+                    firstInvalid = field;
+                }
+            }
+
+        });
+
+        if (!valid && firstInvalid) {
+            firstInvalid.focus();
+        }
+
+        return valid;
+    }
+
+
+    // Keep removing "required" even if the form app adds it again
+    setInterval(function () {
+        setupCustomValidation();
+    }, 300);
+
+
+    // Initial setup
+    setupCustomValidation();
+
+
+    // Watch dynamically added form fields
+    const observer = new MutationObserver(function () {
+        setupCustomValidation();
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+
+    // Capture submit before other form handlers
+    document.addEventListener('submit', function (event) {
+
+        const form = event.target;
+
+        if (!form.querySelector('.cf-input[data-cf-required="true"]')) {
+            return;
+        }
+
+        // Disable browser's native validation
+        form.setAttribute('novalidate', 'novalidate');
+
+        if (!validateForm(form)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return false;
+        }
+
+    }, true);
+
+
+    // Also disable native validation on every form containing CF fields
+    setInterval(function () {
+
+        document.querySelectorAll('form').forEach(function (form) {
+
+            if (form.querySelector('.cf-input[data-cf-required="true"]')) {
+                form.setAttribute('novalidate', 'novalidate');
+            }
+
+        });
+
+    }, 300);
+
+})();
+</script>
+{% schema %}
+{
+  "name": "Contact Us",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left column — badge"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Badge Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_title",
+      "label": "Badge Title",
+      "default": "Discuss your projects"
+    },
+    {
+      "type": "text",
+      "id": "badge_subtitle",
+      "label": "Badge Subtitle",
+      "default": "Speak with the team lead"
+    },
+
+    {
+      "type": "header",
+      "content": "Left column — heading"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Ready to scale your growth?"
+    },
+    {
+      "type": "text",
+      "id": "highlighted_word",
+      "label": "Word to Highlight",
+      "info": "Must exactly match a word/phrase inside the Section Title above",
+      "default": "scale"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "We help ambitious teams build digital products and campaigns that convert."
+    },
+
+    {
+      "type": "header",
+      "content": "Left column — email"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "hello@clouddownunder.com.au"
+    },
+
+    {
+      "type": "header",
+      "content": "Right column — form"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form Title",
+      "default": "Empower Your Growth: Partner with Us Today!"
+    },
+    {
+      "type": "text",
+      "id": "first_name_label",
+      "label": "First Name Placeholder",
+      "default": "First Name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_label",
+      "label": "Last Name Placeholder",
+      "default": "Last Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone Placeholder",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message Placeholder",
+      "default": "Discuss about your project…"
+    },
+    {
+      "type": "textarea",
+      "id": "privacy_text",
+      "label": "Privacy Text",
+      "default": "We'll add your info to our CRM for contacting you regarding your request. For more info please consult our privacy policy."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SEND MESSAGE"
+    },
+
+    {
+      "type": "header",
+      "content": "On-page thank-you message"
+    },
+    {
+      "type": "text",
+      "id": "success_title",
+      "label": "Success Title",
+      "default": "Thanks, we got it!"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Your message has been sent — a member of our team will be in touch soon."
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "stat",
+      "name": "Stat Badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (optional, falls back to default icon)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "200+ clients"
+        }
+      ]
+    },
+
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How can I get in touch?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Reach us via the contact form, email, or phone. We'll connect you with the right expert."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Contact Us",
+      "settings": {
+        "badge_image": "shopify://shop_images/speak-team-img.png"
+      },
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "text": "200+ clients"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "text": "48h response"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I get in touch?",
+            "answer": "Reach us via the contact form, email, or phone. We'll connect you with the right expert."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What support do you offer?",
+            "answer": "From strategy and design to development, cloud, AI, and ongoing support we're with you every step."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How fast will I get a reply?",
+            "answer": "We typically respond to all enquiries within 1 business day."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

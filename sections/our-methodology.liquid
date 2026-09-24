@@ -1,0 +1,336 @@
+<section class="our-methodology">
+  <div class="container">
+    <div class="row align-items-lg-end">
+      <div class="col-lg-7">
+        <div class="section_heading">
+
+          {% if section.settings.section_subtitle != blank %}
+            <span class="sec_subtitle mb-0">
+              <svg
+                class="sec_sub_icon"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                  fill="#000"
+                />
+              </svg>
+
+              {{ section.settings.section_subtitle }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.section_title != blank %}
+            <h2 class="sec_typo mb-0 mt-1">
+              {{ section.settings.section_title }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.section_description != blank %}
+            <p class="mb-0 p_font_color font-300 mt-lg-4 mt-3 method-disc">
+              {{ section.settings.section_description }}
+            </p>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        {% if section.settings.button_text != blank %}
+          <div class="btn-wp text-lg-end">
+            <a
+              href="{{ section.settings.button_link | default: '#' }}"
+              class="btn btn-with-arrow"
+            >
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="methodology-sl-main overflow-hidden">
+      <div class="container">
+        <div class="main-slick-slider">
+          <div class="methodology-rtl">
+
+            {% for block in section.blocks %}
+              <div
+                class="methodology-slide"
+                {{ block.shopify_attributes }}
+              >
+                <div class="methodology-card">
+
+                  <div class="method-wrap">
+                    <div class="methodology-card-top">
+
+                      <span class="methodology-number">
+                        {{ forloop.index | prepend: '0' }}
+                      </span>
+
+                      {% if block.settings.step_icon != blank %}
+                        <div class="methodology-icon">
+                          {{
+                            block.settings.step_icon
+                            | image_url: width: 18
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '18',
+                              alt: block.settings.step_icon_alt
+                          }}
+                        </div>
+                      {% endif %}
+
+                    </div>
+
+                    <div class="methodology-title">
+
+                      {% if block.settings.step_emoji != blank %}
+                        <span class="icon sec_typo d-inline-block">
+                          {{ block.settings.step_emoji }}
+                        </span>
+                      {% endif %}
+
+                      {% if block.settings.step_title != blank %}
+                        <h3 class="sec_typo mt-2 mb-0">
+                          {{ block.settings.step_title }}
+                        </h3>
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="borderline">
+                    <span class="borderline_fill"></span>
+                  </div>
+
+                  <div class="method-content method-wrap">
+
+                    {% if block.settings.step_description != blank %}
+                      <p class="methodology-desc font-300 mb-0">
+                        {{ block.settings.step_description }}
+                      </p>
+                    {% endif %}
+
+                    {% if block.settings.step_duration != blank %}
+                      <div class="methodology-duration">
+
+                        <img src="https://cdn.shopify.com/s/files/1/0786/1472/4748/files/clock_2e4b1c5b-6ff2-432f-9b13-1ec109e97097.svg?v=1786615731" alt="clock">
+
+                        {{ block.settings.step_duration }}
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.step_points != blank %}
+                      <ul class="methodology-list">
+                        {% assign points = block.settings.step_points | newline_to_br | split: '<br />' %}
+
+                        {% for point in points %}
+                          {% assign point_text = point | strip_html | strip %}
+
+                          {% if point_text != blank %}
+                            <li>{{ point_text }}</li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+
+                  </div>
+
+                </div>
+              </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Our Methodology",
+  "tag": "section",
+  "class": "section-our-methodology",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Our Methodology"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "How We Build Digital Products That Work"
+    },
+    {
+      "type": "text",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Our proven methodology combines agile development, design thinking, and a deep understanding of your business to deliver products that meet real needs and drive growth."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Tell us about your project"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Methodology Step",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Step Content"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Discover & Strategize"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Step Description",
+          "default": "Brainstorm and in detail interviews with the stakeholder and technical sessions to rightly interpret your business goals, current systems and success metrics."
+        },
+        {
+          "type": "text",
+          "id": "step_duration",
+          "label": "Duration",
+          "default": "2–3 weeks"
+        },
+        {
+          "type": "textarea",
+          "id": "step_points",
+          "label": "Step Points",
+          "info": "Enter one point per line.",
+          "default": "Requirement gathering & scoping\nStakeholder interviews\nMarket & competitor analysis\nInitial project roadmap"
+        },
+        {
+          "type": "header",
+          "content": "Icons"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon",
+          "label": "Step Icon"
+        },
+        {
+          "type": "text",
+          "id": "step_icon_alt",
+          "label": "Step Icon Alt Text",
+          "default": "Methodology step"
+        },
+        {
+          "type": "text",
+          "id": "duration_icon",
+          "label": "Duration Icon URL",
+          "info": "Optional. Add the clock icon URL if it is not available through an image picker."
+        },
+        {
+          "type": "text",
+          "id": "step_emoji",
+          "label": "Step Emoji",
+          "default": "🔍"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Methodology",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Discover & Strategize",
+            "step_description": "Brainstorm and in detail interviews with the stakeholder and technical sessions to rightly interpret your business goals, current systems and success metrics.",
+            "step_duration": "2–3 weeks",
+            "step_points": "Requirement gathering & scoping\nStakeholder interviews\nMarket & competitor analysis\nInitial project roadmap",
+            "step_emoji": "🔍",
+            "step_icon": "shopify://shop_images/search.svg"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Design the Experience",
+            "step_description": "Wireframe, prototypes and design systems built in Figma with real user feedback loops.",
+            "step_duration": "2–3 weeks",
+            "step_points": "Wireframing & prototyping\nUser interface design\nUser experience mapping\nAccessibility compliance",
+            "step_emoji": "🎨",
+            "step_icon": "shopify://shop_images/edit.svg"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Build & Validate",
+            "step_description": "Agile sprints with weekly demos with senior Australian Engineers with you on the board to answer your smallest query.",
+            "step_duration": "Ongoing sprints",
+            "step_points": "Frontend & backend engineering\nAPI development & integration\nCloud infrastructure setup\nIterative sprint delivery",
+            "step_emoji": "💻",
+            "step_icon": "shopify://shop_images/code.svg"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Test & Refine",
+            "step_description": "Automated test suites, security scanning, performance testing, and UAT sign-off before any deployment.",
+            "step_duration": "1–2 weeks",
+            "step_points": "Unit & integration testing\nSystem & UAT testing\nPerformance & load testing\nSecurity & compliance review",
+            "step_emoji": "🧪",
+            "step_icon": "shopify://shop_images/refine.svg"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Launch with Confidence",
+            "step_description": "Zero-downtime deployments via CI/CD pipelines. Azure DevOps, GitHub Actions, or your preferred toolchain.",
+            "step_duration": "1 week",
+            "step_points": "Deployment strategy planning\nCI/CD pipeline configuration\nLive environment setup\nPost-deployment monitoring",
+            "step_emoji": "🚀",
+            "step_icon": "shopify://shop_images/focus.svg"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Grow & Support",
+            "step_description": "Ongoing Australian-based support, monitoring, and continuous improvement. We don't disappear after go-live.",
+            "step_duration": "Ongoing",
+            "step_points": "Bug fixes & updates\nSecurity patches\nPerformance optimisation\nFuture roadmap planning",
+            "step_emoji": "📈",
+            "step_icon": "shopify://shop_images/support.svg"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

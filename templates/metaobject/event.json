@@ -1,0 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_banner_yXidp7": {
+      "type": "page-banner",
+      "disabled": true,
+      "name": "Page Banner",
+      "settings": {
+        "heading": "{{ metaobject.title.value }}"
+      }
+    },
+    "event_details_page_7TFAmt": {
+      "type": "event_details-page",
+      "blocks": {
+        "speaker_HKxN7U": {
+          "type": "speaker",
+          "settings": {
+            "image": "{{ metaobject.person_image.value }}",
+            "name": "{{ metaobject.person_name.value }}",
+            "hero_label": "Speaker",
+            "role": "{{ metaobject.person_role.value }}",
+            "bio": "<p>{{ metaobject.person_bio | metafield_tag }}</p>",
+            "linkedin_url": "https://www.linkedin.com/in/jack-bear-726578226/"
+          }
+        }
+      },
+      "block_order": [
+        "speaker_HKxN7U"
+      ],
+      "name": "Event Detail",
+      "settings": {
+        "show_breadcrumb": true,
+        "category": "User Groups",
+        "event_title": "{{ metaobject.title.value }}",
+        "event_date_display": "{{ metaobject.date_and_time | metafield_text }}",
+        "location": "{{ metaobject.location.value }}",
+        "register_url": "{{ metaobject.register_button_url.value }}",
+        "register_button_text": "{{ metaobject.register_button_text.value }}",
+        "about_heading": "About the Event",
+        "about_lead": "{{ metaobject.about_description_lead.value }}",
+        "about_text": "{{ metaobject.about_description | metafield_tag }}",
+        "event_when": "{{ metaobject.about_description_meta_when.value }}",
+        "event_where": "{{ metaobject.about_description_meta_where.value }}",
+        "event_url": "{{ metaobject.about_description_meta_url.value }}",
+        "speakers_heading": "About the Speaker",
+        "show_icon_buttons": true
+      }
+    }
+  },
+  "order": [
+    "page_banner_yXidp7",
+    "event_details_page_7TFAmt"
+  ]
+}

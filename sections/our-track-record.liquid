@@ -1,0 +1,219 @@
+<section class="otr-cdu-sec sec-padding">
+  <div class="container">
+    <div class="otr-cdu-top">
+      <div class="row">
+
+        <!-- Left Content -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+          <div class="ort-left-sec pe-lg-5 pb-lg-0 pb-5">
+
+            <div class="section_heading">
+
+              {% if section.settings.section_subtitle != blank %}
+                <span class="sec_subtitle text-white mb-3">
+                  <svg
+                    class="sec_sub_icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                      fill="#fff"
+                    />
+                  </svg>
+
+                  {{ section.settings.section_subtitle }}
+                </span>
+              {% endif %}
+
+              {% if section.settings.section_title != blank %}
+                <h2 class="sec_typo text-white">
+                  {{ section.settings.section_title }}
+                </h2>
+              {% endif %}
+
+              {% if section.settings.section_description != blank %}
+                {{ section.settings.section_description | replace: '<p>', '<p class="mb-0 p_font_color mt-lg-3 mt-3">' }}
+              {% endif %}
+
+            </div>
+
+            {% if section.settings.button_text != blank %}
+              <div class="cta-main mt-5">
+                <a
+                  href="{{ section.settings.button_link | default: '#' }}"
+                  class="btn btn-with-arrow white-btn"
+                >
+                  {{ section.settings.button_text }}
+                </a>
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+        <!-- Right Statistics -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+          <div class="loc-right-sec">
+
+            {% if section.blocks.size > 0 %}
+              <div class="ort-loc-main">
+
+                {% for block in section.blocks %}
+                  <div
+                    class="ort-loc-row"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="ort-loc-wp d-flex align-items-center">
+
+                      {% if block.settings.stat_value != blank %}
+                        <div class="ort-loc-text">
+                          <h5 class="text-white">
+                            {{ block.settings.stat_value }}
+                          </h5>
+                        </div>
+                      {% endif %}
+
+                      <div class="ort-loc-info">
+
+                        {% if block.settings.stat_label != blank %}
+                          <h6 class="ort-loc-title text-white font-md mb-1">
+                            {{ block.settings.stat_label }}
+                          </h6>
+                        {% endif %}
+
+                        {% if block.settings.stat_description != blank %}
+                          <div class="ort-loc-info-sub mb-0">
+                            {{ block.settings.stat_description }}
+                          </div>
+                        {% endif %}
+
+                      </div>
+
+                    </div>
+                  </div>
+                {% endfor %}
+
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Track Record",
+  "tag": "section",
+  "class": "section-our-track-record",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Our Track Record"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Happy to build the Digital Products committed to deliver Real Business Outcomes."
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "<p>It is so, just because, we don’t write just codes but we do take care what values it creates. The entire development process focuses on Improved User Experience, Operational efficiency, Scalable Platforms and Long-term partnerships. Hence, we commit what we can deliver and how your business will stand a step forward out of the crowd.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Start Your Project"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "statistic",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Statistic Value",
+          "default": "70+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Statistic Label",
+          "default": "Digital Products Delivered"
+        },
+        {
+          "type": "textarea",
+          "id": "stat_description",
+          "label": "Statistic Description",
+          "default": "Helping startups, SMEs, and enterprises launch with confidence."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Track Record",
+      "blocks": [
+        {
+          "type": "statistic",
+          "settings": {
+            "stat_value": "70+",
+            "stat_label": "Digital Products Delivered",
+            "stat_description": "<p>Helping startups, SMEs, and enterprises launch with confidence.</p>"
+          }
+        },
+        {
+          "type": "statistic",
+          "settings": {
+            "stat_value": "20%",
+            "stat_label": "Trusted Business Partners",
+            "stat_description": "<p>Long-term relationships built on collaboration and transparency.</p>"
+          }
+        },
+        {
+          "type": "statistic",
+          "settings": {
+            "stat_value": "15+",
+            "stat_label": "Industries Served",
+            "stat_description": "<p>Delivering solutions across healthcare, finance, construction, retail, education, and more.</p>"
+          }
+        },
+        {
+          "type": "statistic",
+          "settings": {
+            "stat_value": "98+",
+            "stat_label": "Client Satisfaction",
+            "stat_description": "<p>Built on quality, communication, and measurable outcomes.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50
+}
+{% endschema %}

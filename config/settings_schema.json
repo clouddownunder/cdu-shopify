@@ -1,0 +1,113 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Cloud Downunder",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_url": "https://www.shopify.com/"
+  },
+  {
+    "name": "t:settings_schema.logo.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:settings_schema.logo.settings.logo_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer-logo",
+        "label": "Footer Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 100,
+        "unit": "px",
+        "label": "t:settings_schema.logo.settings.logo_width.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.logo.settings.favicon.label",
+        "info": "t:settings_schema.logo.settings.favicon.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.social-media.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "t:settings_schema.social-media.settings.social_facebook_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_facebook_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "t:settings_schema.social-media.settings.social_instagram_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_instagram_link.info"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "t:settings_schema.social-media.settings.social_twitter_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_twitter_link.info"
+      },      
+      {
+        "type": "text",
+        "id": "social_linkdin_link",
+        "label": "Linkdln",
+        "placeholder": "https://in.linkedin.com/"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "t:settings_schema.social-media.settings.social_youtube_link.label",
+        "placeholder": "t:settings_schema.social-media.settings.social_youtube_link.info"
+      },
+    ]
+  },
+  {
+    "name": "Personal Info",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Call Us"
+      },
+      {
+        "type": "text",
+        "id": "call_us_text",
+        "label": "Call Us Text",
+        "default":"Call 1300 699 571",
+        "placeholder": "Call 1300 699 571"
+      },
+      {
+        "type": "url",
+        "id": "call_us_url",
+        "label": "Call Us URL",
+      },
+      {
+        "type": "header",
+        "content": "Email"
+      },
+      {
+        "type": "text",
+        "id": "email_text",
+        "label": "Email Text",
+        "default":"hello [at] clouddownunder.com.au",
+        "placeholder": "hello [at] clouddownunder.com.au"
+      },
+      {
+        "type": "url",
+        "id": "email_url",
+        "label": "Email URL",
+      }
+    ]
+  }
+]

@@ -1,0 +1,128 @@
+<section class="banner-sec services-banner map-bg">
+  <div class="banner-wrap">
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-xl-9 col-lg-10 col-12">
+          <div class="banner-text-wrap align-items-center text-center">
+            <div class="banner-text">
+              <div class="banner-heading-wrap">
+                <h1 class="font-rg banner-heading ">
+                  {{ section.settings.heading }}
+                </h1>
+              </div>
+              <p class="font18">
+                {{  section.settings.description }}
+              </p>
+            </div>
+            <div class="banner-btn-main d-flex flex-wrap justify-content-center">
+              <div class="btn-wp">
+                <a href="{{ section.settings.button_1_link }}" class="btn btn-with-arrow me-3 mb-3">{{ section.settings.button_1_text }}</a>
+              </div>
+              <div class="btn-wp">
+                <a href="{{ section.settings.button_2_link }}" class="btn btn-with-arrow border-btn me-3 mb-3">{{ section.settings.button_2_text }}</a>
+              </div>
+            </div>
+            <a href="{{ section.settings.team_link }}" class="ltdp-cdu-discuss-bubble home-ltdp">
+              <div class="ltdp-cdu-discuss-avatar">
+              <img src="{{ section.settings.team_image | image_url }}" alt="Team lead">
+              <span class="phn-icon">
+                <img src="https://cdn.shopify.com/s/files/1/0786/1472/4748/files/plus-with-call.svg?v=1786336810" alt="Phone">
+              </span>
+              </div>
+              <div class="ltdp-cdu-discuss-text">
+              <h4>{{ section.settings.team_title }}</h4>
+              <p class="mb-0">{{ section.settings.team_subtitle }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Service Banner",
+  "tag": "section",
+  "class": "service-banner-section",
+
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Enterprise Microsoft, Cloud &amp; AI Solutions"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Microsoft, Salesforce, AI, Cloud, DevOps, Cybersecurity and Big Data — one engineering team, working your hours, speaking plain English."
+    },
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Book a Strategy Call"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "View Case Studies"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Team Contact"
+    },
+    {
+      "type": "image_picker",
+      "id": "team_image",
+      "label": "Team Image"
+    },
+    {
+      "type": "text",
+      "id": "team_title",
+      "label": "Team Title",
+      "default": "Discuss your projects"
+    },
+    {
+      "type": "text",
+      "id": "team_subtitle",
+      "label": "Team Subtitle",
+      "default": "Speak with the team lead"
+    },
+    {
+      "type": "url",
+      "id": "team_link",
+      "label": "Team Link"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Service Banner"
+    }
+  ]
+}
+{% endschema %}

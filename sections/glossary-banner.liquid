@@ -1,0 +1,1135 @@
+<section class="banner-sec banner-height-auto p-0 mt-2">
+    <div class="banner-wrap rounded-0">
+        <div class="container">
+            <div class="banner-links-main">
+                <ul class="breadcrumb">
+                    <li class="banner-links"><a href="{{ section.settings.home_link | default: '/' }}">{{ section.settings.home_text | default: 'Home' }}</a></li>
+                    <li class="banner-links"><span>/</span></li>
+                    <li class="banner-links active"><span class="link-title">{{ section.settings.current_page | default: 'Glossary' }}</span></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="banner-text-wrap ">
+                        <div class="banner-text mw-100">
+                            <div class="banner-heading-wrap">
+                                <h1 class="banner-heading text-uppercase">{{ section.settings.heading | default: 'CDU Glossary' }}</h1>
+                            </div>
+                            <div class="glossary-atoz">
+                                <ul class="glossary-index">
+                                    <li><a class="glossary-index-link" href="##">#</a></li>
+                                    <li><a class="glossary-index-link" href="#A">A</a></li>
+                                    <li><a class="glossary-index-link" href="#B">B</a></li>
+                                    <li><a class="glossary-index-link" href="#C">C</a></li>
+                                    <li><a class="glossary-index-link" href="#D">D</a></li>
+                                    <li><a class="glossary-index-link" href="#E">E</a></li>
+                                    <li><a class="glossary-index-link" href="#F">F</a></li>
+                                    <li><a class="glossary-index-link" href="#G">G</a></li>
+                                    <li><a class="glossary-index-link" href="#H">H</a></li>
+                                    <li><a class="glossary-index-link" href="#I">I</a></li>
+                                    <li><a class="glossary-index-link" href="#J">J</a></li>
+                                    <li><a class="glossary-index-link" href="#K">K</a></li>
+                                    <li><a class="glossary-index-link" href="#L">L</a></li>
+                                    <li><a class="glossary-index-link" href="#M">M</a></li>
+                                    <li><a class="glossary-index-link" href="#N">N</a></li>
+                                    <li><a class="glossary-index-link" href="#O">O</a></li>
+                                    <li><a class="glossary-index-link" href="#P">P</a></li>
+                                    <li><a class="glossary-index-link" href="#Q">Q</a></li>
+                                    <li><a class="glossary-index-link" href="#R">R</a></li>
+                                    <li><a class="glossary-index-link" href="#S">S</a></li>
+                                    <li><a class="glossary-index-link" href="#T">T</a></li>
+                                    <li><a class="glossary-index-link" href="#U">U</a></li>
+                                    <li><a class="glossary-index-link" href="#V">V</a></li>
+                                    <li><a class="glossary-index-link" href="#W">W</a></li>
+                                    <li><a class="glossary-index-link" href="#X">X</a></li>
+                                    <li><a class="glossary-index-link" href="#Y">Y</a></li>
+                                    <li><a class="glossary-index-link" href="#Z">Z</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="glossary-content-sec">
+    <div class="container">
+        <div class="glossary-content">
+            <div class="glossary-row">
+                {% assign letters = '#|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z' | split: '|' %}
+                {% for letter in letters %}
+                <div class="glossary-col" id="{{ letter }}">
+                    <div class="glossary-col-heading">
+                        <span class="glossary-h-text">{{ letter }}</span>
+                    </div>
+                    <div class="glossary-col-links">
+                        <ul>
+                            {% for block in section.blocks %}
+                            {% if block.settings.letter == letter %}
+                            <li {{ block.shopify_attributes }}>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#glossary-modal-{{ block.id }}">{{ block.settings.term }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for block in section.blocks %}
+<div class="glossary-details-main modal fade" id="glossary-modal-{{ block.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="glossary-modal-{{ block.id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <h4 class="font-we-md heading-popup" id="glossary-modal-{{ block.id }}Label">{{ block.settings.term }}</h4>
+                {{ block.settings.description }}
+            </div>
+            <div class="modal-footer d-flex justify-content-start">
+                <a href="#ContactFormSection" class="btn btn-with-arrow glossary-contact-btn" data-bs-dismiss="modal">Free Consultation</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<script>
+  document.addEventListener('click', function (e) {
+    const button = e.target.closest('.glossary-contact-btn');
+
+    if (!button) return;
+
+    e.preventDefault();
+
+    const targetId = button.getAttribute('href');
+    const target = document.querySelector(targetId);
+
+    const modal = button.closest('.modal');
+
+    if (modal) {
+        const bootstrapModal = bootstrap.Modal.getInstance(modal);
+
+        if (bootstrapModal) {
+            modal.addEventListener('hidden.bs.modal', function () {
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, { once: true });
+
+            bootstrapModal.hide();
+        }
+    }
+});
+</script>
+{% schema %}
+{
+  "name": "Glossary Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+    {
+      "type": "url",
+      "id": "home_link",
+      "label": "Home Link"
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "current_page",
+      "label": "Current Page",
+      "default": "Glossary"
+    },
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CDU Glossary"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "glossary_term",
+      "name": "Glossary Term",
+      "settings": [
+        {
+          "type": "select",
+          "id": "letter",
+          "label": "Letter",
+          "options": [
+            { "value": "#", "label": "#" },
+            { "value": "A", "label": "A" },
+            { "value": "B", "label": "B" },
+            { "value": "C", "label": "C" },
+            { "value": "D", "label": "D" },
+            { "value": "E", "label": "E" },
+            { "value": "F", "label": "F" },
+            { "value": "G", "label": "G" },
+            { "value": "H", "label": "H" },
+            { "value": "I", "label": "I" },
+            { "value": "J", "label": "J" },
+            { "value": "K", "label": "K" },
+            { "value": "L", "label": "L" },
+            { "value": "M", "label": "M" },
+            { "value": "N", "label": "N" },
+            { "value": "O", "label": "O" },
+            { "value": "P", "label": "P" },
+            { "value": "Q", "label": "Q" },
+            { "value": "R", "label": "R" },
+            { "value": "S", "label": "S" },
+            { "value": "T", "label": "T" },
+            { "value": "U", "label": "U" },
+            { "value": "V", "label": "V" },
+            { "value": "W", "label": "W" },
+            { "value": "X", "label": "X" },
+            { "value": "Y", "label": "Y" },
+            { "value": "Z", "label": "Z" }
+          ],
+          "default": "A"
+        },
+        {
+          "type": "text",
+          "id": "term",
+          "label": "Term Name",
+          "default": "Term Name"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Add description here...</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glossary Banner",
+      "settings": {
+        "home_link": "/",
+        "home_text": "Home",
+        "current_page": "Glossary",
+        "heading": "CDU Glossary"
+      },
+      "blocks": [
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "#",
+            "term": "1-on-1 Meeting",
+            "description": "<p>One-on-one meetings are personalized sessions between a team member and a manager or mentor.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "#",
+            "term": "360 Degree feedback",
+            "description": "<p>A comprehensive performance review method that gathers feedback from multiple sources.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "#",
+            "term": "3 month project delivery",
+            "description": "<p>A fast-track project delivery timeline for rapid development and deployment.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "AI & ML (Artificial Intelligence & Machine Learning)",
+            "description": "<p>AI & ML refers to the development of intelligent systems that can learn and make decisions. AI encompasses a broad range of technologies, while ML is a subset focused on algorithms that improve through experience.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "API Testing",
+            "description": "<p>API testing is a type of software testing that involves testing application programming interfaces (APIs) directly to determine if they meet expectations for functionality, reliability, performance, and security.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "Automation Testing",
+            "description": "<p>Automation testing uses specialized software to control the execution of tests and compare actual outcomes with predicted outcomes. It helps reduce manual testing efforts and improve test coverage.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "App Development",
+            "description": "<p>App development is the process of creating software applications for mobile devices, including smartphones and tablets. It involves design, coding, testing, and deployment of mobile apps.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "Augmented Reality (AR)",
+            "description": "<p>AR is an interactive experience that combines the real world with computer-generated content. It enhances the real-world environment by overlaying digital information onto it.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "AWS (Amazon Web Services)",
+            "description": "<p>AWS is a comprehensive cloud platform offered by Amazon that provides computing power, database storage, content delivery, and other functionality to help businesses scale and grow.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "Accessibility Compliance",
+            "description": "<p>Accessibility compliance ensures that digital products are usable by people with disabilities. It follows standards like WCAG to make websites and applications accessible to all users.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "A",
+            "term": "AI Workflow Design & Strategy",
+            "description": "<p>AI workflow design involves creating efficient processes for implementing AI solutions, while strategy focuses on aligning AI initiatives with business goals for maximum impact.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Big Data",
+            "description": "<p>Big Data refers to large, complex datasets that cannot be processed using traditional data processing methods. It requires specialized tools and techniques to analyze and extract valuable insights.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Blockchain Integration",
+            "description": "<p>Blockchain integration involves incorporating blockchain technology into existing systems to enhance security, transparency, and traceability of transactions and data.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Brand Strategy Development",
+            "description": "<p>Brand strategy development is the process of defining a brand's positioning, messaging, and visual identity to create a strong market presence and connect with target audiences effectively.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Backup and Recovery",
+            "description": "<p>Backup and recovery involves creating copies of data and implementing procedures to restore data in case of loss, corruption, or disasters to ensure business continuity.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Business Intelligence (BI)",
+            "description": "<p>BI refers to technologies, applications, and practices for collecting, integrating, analyzing, and presenting business information to support better decision-making.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Buildbox Game Development",
+            "description": "<p>Buildbox is a no-code game development platform that allows users to create games without programming knowledge, using drag-and-drop interfaces and pre-built assets.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Backend Integration",
+            "description": "<p>Backend integration connects frontend applications with server-side systems, databases, and APIs to enable data exchange and functionality.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "B",
+            "term": "Business Analysis",
+            "description": "<p>Business analysis involves identifying business needs and determining solutions to business problems. It includes requirements gathering, process improvement, and strategic planning.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Cloud Solutions",
+            "description": "<p>Cloud solutions are services and applications delivered over the internet, providing on-demand computing resources, storage, and software without the need for on-premises infrastructure.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Cybersecurity",
+            "description": "<p>Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. It encompasses various technologies, processes, and controls to safeguard data and ensure business continuity.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Continuous Integration (CI)",
+            "description": "<p>CI is a development practice where developers frequently merge code changes into a central repository, with automated builds and tests to detect integration errors early.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "CRM (Customer Relationship Management)",
+            "description": "<p>CRM systems help businesses manage interactions with current and potential customers. They streamline processes, improve customer service, and increase sales and profitability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Code Audit",
+            "description": "<p>Code audit is a systematic review of source code to identify vulnerabilities, ensure compliance with coding standards, and improve overall code quality and maintainability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Connectivity Performance Analysis",
+            "description": "<p>This involves measuring and optimizing network connectivity performance to ensure reliable and fast data transmission between systems and users.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "CloudLinux",
+            "description": "<p>CloudLinux is a Linux-based operating system designed for shared hosting environments, improving stability, security, and performance by isolating each hosting account.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "C",
+            "term": "Custom Software Design",
+            "description": "<p>Custom software design involves creating tailored software solutions to meet specific business requirements, offering unique features and functionality not available in off-the-shelf products.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "DevOps",
+            "description": "<p>DevOps is a set of practices that combines software development and IT operations to shorten the development lifecycle and provide continuous delivery with high software quality.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Data Engineering",
+            "description": "<p>Data engineering involves designing and building systems for collecting, storing, and analyzing data at scale. It's crucial for enabling data-driven decision-making.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Database Design",
+            "description": "<p>Database design is the process of creating a detailed data model of a database, defining its structure, relationships, and constraints to ensure efficient data storage and retrieval.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Digital Marketing",
+            "description": "<p>Digital marketing encompasses all marketing efforts that use electronic devices or the internet, including SEO, social media, email, and content marketing to reach consumers.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Disaster Recovery",
+            "description": "<p>Disaster recovery is a set of policies and procedures to enable the recovery or continuation of vital technology infrastructure and systems following a natural or human-induced disaster.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Distributed Systems",
+            "description": "<p>Distributed systems are computing environments where components located on networked computers communicate and coordinate their actions by passing messages.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Data Sovereignty",
+            "description": "<p>Data sovereignty refers to the concept that digital information is subject to the laws of the country in which it is located, affecting how data can be stored and processed.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Deployment Strategy",
+            "description": "<p>Deployment strategy defines how software releases are delivered to production environments, including methods like blue-green deployment, canary releases, and rolling updates.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "D",
+            "term": "Data Visualization",
+            "description": "<p>Data visualization is the graphical representation of information and data using visual elements like charts, graphs, and maps to make complex data more understandable and accessible.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "E-Commerce Testing",
+            "description": "<p>E-commerce testing focuses on validating online shopping platforms for functionality, usability, security, and performance to ensure a seamless customer experience.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "ERP (Enterprise Resource Planning) Testing",
+            "description": "<p>ERP testing validates enterprise resource planning systems to ensure they integrate business processes, manage resources effectively, and meet organizational requirements.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "End-to-End Testing",
+            "description": "<p>End-to-end testing validates the complete flow of an application from start to finish, simulating real user scenarios to ensure all components work together correctly.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "Encryption",
+            "description": "<p>Encryption is the process of converting data into a code to prevent unauthorized access. It's essential for protecting sensitive information during transmission and storage.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "Elasticity",
+            "description": "<p>In cloud computing, elasticity refers to the ability to dynamically scale resources up or down based on demand, optimizing costs and performance.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "E-Commerce Design",
+            "description": "<p>E-commerce design focuses on creating user-friendly online shopping experiences that convert visitors into customers through intuitive navigation and compelling product presentation.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "ERP Implementation",
+            "description": "<p>ERP implementation is the process of deploying an enterprise resource planning system to integrate business processes, improve efficiency, and enable data-driven decision-making.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "E",
+            "term": "Event-Driven Architecture",
+            "description": "<p>Event-driven architecture is a software design pattern where services communicate through events, enabling real-time processing and loose coupling between components.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Functional Testing",
+            "description": "<p>Functional testing validates that a system performs its intended functions correctly by testing against specified requirements and user scenarios.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Firewall",
+            "description": "<p>A firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules, acting as a barrier against unauthorized access.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Flutter Development",
+            "description": "<p>Flutter is Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase, using the Dart programming language.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Front-End Development",
+            "description": "<p>Front-end development involves creating the user interface and user experience of websites and applications using HTML, CSS, JavaScript, and various frameworks.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Full-Stack Development",
+            "description": "<p>Full-stack development involves working on both the front-end (client-side) and back-end (server-side) of web applications, requiring knowledge of multiple technologies and frameworks.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Fault Tolerance",
+            "description": "<p>Fault tolerance is the ability of a system to continue operating properly in the event of a failure of some of its components, ensuring reliability and availability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Firmware Development",
+            "description": "<p>Firmware development involves creating low-level software that controls hardware devices, often embedded in products like IoT devices, appliances, and industrial equipment.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "F",
+            "term": "Framework Integration",
+            "description": "<p>Framework integration involves incorporating software frameworks into applications to accelerate development, provide standard functionality, and ensure best practices.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "G",
+            "term": "Google Cloud",
+            "description": "<p>Google Cloud Platform is a suite of cloud computing services offered by Google, including computing, storage, machine learning, and data analytics for building and deploying applications.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "G",
+            "term": "Governance",
+            "description": "<p>IT governance refers to the policies, procedures, and processes that ensure an organization's IT investments support business objectives and comply with regulations.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "H",
+            "term": "Hybrid Cloud",
+            "description": "<p>A hybrid cloud combines public and private cloud environments, allowing data and applications to be shared between them, offering flexibility and optimized resource utilization.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "H",
+            "term": "High Availability",
+            "description": "<p>High availability refers to systems that are continuously operational for long periods, with minimal downtime, often achieved through redundancy and failover mechanisms.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "H",
+            "term": "HTML5 Game Development",
+            "description": "<p>HTML5 game development uses web technologies to create browser-based games that can run across multiple platforms without requiring native app installations.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "H",
+            "term": "Helpdesk Services",
+            "description": "<p>Helpdesk services provide technical support to users, addressing issues with hardware, software, and network systems to maintain productivity and resolve problems efficiently.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "I",
+            "term": "IoT (Internet of Things)",
+            "description": "<p>IoT refers to the network of physical objects embedded with sensors and software that connect and exchange data with other devices and systems over the internet.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "I",
+            "term": "Infrastructure Optimization",
+            "description": "<p>Infrastructure optimization involves improving the efficiency, performance, and cost-effectiveness of IT infrastructure through better resource allocation and management.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "I",
+            "term": "Interactive Prototyping",
+            "description": "<p>Interactive prototyping creates clickable, functional mockups of products to test user interactions, validate design decisions, and gather feedback before development.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "J",
+            "term": "JavaScript",
+            "description": "<p>JavaScript is a programming language that enables interactive web pages and is an essential technology of the World Wide Web, alongside HTML and CSS.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "K",
+            "term": "Kubernetes",
+            "description": "<p>Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "L",
+            "term": "Load & Performance Testing",
+            "description": "<p>Load testing simulates user traffic to evaluate system performance under expected conditions, while performance testing measures speed, stability, and scalability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "L",
+            "term": "Logo and Visual Identity Design",
+            "description": "<p>Logo and visual identity design creates distinctive visual elements that represent a brand, including logos, color palettes, typography, and design guidelines.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "M",
+            "term": "Machine Learning Development",
+            "description": "<p>Machine learning development involves creating algorithms and models that enable computers to learn from data and make predictions or decisions without explicit programming.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "M",
+            "term": "Microsoft Azure",
+            "description": "<p>Microsoft Azure is a cloud computing platform with services including analytics, storage, and networking, offering solutions for building, deploying, and managing applications.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "N",
+            "term": "Next-Gen Testing Service",
+            "description": "<p>Next-gen testing services leverage AI, automation, and advanced analytics to improve software quality, reduce testing time, and enable continuous testing in modern development cycles.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "N",
+            "term": "Network Security",
+            "description": "<p>Network security involves policies and practices to prevent unauthorized access, misuse, or denial of a computer network and its accessible resources.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "O",
+            "term": "Oracle Cloud Infrastructure",
+            "description": "<p>Oracle Cloud Infrastructure is a cloud computing platform that provides high-performance computing and storage services for running enterprise applications.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "O",
+            "term": "Ongoing Support",
+            "description": "<p>Ongoing support provides continuous maintenance, troubleshooting, and updates for software systems to ensure they remain functional, secure, and up-to-date.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "O",
+            "term": "Outsourced Maintenance",
+            "description": "<p>Outsourced maintenance involves contracting third-party providers to handle system maintenance, allowing organizations to focus on core business activities while ensuring IT infrastructure reliability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "O",
+            "term": "Office 365",
+            "description": "<p>Microsoft 365 is a cloud-based productivity suite that includes applications like Word, Excel, PowerPoint, and collaboration tools like Teams and SharePoint.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "P",
+            "term": "Proactive Support",
+            "description": "<p>Proactive support involves monitoring systems to identify and resolve potential issues before they impact users, preventing downtime and improving system reliability.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "P",
+            "term": "Predictive Analytics",
+            "description": "<p>Predictive analytics uses statistical techniques and machine learning to analyze historical data and make predictions about future events or behaviors.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "P",
+            "term": "PC Game Development",
+            "description": "<p>PC game development involves creating video games for personal computers, using game engines and programming languages to build immersive gaming experiences.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "P",
+            "term": "Performance Testing",
+            "description": "<p>Performance testing evaluates how a system performs under a particular workload, measuring response times, throughput, and resource utilization to identify bottlenecks.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "Q",
+            "term": "Quality Assurance (QA)",
+            "description": "<p>QA is a systematic process to ensure that products and services meet specified requirements and are free from defects, maintaining quality standards throughout development.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "Q",
+            "term": "QA Activities",
+            "description": "<p>QA activities include test planning, test case creation, test execution, defect tracking, and quality reporting to ensure software meets quality standards.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "Q",
+            "term": "Quick Support",
+            "description": "<p>Quick support provides rapid response to technical issues, minimizing downtime and ensuring that users receive timely assistance for their problems.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "R",
+            "term": "Reactive Support",
+            "description": "<p>Reactive support addresses issues as they occur, responding to reported problems and incidents to restore normal operations after system failures or user issues.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "R",
+            "term": "Resource Allocation",
+            "description": "<p>Resource allocation involves distributing available resources among various projects or tasks to optimize efficiency and achieve organizational objectives.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "R",
+            "term": "Real-Time Monitoring",
+            "description": "<p>Real-time monitoring continuously tracks system performance and activity as it happens, enabling immediate detection and response to issues.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "R",
+            "term": "Refactoring",
+            "description": "<p>Refactoring is the process of restructuring existing computer code without changing its external behavior, improving code quality, maintainability, and performance.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "SaaS (Software as a Service)",
+            "description": "<p>SaaS is a software distribution model where applications are hosted by a service provider and made available to customers over the internet, typically on a subscription basis.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Scalability",
+            "description": "<p>Scalability is the ability of a system to handle growing amounts of work by adding resources to maintain performance, essential for growing businesses and applications.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Security Testing",
+            "description": "<p>Security testing identifies vulnerabilities in software systems that could be exploited by attackers, ensuring data protection and compliance with security standards.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Server Setup",
+            "description": "<p>Server setup involves configuring hardware and software for server operations, including installing operating systems, configuring networks, and setting up security measures.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Service Level Agreement (SLA)",
+            "description": "<p>An SLA is a contract between a service provider and a customer that defines the level of service expected, including availability, performance, and support response times.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Software Maintenance",
+            "description": "<p>Software maintenance involves updating, modifying, and optimizing software after deployment to fix bugs, add features, and adapt to changing requirements.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Smart Home",
+            "description": "<p>Smart home technology integrates IoT devices to automate and control home systems like lighting, heating, security, and entertainment through internet-connected devices.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Support Services",
+            "description": "<p>Support services provide technical assistance and troubleshooting for software and hardware systems, helping users resolve issues and maintain productivity.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "S",
+            "term": "Software Testing",
+            "description": "<p>Software testing evaluates software applications to identify defects and ensure they meet requirements, providing confidence in the quality and reliability of the software.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "T",
+            "term": "Text-to-Speech",
+            "description": "<p>Text-to-speech technology converts written text into spoken voice output, used in accessibility applications, virtual assistants, and automated customer service systems.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "T",
+            "term": "Testing and QA",
+            "description": "<p>Testing and QA processes ensure software quality through systematic testing, defect tracking, and quality assurance activities throughout the development lifecycle.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "T",
+            "term": "Tool Selection",
+            "description": "<p>Tool selection involves choosing appropriate software development, testing, and project management tools based on project requirements, team expertise, and budget constraints.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "T",
+            "term": "Tableau",
+            "description": "<p>Tableau is a data visualization tool that helps people see and understand their data through interactive dashboards and visual analytics, enabling data-driven decision-making.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "Usability Testing",
+            "description": "<p>Usability testing evaluates a product by testing it with representative users to identify usability issues and ensure the product meets user needs and expectations.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "User Interface Design (UI Design)",
+            "description": "<p>UI design focuses on the visual elements of user interfaces, including layout, colors, typography, and interactive elements, to create intuitive and attractive user experiences.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "User Journey Mapping",
+            "description": "<p>User journey mapping visualizes the complete experience a user has with a product or service, identifying touchpoints, pain points, and opportunities for improvement.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "User Testing",
+            "description": "<p>User testing involves observing real users as they interact with a product to gather feedback on usability, functionality, and overall user experience.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "UX Design (User Experience Design)",
+            "description": "<p>UX design focuses on creating meaningful and relevant experiences for users, considering the entire user journey from first interaction to long-term engagement.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "UX Audit",
+            "description": "<p>A UX audit evaluates a product's user experience against best practices and usability principles, identifying areas for improvement to enhance user satisfaction.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "U",
+            "term": "UI/UX Design",
+            "description": "<p>UI/UX design combines user interface and user experience design to create products that are both visually appealing and intuitive to use, ensuring positive user interactions.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "V",
+            "term": "Virtual Reality Development (VR Development)",
+            "description": "<p>VR development creates immersive 3D computer-simulated environments that users can interact with using specialized headsets and controllers, for gaming, training, and simulation.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "V",
+            "term": "Vendor Selection",
+            "description": "<p>Vendor selection involves evaluating and choosing external service providers or suppliers based on capabilities, pricing, reliability, and alignment with business needs.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "W",
+            "term": "Website Maintenance",
+            "description": "<p>Website maintenance involves regularly updating, monitoring, and optimizing websites to ensure they remain secure, functional, and aligned with business objectives.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "W",
+            "term": "Wireframing",
+            "description": "<p>Wireframing creates low-fidelity visual guides representing the skeletal framework of a website or app, used for planning layout and structure before detailed design.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "W",
+            "term": "Web Design",
+            "description": "<p>Web design encompasses the process of creating websites, including layout, content production, and graphic design, focusing on aesthetics and user experience.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "X",
+            "term": "Xamarin",
+            "description": "<p>Xamarin is a Microsoft-owned framework for building cross-platform mobile applications using C# and .NET, allowing code sharing across iOS, Android, and Windows platforms.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "Y",
+            "term": "YouTube Optimization",
+            "description": "<p>YouTube optimization involves improving video content for better visibility in search results, including optimizing titles, descriptions, tags, and thumbnails to increase views and engagement.</p>"
+          }
+        },
+        {
+          "type": "glossary_term",
+          "settings": {
+            "letter": "Z",
+            "term": "Zero Downtime Deployment",
+            "description": "<p>Zero downtime deployment is a deployment strategy that updates software without any interruption in service, ensuring continuous availability for users during updates.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

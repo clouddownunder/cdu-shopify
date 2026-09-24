@@ -1,0 +1,111 @@
+<section class="team-section">
+    <div class="container">
+        <div class="team-sec-top">
+            <div class="section_heading">
+                <span class="sec_subtitle mb-0 white_text">
+                        <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#fff"></path>
+                    </svg>
+                    {{ section.settings.subtitle | default: 'Creative People' }}</span>
+                <h2 class="sec_typo mb-0 mt-1 white_text">{{ section.settings.section_title | default: 'Meet Our 100% In-House Team' }}</h2>
+            </div>
+        </div>
+        <div class="team-sec-bottom">
+            <div class="team-person-slider">
+                {% for block in section.blocks %}
+                {% assign member = block.settings.team_member %}
+                <div class="team-person-info-wp" {{ block.shopify_attributes }}>
+                    <div class="flip">
+                        <div class="front">
+                            <div class="team-person-img">
+                                <img src="{{ member.image | image_url: width: "1200" }}" alt="{{ member.person_name }}">
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="team-person-info">
+                                <span class="name theme-color-text">{{ member.person_name }}</span><br>
+                                <span class="position"><span class="theme-color-text">{{ member.person_description }}</span> <br> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-person-info">
+                        <span class="name">{{ member.person_name }}</span>
+                        <span class="position"><span class="theme-color-text">{{ member.person_position }}</span></span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Team Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Creative People"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Meet Our 100% In-House Team"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Team Member Selection"
+        },
+        {
+          "type": "paragraph",
+          "content": "Select a team member from the team_member metaobject to display in the team slider."
+        },
+        {
+          "type": "metaobject",
+          "id": "team_member",
+          "label": "Select Team Member",
+          "metaobject_type": "team_member"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team Section",
+      "settings": {
+        "subtitle": "Creative People",
+        "section_title": "Meet Our 100% In-House Team"
+      },
+      "blocks": [
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

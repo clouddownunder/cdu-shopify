@@ -1,0 +1,140 @@
+<section class="banner-sec work-banner banner-custom white-bg-color">
+    <div class="banner-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                    <div class="banner-text-wrap ">
+                        <div class="banner-text">
+                            <div class="banner-links-main">
+                                <ul class="breadcrumb">
+                                    <li class="banner-links"><a href="{{ section.settings.home_link | default: '/' }}">{{ section.settings.home_text | default: 'Home' }}</a></li>
+                                    <li class="banner-links"><span>/</span></li>
+                                    <li class="banner-links"><a href="{{ section.settings.our_work_link | default: '/pages/work' }}">{{ section.settings.our_work_text | default: 'Our Work' }}</a></li>
+                                    <li class="banner-links"><span>/</span></li>
+                                    <li class="banner-links active">{{ section.settings.project_name | default: 'Project Name' }}</li>
+                                </ul>
+                            </div>
+                            <div class="banner-heading-wrap">
+                                <h1 class="banner-heading text-uppercase font-sb  mb-sm-3 mb-2">{{ section.settings.heading }}</h1>
+                            </div>
+                            <div class="work-banner-sub-text">
+                                <p class="mb-0">{{ section.settings.sub_heading }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if section.settings.logo_image != blank %}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-self-center justify-content-md-end justify-content-start">
+                    <div class="case-study-icon">
+                        <img src="{{ section.settings.logo_image | image_url }}" alt="{{ section.settings.project_name }} logo" loading="lazy">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% if section.settings.desktop_image != blank or section.settings.mobile_image != blank %}
+<section class="work-details-img-sec sec-padding">
+    <div class="container">
+        <div class="work-details-img">
+            {% if section.settings.desktop_image != blank %}
+            <img class="wd-img d-none d-md-block" src="{{ section.settings.desktop_image | image_url }}" alt="{{ section.settings.project_name }} desktop" loading="lazy">
+            {% endif %}
+            {% if section.settings.mobile_image != blank %}
+            <img class="wd-img d-md-none" src="{{ section.settings.mobile_image | image_url }}" alt="{{ section.settings.project_name }} Mobile" loading="lazy">
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% schema %}
+{
+  "name": "Work Banner Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+    {
+      "type": "url",
+      "id": "home_link",
+      "label": "Home Link"
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "our_work_link",
+      "label": "Our Work Link"
+    },
+    {
+      "type": "text",
+      "id": "our_work_text",
+      "label": "Our Work Text",
+      "default": "Our Work"
+    },
+    {
+      "type": "text",
+      "id": "project_name",
+      "label": "Project Name",
+      "default": "Project Name"
+    },
+    {
+      "type": "header",
+      "content": "Banner Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Project Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Project description text here"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work Banner Section",
+      "settings": {
+        "home_link": "/",
+        "home_text": "Home",
+        "our_work_link": "/pages/work",
+        "our_work_text": "Our Work",
+        "project_name": "City Fertility",
+        "heading": "City Fertility",
+        "sub_heading": "A Comprehensive Companion App for One of Australia's Premier Fertility Service Providers"
+      }
+    }
+  ]
+}
+{% endschema %}
