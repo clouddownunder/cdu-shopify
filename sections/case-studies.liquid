@@ -1,0 +1,233 @@
+<section class="case-studies">
+  <div class="container">
+    <div class="row align-items-lg-end">
+      <div class="col-lg-6">
+        <div class="section_heading text-start">
+          <span class="sec_subtitle mb-0">
+            <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#0B0C0E" />
+            </svg>
+            {{ section.settings.section_subtitle }}
+          </span>
+          <h2 class="sec_typo mb-0 mt-1">{{ section.settings.section_title }}</h2>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <p class="mb-0 case-disc p_font_color">{{ section.settings.section_description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep-devider">
+
+  <div class="container">
+    <div class="main-slick-slider">
+      <div class="main-case-slider">
+        {% for block in section.blocks %}
+        <div class="case-slide">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="case-image-wrap">
+                <img src="{{ block.settings.case_image | image_url }}" alt="image">
+                <div class="cs-overlay-text">
+                  <div>
+                    <img src="{{ block.settings.case_study_logo | image_url }}" alt="image" class="cs-top-logo">
+                  </div>
+                  <div class="case-caption">
+                    <h5 class="cs-title text-white">{{ block.settings.client_name }}</h5>
+                    <span class="cs-subname">{{ block.settings.client_industry }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="cs-content-wrap">
+                <div class="cs-content-flex">
+                  <span class="cs-category">{{ block.settings.case_category }}</span>
+                  <h2 class="sec_typo cs-slide-title">{{ block.settings.case_title }}</h2>
+                  <p class="cs-slide-disc">{{ block.settings.case_description }}</p>
+                  <div class="d-grid stats position-relative">
+                    <div class="stats-box">
+                      <h3>{{ block.settings.stat1_value }}</h3>
+                      <span class="p_font_color">{{ block.settings.stat1_label }}</span>
+                    </div>
+                    <div class="stats-box">
+                      <h3>{{ block.settings.stat2_value }}</h3>
+                      <span class="p_font_color">{{ block.settings.stat2_label }}</span>
+                    </div>
+                    <div class="stats-box">
+                      <h3>{{ block.settings.stat3_value }}</h3>
+                      <span class="p_font_color">{{ block.settings.stat3_label }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-wp">
+                  <a href="{{ block.settings.case_link }}" class="btn btn-with-arrow me-3 mb-0">Explore Case Study</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="pagination-wrap">
+        <button type="button" class="pagination-prev" aria-label="Previous slide">
+          <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.76562 11.25L1.76562 6.25L6.76562 1.25" stroke="#0B0C0E" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        </button>
+        <span class="pagination-counter"><span class="cs-cur">01</span> / <span class="cs-total">{{ section.blocks.size }}</span></span>
+        <button type="button" class="pagination-next ps-1" aria-label="Next slide">
+          <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.25 11.25L6.25 6.25L1.25 1.25" stroke="#0B0C0E" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr class="sep-devider mb-0">
+  <div class="container">
+      <div class="case-studies-option">
+        {% for block in section.blocks %}
+        <a class="cs-optin-item" href="{{ block.settings.case_link }}">
+          <h5 class="mb-1 cs-option-name">{{ block.settings.client_name }}</h5>
+          <span class="cs-option-disc p_font_color">{{ block.settings.stat4_value }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Case Studies",
+  
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Case Studies"
+    },
+    {
+      "type": "textarea",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Real Products. Real Partnerships. Real Results."
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Discover how strategy, design, and technology come together to solve real business challenges."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case Study",
+      "settings": [
+        {
+          "type": "text",
+          "id": "case_category",
+          "label": "Case Category",
+          "default": "Automotive 01"
+        },
+        {
+          "type": "text",
+          "id": "case_title",
+          "label": "Case Title",
+          "default": "Modern Dealer Management Platform Built for Scale"
+        },
+        {
+          "type": "textarea",
+          "id": "case_description",
+          "label": "Case Description",
+          "default": "We designed and developed a cloud-native platform that streamlined dealership operations, accelerated onboarding, and created a seamless experience across more than 130 locations throughout Australia."
+        },
+        {
+          "type": "image_picker",
+          "id": "case_image",
+          "label": "Case Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "case_study_logo",
+          "label": "Case Study Logo"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Client Name",
+          "default": "Mercedes-Benz Australia"
+        },
+        {
+          "type": "text",
+          "id": "client_industry",
+          "label": "Client Industry",
+          "default": "Automotive · 130+ Dealerships"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "Enterprise Platform"
+        },
+        {
+          "type": "text",
+          "id": "stat1_value",
+          "label": "Stat 1 Value",
+          "default": "60%"
+        },
+        {
+          "type": "text",
+          "id": "stat1_label",
+          "label": "Stat 1 Label",
+          "default": "Faster Onboarding"
+        },
+        {
+          "type": "text",
+          "id": "stat2_value",
+          "label": "Stat 2 Value",
+          "default": "130+"
+        },
+        {
+          "type": "text",
+          "id": "stat2_label",
+          "label": "Stat 2 Label",
+          "default": "Dealerships Connected"
+        },
+        {
+          "type": "text",
+          "id": "stat3_value",
+          "label": "Stat 3 Value",
+          "default": "99.9%"
+        },
+        {
+          "type": "text",
+          "id": "stat3_label",
+          "label": "Stat 3 Label",
+          "default": "Platform Availability"
+        },
+        {
+          "type": "text",
+          "id": "stat4_value",
+          "label": "Stat 4 Value",
+          "default": "60% faster onboarding"
+        },
+        {
+          "type": "url",
+          "id": "case_link",
+          "label": "Case Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Studies"
+    }
+  ]
+}
+{% endschema %}

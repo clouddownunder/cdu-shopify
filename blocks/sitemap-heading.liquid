@@ -1,0 +1,28 @@
+
+<div class="sitemap-group-title">{{ block.settings.list_title }}</div>
+<ul class="sitemap-links">
+    {% content_for 'blocks' %}
+</ul>
+{% schema %}
+{
+  "name": "Sitemap Heading",
+  "class": "sitemap-group",
+  "settings": [
+    {
+        "type": "text",
+        "id": "list_title",
+        "label": "List Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sitemap-link"
+    }
+  ],
+  "presets": [
+    {
+        "name": "Sitemap Heading"
+    }
+  ]
+}
+{% endschema %}

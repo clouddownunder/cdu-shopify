@@ -1,0 +1,558 @@
+<style>
+  .ts-footer:not(:has(.review-company)) .ts-review-user::after {
+    content: "";
+    display: none;
+  }
+</style>
+<section class="client-testimonials">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="row align-items-lg-end">
+      <div class="col-lg-7">
+        <div class="section_heading">
+
+          {% if section.settings.section_subtitle != blank %}
+            <span class="sec_subtitle mb-0">
+              <svg
+                class="sec_sub_icon"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                  fill="#000"
+                />
+              </svg>
+
+              {{ section.settings.section_subtitle }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.section_title != blank %}
+            <h2 class="sec_typo mb-0 mt-1">
+              {{ section.settings.section_title }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.section_description != blank %}
+            <p class="mb-0 p_font_color font-300 mt-lg-4 mt-3 method-disc">
+              {{ section.settings.section_description }}
+            </p>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        {% if section.settings.button_text != blank %}
+          <div class="btn-wp text-lg-end">
+            <a
+              href="/pages/contact"
+              class="btn btn-with-arrow"
+            >
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="row gy-4 ts-row">
+
+      <div class="col-lg-7">
+        <div class="main-slick-slider">
+
+          <div class="testimonial-main-slider">
+
+            {% for block in section.blocks %}
+              {% if block.type == 'testimonial' %}
+
+                <div
+                  class="testimonial-slide"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="ts-card">
+
+                    <!-- Testimonial Content -->
+                    <div class="ts-head">
+
+                      <!-- Rating -->
+                      {% if block.settings.rating > 0 %}
+                        <div
+                          class="ts-rating"
+                          aria-label="{{ block.settings.rating }} out of 5 stars"
+                        >
+                          {% for i in (1..5) %}
+                            {% if i <= block.settings.rating %}
+                              <svg
+                                width="30"
+                                height="30"
+                                viewBox="0 0 30 30"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M13.3911 1.04441L9.73242 8.79963L1.53511 10.047C1.20374 10.098 0.892605 10.2446 0.636818 10.4704C0.381031 10.6961 0.190774 10.992 0.0875179 11.3247C-0.0157386 11.6573 -0.027884 12.0135 0.0524523 12.3529C0.132789 12.6924 0.302408 13.0017 0.54217 13.2458L6.47017 19.2798L5.06412 27.8028C5.00628 28.1477 5.04216 28.5027 5.16769 28.8274C5.29322 29.1521 5.50338 29.4336 5.77434 29.6399C6.04531 29.8463 6.36623 29.969 6.70073 29.995C7.03523 30.0206 7.36993 29.9479 7.66688 29.7851L15.0009 25.7605L22.3294 29.7851C22.6258 29.9473 22.959 30.0197 23.2933 29.9943C23.627 29.9688 23.9472 29.8465 24.2178 29.6412C24.4885 29.4359 24.6988 29.1557 24.825 28.8322C24.9512 28.5087 24.988 28.1549 24.9322 27.8106L23.5298 19.2875L29.4578 13.2536C29.6976 13.0094 29.8672 12.7001 29.9475 12.3607C30.0279 12.0212 30.0157 11.665 29.9125 11.3324C29.8092 10.9997 29.619 10.7039 29.3632 10.4781C29.1074 10.2523 28.7963 10.1057 28.4649 10.0548L20.2676 8.80737L16.6107 1.04441C16.4622 0.73086 16.2327 0.466904 15.9481 0.282351C15.6634 0.0977984 15.3351 0 15 0C14.6649 0 14.3366 0.0977984 14.0519 0.282351C13.7673 0.466904 13.5378 0.73086 13.3893 1.04441H13.3911Z"
+                                  fill="#FCBC14"
+                                />
+                              </svg>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      {% if block.settings.review_text != blank %}
+                        <p class="ts-review-disc mb-0">
+                          {{ block.settings.review_text }}
+                        </p>
+                      {% endif %}
+
+                    </div>
+
+                    <!-- Testimonial Footer -->
+                    <div class="ts-footer">
+
+                      <div class="ts-review-user">
+
+                        {% if block.settings.user_image != blank %}
+                          {{
+                            block.settings.user_image
+                            | image_url: width: 120
+                            | image_tag:
+                              class: 'ts-userimg img-fluid',
+                              loading: 'lazy',
+                              alt: block.settings.user_name
+                          }}
+                        {% endif %}
+
+                        <div class="review-user-info">
+
+                          {% if block.settings.user_name != blank %}
+                            <h6>{{ block.settings.user_name }}</h6>
+                          {% endif %}
+
+                          {% if block.settings.user_role != blank %}
+                            <span>{{ block.settings.user_role }}</span>
+                          {% endif %}
+
+                        </div>
+                      </div>
+
+                      {% if block.settings.company_logo != blank %}
+                        <div class="review-company">
+                          <img src="{{ block.settings.company_logo | img_url }}">
+                        </div>
+                      {% endif %}
+
+                    </div>
+
+                  </div>
+                </div>
+
+              {% endif %}
+            {% endfor %}
+
+          </div>
+
+          <!-- Pagination -->
+          {% if section.settings.show_pagination %}
+            <div class="pagination-wrap">
+
+              <button
+                type="button"
+                class="pagination-prev slick-arrow"
+                aria-label="Previous slide"
+              >
+                <svg
+                  width="9"
+                  height="13"
+                  viewBox="0 0 9 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6.76562 11.25L1.76562 6.25L6.76562 1.25"
+                    stroke="#0B0C0E"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+
+              <span class="pagination-counter">
+                <span class="cs-cur">01</span>
+                /
+                <span class="cs-total">
+                  {{ section.blocks.size }}
+                </span>
+              </span>
+
+              <button
+                type="button"
+                class="pagination-next ps-1 slick-arrow"
+                aria-label="Next slide"
+              >
+                <svg
+                  width="9"
+                  height="13"
+                  viewBox="0 0 9 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1.25 11.25L6.25 6.25L1.25 1.25"
+                    stroke="#0B0C0E"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <!-- Right Review Information -->
+      <div class="col-lg-5">
+        <div class="ts-review-right">
+
+          <!-- Overall Rating -->
+          <div class="overall-rating">
+
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M13.3911 1.04441L9.73242 8.79963L1.53511 10.047C1.20374 10.098 0.892605 10.2446 0.636818 10.4704C0.381031 10.6961 0.190774 10.992 0.0875179 11.3247C-0.0157386 11.6573 -0.027884 12.0135 0.0524523 12.3529C0.132789 12.6924 0.302408 13.0017 0.54217 13.2458L6.47017 19.2798L5.06412 27.8028C5.00628 28.1477 5.04216 28.5027 5.16769 28.8274C5.29322 29.1521 5.50338 29.4336 5.77434 29.6399C6.04531 29.8463 6.36623 29.969 6.70073 29.995C7.03523 30.0206 7.36993 29.9479 7.66688 29.7851L15.0009 25.7605L22.3294 29.7851C22.6258 29.9473 22.959 30.0197 23.2933 29.9943C23.627 29.9688 23.9472 29.8465 24.2178 29.6412C24.4885 29.4359 24.6988 29.1557 24.825 28.8322C24.9512 28.5087 24.988 28.1549 24.9322 27.8106L23.5298 19.2875L29.4578 13.2536C29.6976 13.0094 29.8672 12.7001 29.9475 12.3607C30.0279 12.0212 30.0157 11.665 29.9125 11.3324C29.8092 10.9997 29.619 10.7039 29.3632 10.4781C29.1074 10.2523 28.7963 10.1057 28.4649 10.0548L20.2676 8.80737L16.6107 1.04441C16.4622 0.73086 16.2327 0.466904 15.9481 0.282351C15.6634 0.0977984 15.3351 0 15 0C14.6649 0 14.3366 0.0977984 14.0519 0.282351C13.7673 0.466904 13.5378 0.73086 13.3893 1.04441Z"
+                fill="#FCBC14"
+              />
+            </svg>
+
+            <h3 class="mb-0">
+              {{ section.settings.overall_rating }}
+            </h3>
+
+            <div class="d-block">
+              <h6 class="ts-avg-title mb-0">
+                {{ section.settings.overall_rating_title }}
+              </h6>
+
+              {% if section.settings.overall_rating_subtitle != blank %}
+                <p class="ts-rating-subtitle mb-0 p_font_color font-300">
+                  {{ section.settings.overall_rating_subtitle }}
+                </p>
+              {% endif %}
+            </div>
+
+          </div>
+
+          <!-- Review Platforms -->
+          <div class="review-platform-main">
+
+            {% if section.settings.platform_heading != blank %}
+              <span class="review-title p_font_color font-300">
+                {{ section.settings.platform_heading }}
+              </span>
+            {% endif %}
+
+            {% for block in section.blocks %}
+              {% if block.type == 'platform' %}
+
+                <div
+                  class="ts-platform-card mb-2"
+                  {{ block.shopify_attributes }}
+                >
+
+                  <div class="ts-platform-left">
+
+                    {% if block.settings.platform_logo != blank %}
+                      <img src="{{ block.settings.platform_logo | img_url }}" class="img-fluid">
+                    {% endif %}
+
+                    {% if block.settings.platform_label != blank %}
+                      <h5 class="mb-0 p_font_color font-300">
+                        {{ block.settings.platform_label }}
+                      </h5>
+                    {% endif %}
+
+                  </div>
+
+                  <div class="ts-platform-right">
+
+                    <h6 class="mb-0">
+                      {{ block.settings.platform_rating }}
+                    </h6>
+
+                    <div
+                      class="ts-rating"
+                      aria-label="{{ block.settings.platform_rating }} out of 5 stars"
+                    >
+                      {% assign platform_rating = block.settings.platform_rating | plus: 0 %}
+
+                      {% for i in (1..5) %}
+                        {% if i <= platform_rating %}
+                          <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M13.3911 1.04441L9.73242 8.79963L1.53511 10.047C1.20374 10.098 0.892605 10.2446 0.636818 10.4704C0.381031 10.6961 0.190774 10.992 0.0875179 11.3247C-0.0157386 11.6573 -0.027884 12.0135 0.0524523 12.3529C0.132789 12.6924 0.302408 13.0017 0.54217 13.2458L6.47017 19.2798L5.06412 27.8028C5.00628 28.1477 5.04216 28.5027 5.16769 28.8274C5.29322 29.1521 5.50338 29.4336 5.77434 29.6399C6.04531 29.8463 6.36623 29.969 6.70073 29.995C7.03523 30.0206 7.36993 29.9479 7.66688 29.7851L15.0009 25.7605L22.3294 29.7851C22.6258 29.9473 22.959 30.0197 23.2933 29.9943C23.627 29.9688 23.4885 29.8465 24.2178 29.6412C24.4885 29.4359 24.6988 29.1557 24.825 28.8322C24.9512 28.5087 24.988 28.1549 24.9322 27.8106L23.5298 19.2875L29.4578 13.2536C29.6976 13.0094 29.8672 12.7001 29.9475 12.3607C30.0279 12.0212 30.0157 11.665 29.9125 11.3324C29.8092 10.9997 29.619 10.7039 29.3632 10.4781C29.1074 10.2523 28.7963 10.1057 28.4649 10.0548L20.2676 8.80737L16.6107 1.04441C16.4622 0.73086 16.2327 0.466904 15.9481 0.282351C15.6634 0.0977984 15.3351 0 15 0C14.6649 0 14.3366 0.0977984 14.0519 0.282351C13.7673 0.466904 13.5378 0.73086 13.3893 1.04441Z"
+                              fill="#FCBC14"
+                            />
+                          </svg>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+
+                    {% if block.settings.rating_suffix != blank %}
+                      <span class="d-inline-block p_font_color font-300">
+                        {{ block.settings.rating_suffix }}
+                      </span>
+                    {% endif %}
+
+                  </div>
+
+                </div>
+
+              {% endif %}
+            {% endfor %}
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Client Testimonials",
+  "tag": "section",
+  "class": "section-client-testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Client Testimonials"
+    },
+    {
+      "type": "textarea",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Trusted by Businesses. Backed by Results."
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Real partnerships. Honest feedback. See why organisations across Australia trust Cloud Downunder to design, build, and support their digital products."
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Tell us about your project"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Overall Rating"
+    },
+    {
+      "type": "text",
+      "id": "overall_rating",
+      "label": "Overall Rating",
+      "default": "4.4"
+    },
+    {
+      "type": "text",
+      "id": "overall_rating_title",
+      "label": "Rating Title",
+      "default": "Average Rating"
+    },
+    {
+      "type": "text",
+      "id": "overall_rating_subtitle",
+      "label": "Rating Subtitle",
+      "default": "Across Leading Review Platforms"
+    },
+    {
+      "type": "text",
+      "id": "platform_heading",
+      "label": "Platform Heading",
+      "default": "Independent reviews that speak for us"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show Testimonial Pagination",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review",
+          "default": "Collaborating with Cloud Downunder has truly enriched our project. Their team's ability to grasp our vision and execute it with precision was remarkable."
+        },
+        {
+          "type": "image_picker",
+          "id": "user_image",
+          "label": "User Image"
+        },
+        {
+          "type": "text",
+          "id": "user_name",
+          "label": "User Name",
+          "default": "Emma Johnson"
+        },
+        {
+          "type": "text",
+          "id": "user_role",
+          "label": "User Role",
+          "default": "Senior Designer, Creative Solutions"
+        },
+        {
+          "type": "image_picker",
+          "id": "company_logo",
+          "label": "Company Logo"
+        },
+        {
+          "type": "text",
+          "id": "company_name",
+          "label": "Company Name",
+          "default": "Company Logo"
+        }
+      ]
+    },
+    {
+      "type": "platform",
+      "name": "Review Platform",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "platform_logo",
+          "label": "Platform Logo"
+        },
+        {
+          "type": "text",
+          "id": "platform_name",
+          "label": "Platform Name",
+          "default": "Clutch"
+        },
+        {
+          "type": "text",
+          "id": "platform_label",
+          "label": "Platform Label",
+          "default": "Top B2B Company"
+        },
+        {
+          "type": "text",
+          "id": "platform_rating",
+          "label": "Platform Rating",
+          "default": "4.8"
+        },
+        {
+          "type": "text",
+          "id": "rating_suffix",
+          "label": "Rating Suffix",
+          "default": "out of 5"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Client Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "user_name": "Emma Johnson",
+            "user_role": "Senior Designer, Creative Solutions",
+            "company_name": "Optii",
+            "review_text": "Collaborating with Cloud Downunder has truly enriched our project. Their team's ability to grasp our vision and execute it with precision was remarkable. They provided invaluable feedback that not only added depth to our concepts but also elevated the overall design."
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "platform_name": "Clutch",
+            "platform_label": "Top B2B Company",
+            "platform_rating": "4.9",
+            "rating_suffix": "out of 5",
+            "platform_logo":"shopify://shop_images/clutch.webp"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "platform_name": "Google",
+            "platform_label": "Verified Google Reviews",
+            "platform_rating": "4.1",
+            "rating_suffix": "out of 5",
+            "platform_logo":"shopify://shop_images/goggle.webp"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "platform_name": "GoodFirms",
+            "platform_label": "Top Software Development Company",
+            "platform_rating": "4.0",
+            "rating_suffix": "out of 5",
+            "platform_logo":"shopify://shop_images/goodfirms.webp"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50
+}
+{% endschema %}

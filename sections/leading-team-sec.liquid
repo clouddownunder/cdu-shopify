@@ -1,0 +1,230 @@
+<section class="leading-team-sec">
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div class="leading-team-top">
+      <div class="section_heading">
+
+        {% if section.settings.heading != blank %}
+          <h2 class="sec_typo">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <p class="p_font_color mb-0">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
+
+      </div>
+      <div class="team-nav-arrows">
+        <button type="button" class="team-nav-btn team-nav-prev" aria-label="Previous team member">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button type="button" class="team-nav-btn team-nav-next" aria-label="Next team member">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- TEAM AREA -->
+    <div class="team-sec-bottom pt-0">
+      <div class="leading-team-swiper">
+
+        {% for block in section.blocks %}
+
+          <div class="team-card" {{ block.shopify_attributes }}>
+
+            <!-- TEAM IMAGE -->
+            <div class="team-card-photo">
+
+              {% if block.settings.member_image != blank %}
+                <img src="{{ block.settings.member_image | image_url }}">
+              {% endif %}
+
+            </div>
+
+            <!-- TEAM CONTENT -->
+            <div class="team-card-body">
+
+              {% if block.settings.member_name != blank %}
+                <h3 class="team-card-name">
+                  {{ block.settings.member_name }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.member_role != blank %}
+                <p class="team-card-role">
+                  {{ block.settings.member_role }}
+                </p>
+              {% endif %}
+
+              <!-- SOCIAL LINKS -->
+              <div class="team-card-social">
+
+                {% if block.settings.linkedin_url != blank %}
+                  <a
+                    href="{{ block.settings.linkedin_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                  >
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+                {% endif %}
+
+                {% if block.settings.facebook_url != blank %}
+                  <a
+                    href="{{ block.settings.facebook_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    <i class="fa-brands fa-facebook-f"></i>
+                  </a>
+                {% endif %}
+
+                {% if block.settings.instagram_url != blank %}
+                  <a
+                    href="{{ block.settings.instagram_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                {% endif %}
+
+              </div>
+
+            </div>
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Leading Team",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "We work together to form an amazing collective brain"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "We're enthusiastic and have a 'Make it happen' culture."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "member_image",
+          "label": "Member Image"
+        },
+        {
+          "type": "text",
+          "id": "member_name",
+          "label": "Member Name",
+          "default": "Team Member"
+        },
+        {
+          "type": "text",
+          "id": "member_role",
+          "label": "Member Role",
+          "default": "Business Consultant"
+        },
+        {
+          "type": "url",
+          "id": "linkedin_url",
+          "label": "LinkedIn URL"
+        },
+        {
+          "type": "url",
+          "id": "facebook_url",
+          "label": "Facebook URL"
+        },
+        {
+          "type": "url",
+          "id": "instagram_url",
+          "label": "Instagram URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Leading Team",
+      "blocks": [
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Kristian W.",
+            "member_role": "Business Consultant"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Rom O.",
+            "member_role": "Senior Business Consultant"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Gokul M.",
+            "member_role": "Senior Business Consultant"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Deep M.",
+            "member_role": "Development Head"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Smit P.",
+            "member_role": "Development Head"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Pratik S.",
+            "member_role": "Design Head"
+          }
+        },
+        {
+          "type": "team_member",
+          "settings": {
+            "member_name": "Bhavin B.",
+            "member_role": "CMO"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

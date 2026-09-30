@@ -1,0 +1,575 @@
+<section class="work-page-sec">
+  <div class="portfolio-p-row-main">
+
+    <div class="portfolio-grid col-one">
+
+      {% for block in section.blocks limit: 3 %}
+        {% assign item = block.settings.work_item %}
+        {% assign modal_id = 'caseStudyModal-' | append: item.system.handle %}
+
+        <div class="portfolio-grid-item" {{ block.shopify_attributes }}>
+
+          {% if item.image != blank %}
+            <img
+              class="portfolio-img"
+              src="{{ item.image.value | image_url }}"
+              alt="{{ item.project_name.value | escape }}"
+              loading="lazy"
+            >
+          {% endif %}
+
+
+          <div class="portfolio-item-info">
+
+            <div class="portfolio-info-row">
+
+              {% if item.logo != blank %}
+                <div class="portfolio-logo">
+                  <img
+                    class="portfolio-logo-img"
+                    src="{{ item.logo.value.preview_image | image_url }}"
+                    alt="{{ item.project_name.value | escape }} logo"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+
+
+              <div class="portfolio-btn">
+
+                {% if item.popup_image != blank %}
+
+                  <a
+                    href=""
+                    class="btn btn-with-arrow js-case-study-popup"
+                    data-modal-id="{{ modal_id }}"
+                  >
+                    View Case Study
+                  </a>
+
+                {% else %}
+                  <a
+                    href="{{ item.system.url }}"
+                    class="btn btn-with-arrow"
+                  >
+                    View Case Study
+                  </a>
+
+                {% endif %}
+
+              </div>
+
+            </div>
+
+
+            {% if item.service_type != blank %}
+
+              <div class="cs--type-wp">
+
+                <ul class="case--study-type-inner">
+
+                  {% assign service_types = item.service_type.value | split: ',' %}
+
+                  {% for service_type in service_types %}
+
+                    <li>
+                      <a
+                        class="case--study-type"
+                        href="#"
+                      >
+                        {{ service_type | strip }}
+                      </a>
+                    </li>
+
+                  {% endfor %}
+
+                </ul>
+
+              </div>
+
+            {% endif %}
+
+          </div>
+
+
+          {% if item.popup_image != blank %}
+
+            <a
+              href=""
+              class="portfolio-link js-case-study-popup"
+              data-modal-id="{{ modal_id }}"
+            >
+              {{ item.project_name.value }}
+            </a>
+
+          {% else %}
+
+            <a
+              href="{{ item.system.url }}"
+              class="portfolio-link"
+            >
+              {{ item.project_name.value }}
+            </a>
+
+          {% endif %}
+
+
+          {% if item.popup_image != blank %}
+
+            <div
+              class="case-study-modal"
+              id="{{ modal_id }}"
+              aria-hidden="true"
+            >
+
+              <div class="case-study-modal-inner">
+
+                <div class="close-btn-main">
+
+                  <button
+                    type="button"
+                    class="btn-close js-case-study-close"
+                    aria-label="Close"
+                  ></button>
+
+                </div>
+
+
+                <div class="modal-body p-0">
+
+                  <div class="modal-img-main">
+
+                    <img
+                      class="case-study-popup-image"
+                      src="{{ item.popup_image.value.preview_image | image_url: width: 2000 }}"
+                      alt="{{ item.project_name.value | escape }}"
+                      loading="lazy"
+                      width="{{ item.popup_image.value.preview_image.width }}"
+                      height="{{ item.popup_image.value.preview_image.height }}"
+                    >
+
+                    <div class="cs-model-bottom">
+
+                      <h4 class="text-uppercase font-we-sb">
+                        Discuss your project
+                      </h4>
+
+                      <a
+                        href="/contact"
+                        class="btn btn-with-arrow text-uppercase"
+                      >
+                        Book a FREE consultation
+                      </a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          {% endif %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+    <div class="portfolio-grid col-two">
+
+      {% for block in section.blocks offset: 3 %}
+        {% assign item = block.settings.work_item %}
+        {% assign modal_id = 'caseStudyModal-' | append: item.system.handle %}
+
+        <div class="portfolio-grid-item" {{ block.shopify_attributes }}>
+
+          {% if item.image != blank %}
+
+            <img
+              class="portfolio-img"
+              src="{{ item.image.value.preview_image | image_url: width: 1200 }}"
+              alt="{{ item.project_name.value | escape }}"
+              loading="lazy"
+              width="{{ item.image.value.preview_image.width }}"
+              height="{{ item.image.value.preview_image.height }}"
+            >
+
+          {% endif %}
+
+
+          <div class="portfolio-item-info">
+
+            <div class="portfolio-info-row">
+
+              {% if item.logo != blank %}
+
+                <div class="portfolio-logo">
+
+                  <img
+                    class="portfolio-logo-img"
+                    src="{{ item.logo.value.preview_image | image_url: width: 1200 }}"
+                    alt="{{ item.project_name.value | escape }} logo"
+                    loading="lazy"
+                  >
+
+                </div>
+
+              {% endif %}
+
+              <div class="portfolio-btn">
+
+                {% if item.popup_image != blank %}
+                  <a
+                    href=""
+                    class="btn btn-with-arrow js-case-study-popup"
+                    data-modal-id="{{ modal_id }}"
+                  >
+                    View Case Study
+                  </a>
+
+                {% else %}
+                  <a
+                    href="{{ item.system.url }}"
+                    class="btn btn-with-arrow"
+                  >
+                    View Case Study
+                  </a>
+
+                {% endif %}
+
+              </div>
+
+            </div>
+            {% if item.service_type != blank %}
+
+              <div class="cs--type-wp">
+
+                <ul class="case--study-type-inner">
+
+                  {% assign service_types = item.service_type.value | split: ',' %}
+
+                  {% for service_type in service_types %}
+
+                    <li>
+                      <a
+                        class="case--study-type"
+                        href="#"
+                      >
+                        {{ service_type | strip }}
+                      </a>
+                    </li>
+
+                  {% endfor %}
+
+                </ul>
+
+              </div>
+
+            {% endif %}
+
+          </div>
+          {% if item.popup_image != blank %}
+
+            <a
+              href=""
+              class="portfolio-link js-case-study-popup"
+              data-modal-id="{{ modal_id }}"
+            >
+              {{ item.project_name.value }}
+            </a>
+
+          {% else %}
+
+            <a
+              href="{{ item.system.url }}"
+              class="portfolio-link"
+            >
+              {{ item.project_name.value }}
+            </a>
+
+          {% endif %}
+
+          {% if item.popup_image != blank %}
+
+            <div
+              class="case-study-modal"
+              id="{{ modal_id }}"
+              aria-hidden="true"
+            >
+
+              <div class="case-study-modal-inner">
+
+                <!-- Close Button -->
+                <div class="close-btn-main">
+
+                  <button
+                    type="button"
+                    class="btn-close js-case-study-close"
+                    aria-label="Close"
+                  ></button>
+
+                </div>
+
+
+                <div class="modal-body p-0">
+
+                  <div class="modal-img-main">
+                    <img
+                      class="case-study-popup-image"
+                      src="{{ item.popup_image.value.preview_image | image_url: width: 2000 }}"
+                      alt="{{ item.project_name.value | escape }}"
+                      loading="lazy"
+                      width="{{ item.popup_image.value.preview_image.width }}"
+                      height="{{ item.popup_image.value.preview_image.height }}"
+                    >
+                    <div class="cs-model-bottom">
+
+                      <h4 class="text-uppercase font-we-sb">
+                        Discuss your project
+                      </h4>
+
+                      <a
+                        href="/contact"
+                        class="btn btn-with-arrow text-uppercase"
+                      >
+                        Book a FREE consultation
+                      </a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          {% endif %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-case-study-popup').forEach(function (button) {
+
+      button.addEventListener('click', function (event) {
+
+        event.preventDefault();
+
+        var modalId = this.getAttribute('data-modal-id');
+        var modal = document.getElementById(modalId);
+
+        if (!modal) {
+          return;
+        }
+        document.querySelectorAll('.case-study-modal.show').forEach(function (openModal) {
+
+          openModal.classList.remove('show');
+          openModal.setAttribute('aria-hidden', 'true');
+
+        });
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+
+        document.body.classList.add('modal-open');
+
+      });
+
+    });
+
+    document.querySelectorAll('.js-case-study-close').forEach(function (button) {
+
+      button.addEventListener('click', function () {
+
+        var modal = this.closest('.case-study-modal');
+
+        if (!modal) {
+          return;
+        }
+
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+
+        document.body.classList.remove('modal-open');
+
+      });
+
+    });
+
+    document.querySelectorAll('.case-study-modal').forEach(function (modal) {
+
+      modal.addEventListener('click', function (event) {
+
+        if (event.target === modal) {
+
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden', 'true');
+
+          document.body.classList.remove('modal-open');
+
+        }
+
+      });
+
+    });
+
+    document.addEventListener('keydown', function (event) {
+
+      if (event.key === 'Escape') {
+
+        document.querySelectorAll('.case-study-modal.show').forEach(function (modal) {
+
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden', 'true');
+
+        });
+
+        document.body.classList.remove('modal-open');
+
+      }
+
+    });
+
+  });
+</script>
+<style>
+  .case-study-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.85);
+    overflow-y: auto;
+  }
+
+  .case-study-modal.show {
+    display: block;
+  }
+
+  .case-study-modal-inner {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    background: #fff;
+  }
+
+  .case-study-modal .close-btn-main {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100000;
+  }
+
+  .case-study-modal .btn-close {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .modal-img-main {
+    position: relative;
+    width: 100%;
+  }
+
+  .case-study-popup-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cs-model-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+    text-align: center;
+  }
+
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 767px) {
+
+    .case-study-modal .close-btn-main {
+      top: 10px;
+      right: 10px;
+    }
+
+    .cs-model-bottom {
+      padding: 20px;
+    }
+
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Work Page Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "work_item",
+      "name": "Work Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Work Item Selection"
+        },
+        {
+          "type": "paragraph",
+          "content": "Select a work item from the our_work metaobject to display in the portfolio grid."
+        },
+        {
+          "type": "metaobject",
+          "id": "work_item",
+          "label": "Select Work Item",
+          "metaobject_type": "our_work"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work Page Section",
+      "blocks": [
+        {
+          "type": "work_item"
+        },
+        {
+          "type": "work_item"
+        },
+        {
+          "type": "work_item"
+        },
+        {
+          "type": "work_item"
+        },
+        {
+          "type": "work_item"
+        },
+        {
+          "type": "work_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

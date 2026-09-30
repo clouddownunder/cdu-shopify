@@ -1,0 +1,87 @@
+<section class="banner-sec work-banner banner-custom white-bg-color">
+    <div class="banner-wrap">
+        <div class="container text-center">
+            <div class="banner-text-wrap mb-0">
+                <div class="banner-text">
+                    <div class="banner-heading-wrap">
+                        <h1 class="banner-heading">{{ section.settings.heading_line1 }} <br>
+                            <span class="font-we-rg">{{ section.settings.heading_line2 }}</span>
+                            <span class="theme-color-text">{{ section.settings.heading_line3 }}</span>
+                        </h1>
+                    </div>
+                    <p class="font18">{{ section.settings.description }}</p>
+                </div>
+                <div class="banner-btn-main d-flex flex-wrap justify-content-center">
+                    <div class="btn-wp">
+                        <a href="{{ section.settings.button_link }}" class="btn btn-with-arrow me-3 mb-3">{{ section.settings.button_text }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Work Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading Line 1",
+      "default": "Australian Digital &"
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading Line 2",
+      "default": "Cloud Solutions"
+    },
+    {
+      "type": "text",
+      "id": "heading_line3",
+      "label": "Heading Line 3",
+      "default": "That Drive Results"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Tailored insights and accelerated delivery drive fast, high-quality solutions across diverse projects."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Discuss your project"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Work Banner",
+      "settings": {
+        "heading_line1": "Australian Digital &",
+        "heading_line2": "Cloud Solutions",
+        "heading_line3": "That Drive Results",
+        "description": "Tailored insights and accelerated delivery drive fast, high-quality solutions across diverse projects.",
+        "button_text": "Discuss your project"
+      }
+    }
+  ]
+}
+{% endschema %}

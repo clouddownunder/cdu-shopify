@@ -1,0 +1,362 @@
+<section class="our-capabilities">
+  <div class="container">
+    <div class="row gx-3 gy-3">
+
+      <!-- Left Content -->
+      <div class="col-lg-4">
+        <div class="capability-left-card h-100">
+          <div class="capability-top-tags">
+            {% if section.settings.badge_text != blank %}
+                <span class="badge_tag">
+
+                  {% if section.settings.badge_icon != blank %}
+                    {{
+                      section.settings.badge_icon
+                      | image_url: width: 16
+                      | image_tag:
+                        alt: section.settings.badge_text
+                    }}
+                  {% endif %}
+
+                  {{ section.settings.badge_text }}
+                </span>
+            {% endif %}
+            {% if section.settings.badge_text-2 != blank %}
+                <span class="badge_tag">
+
+                  {% if section.settings.badge_icon != blank %}
+                    {{
+                      section.settings.badge_icon
+                      | image_url: width: 16 | image_tag:
+                        alt: section.settings.badge_text
+                    }}
+                  {% endif %}
+
+                  {{ section.settings.badge_text-2 }}
+                </span>
+            {% endif %}
+          </div>
+          <div class="capability-content">
+
+            {% if section.settings.section_title != blank %}
+              <h2 class="sec_typo text-white">
+                {{ section.settings.section_title }}
+              </h2>
+            {% endif %}
+
+            {% if section.settings.section_description != blank %}
+              <p class="mb-0 text-white font-300">
+                {{ section.settings.section_description }}
+              </p>
+            {% endif %}
+
+          </div>
+
+          {% if section.settings.button_text != blank %}
+            <div class="btn-wp">
+              <a
+                href="{{ section.settings.button_link | default: '#' }}"
+                class="btn btn-with-arrow white-btn"
+              >
+                {{ section.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="col-lg-8">
+        <div class="capability-right-card h-100">
+
+          <div class="capability-top-wrap">
+
+            <!-- Right Header -->
+            <div class="capability-right-top">
+
+              <div>
+                {% if section.settings.capabilities_title != blank %}
+                  <h3 class="mb-1">
+                    {{ section.settings.capabilities_title }}
+                  </h3>
+                {% endif %}
+
+                {% if section.settings.capabilities_description != blank %}
+                  <p class="mb-0 p_font_color font-300">
+                    {{ section.settings.capabilities_description }}
+                  </p>
+                {% endif %}
+              </div>
+
+              {% if section.settings.architecture_badge != blank %}
+                <span class="capability-badge">
+
+                  {% if section.settings.architecture_icon != blank %}
+                    {{
+                      section.settings.architecture_icon
+                      | image_url: width: 15
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '15',
+                        alt: section.settings.architecture_badge
+                    }}
+                  {% endif %}
+
+                  {{ section.settings.architecture_badge }}
+                </span>
+              {% endif %}
+
+            </div>
+
+            <!-- Dynamic Capability Categories -->
+            {% for block in section.blocks %}
+              <div
+                class="capability-item pb-3"
+                {{ block.shopify_attributes }}
+              >
+
+                {% if block.settings.capability_title != blank %}
+                  <span class="capability-label">
+                    {{ block.settings.capability_title }}
+                  </span>
+                {% endif %}
+
+                {% if block.settings.capability_items != blank %}
+                  <div class="tech-stack">
+
+                    {% assign technologies = block.settings.capability_items
+                      | newline_to_br
+                      | split: '<br />'
+                    %}
+
+                    {% for technology in technologies %}
+                      {% assign technology_name = technology | strip_html | strip %}
+
+                      {% if technology_name != blank %}
+                        <span>{{ technology_name }}</span>
+                      {% endif %}
+                    {% endfor %}
+
+                  </div>
+                {% endif %}
+
+              </div>
+            {% endfor %}
+
+          </div>
+
+          <!-- Footer -->
+          <div class="capability-footer">
+
+            {% if section.settings.footer_text != blank %}
+              <p class="mb-0 p_font_color font-300">
+                {{ section.settings.footer_text }}
+              </p>
+            {% endif %}
+
+            {% if section.settings.footer_button_text != blank %}
+              <a
+                href="{{ section.settings.footer_button_link | default: '#' }}"
+                class="outline-btn"
+              >
+                {{ section.settings.footer_button_text }}
+
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 5.6672H10.3344M5.6672 10.3344L10.3344 5.6672L5.6672 1"
+                    stroke="#0B0C0E"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </a>
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Capabilities",
+  "tag": "section",
+  "class": "section-our-capabilities",
+
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Content"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "AI Solution"
+    },
+    {
+      "type": "text",
+      "id": "badge_text-2",
+      "label": "Badge Text Second",
+      "default": "AI Services"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_icon",
+      "label": "Badge Icon"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "The Full Stack, Covered"
+    },
+    {
+      "type": "text",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "We, at CDU, help businesses to equip the entire business processes with full potential of AI be it sales, customer relationship or payment pipelines."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Capabilities Header"
+    },
+    {
+      "type": "text",
+      "id": "capabilities_title",
+      "label": "Capabilities Title",
+      "default": "Capabilities"
+    },
+    {
+      "type": "textarea",
+      "id": "capabilities_description",
+      "label": "Capabilities Description",
+      "default": "Categorized tech stack – modern, modular, and scalable."
+    },
+    {
+      "type": "text",
+      "id": "architecture_badge",
+      "label": "Architecture Badge",
+      "default": "Modular architecture"
+    },
+    {
+      "type": "image_picker",
+      "id": "architecture_icon",
+      "label": "Architecture Badge Icon"
+    },
+
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "Need a custom stack? We can tailor the tech to your goals."
+    },
+    {
+      "type": "text",
+      "id": "footer_button_text",
+      "label": "Footer Button Text",
+      "default": "View case studies"
+    },
+    {
+      "type": "url",
+      "id": "footer_button_link",
+      "label": "Footer Button Link"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "capability",
+      "name": "Capability",
+      "settings": [
+        {
+          "type": "text",
+          "id": "capability_title",
+          "label": "Capability Title",
+          "default": "Microsoft"
+        },
+        {
+          "type": "textarea",
+          "id": "capability_items",
+          "label": "Technology Items",
+          "info": "Enter one technology per line.",
+          "default": "Azure\nOffice 365\nDynamics 365\nSharePoint\nPower BI\nTeams\nPower Platform\nASP.NET\nC#"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Our Capabilities",
+      "blocks": [
+        {
+          "type": "capability",
+          "settings": {
+            "capability_title": "Microsoft",
+            "capability_items": "Azure\nOffice 365\nDynamics 365\nSharePoint\nPower BI\nTeams\nPower Platform\nASP.NET\nC#"
+          }
+        },
+        {
+          "type": "capability",
+          "settings": {
+            "capability_title": "Cloud",
+            "capability_items": "AWS\nGoogle Cloud\nIBM Cloud\nOracle Cloud\nKubernetes\nDocker\nTerraform\nAnsible"
+          }
+        },
+        {
+          "type": "capability",
+          "settings": {
+            "capability_title": "Big Data & AI",
+            "capability_items": "Apache Spark\nKafka\nHadoop\nHive\nSqoop\nMongoDB\nCassandra\nTableau\nTensorFlow\nPyTorch"
+          }
+        },
+        {
+          "type": "capability",
+          "settings": {
+            "capability_title": "Development",
+            "capability_items": "React\nNext.js\nNode.js\nPython\nSiteCore\nSalesforce\nTypeScript\nGraphQL"
+          }
+        },
+        {
+          "type": "capability",
+          "settings": {
+            "capability_title": "DevOps & Security",
+            "capability_items": "GitHub Actions\nAzure DevOps\nJenkins\nSonarQube\nSentinel\nDefender\nZero Trust\nSIEM"
+          }
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 50
+}
+{% endschema %}

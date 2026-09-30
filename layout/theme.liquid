@@ -1,0 +1,171 @@
+<!doctype html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    {%- assign canonical_path = request.path | remove_first: '/pages' -%}
+<link rel="canonical" href="{{ request.origin }}{{ canonical_path }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+    {{ 'all.min.css' | asset_url | stylesheet_tag }}
+    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+    {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
+    {{ 'animations.css' | asset_url | stylesheet_tag }}
+    {{ 'slick.min.css' | asset_url | stylesheet_tag }}
+    {{ 'fancybox.css' | asset_url | stylesheet_tag }}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'img.css' | asset_url | stylesheet_tag }}
+    {{ 'media.css' | asset_url | stylesheet_tag }}
+    {{ 'footer.css' | asset_url | stylesheet_tag }}
+    {{ 'header.css' | asset_url | stylesheet_tag }}
+    <style>
+      .shopify-challenge__container{
+        padding:100px 0;
+      }
+      #shopify-block-AN0VPSXBCRnAvWUlMR__11209684671858269935{
+        opacity:0 !important;
+      }
+      .cf-success-msg{
+        padding:50px 30px !important;
+      }
+      .shopify-block.shopify-app-block:not(:has(.cf-form-inner)) {
+          display: none !important;
+      }
+    </style>
+    <link rel="preload" as="image" href="https://clouddownunder.myshopify.com/cdn/shop/files/header-right-01.webp?v=1787545711">
+
+    <link rel="preload"
+          as="image"
+          href="https://clouddownunder.myshopify.com/cdn/shop/files/header-right-02.webp?v=1787545710">
+
+    <link rel="preload"
+          as="image"
+          href="https://clouddownunder.myshopify.com/cdn/shop/files/header-right-03.webp?v=1787545712">
+
+    <link rel="preload"
+          as="image"
+          href="https://clouddownunder.myshopify.com/cdn/shop/files/header-right-04.webp?v=1787545712">
+
+    <link rel="preload"
+          as="image"
+          href="https://clouddownunder.myshopify.com/cdn/shop/files/header-right-05.webp?v=1787545712">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B902SR5NXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B902SR5NXX');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TF2LDFXL');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+      body[data-template="Work"] .contact_us_sec,body[data-template="Blog"] .contact_us_sec,body[data-template="Contact"] .contact_us_sec,body[data-template="Contact"] .contact_us_sec{
+        display:none;
+      }
+    </style>
+  </head>
+
+  <body class="page-wrapper" data-template="{{ page.title }}">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF2LDFXL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    {% sections 'header-group' %}
+
+    <main
+    id="MainContent"
+    class="content-for-layout focus-none{% if template.name == 'page' and template.suffix == 'service' %} service-page-wrap{% elsif request.path contains '/service/' %} service-detail-page-wrap{% endif %}"
+    role="main"
+    tabindex="-1"
+    data-template="{{ template.name }}"
+  >
+    {{ content_for_layout }}
+  </main>
+
+    {% sections 'footer-group' %}
+    {{ 'jquery.min.js' | asset_url | script_tag }}
+    {{ 'gsap.min.js' | asset_url | script_tag }}
+    {{ 'ScrollTrigger.min.js' | asset_url | script_tag }}
+    {{ 'ScrollToPlugin.min.js' | asset_url | script_tag }}
+    {{ 'bootstrap.min.js' | asset_url | script_tag }}
+    {{ 'css3-animate-it.js' | asset_url | script_tag }}
+    {{ 'slick.min.js' | asset_url | script_tag }}
+    {{ 'fancybox.js' | asset_url | script_tag }}
+    {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
+    {{ 'custom.js' | asset_url | script_tag }}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const path = window.location.pathname;
+
+        if (path.startsWith('/pages/')) {
+          const newPath = path.replace(/^\/pages/, '');
+
+          window.history.replaceState(
+            {},
+            document.title,
+            newPath + window.location.search + window.location.hash
+          );
+        }
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[href*="/pages/"]').forEach(function (link) {
+          const url = new URL(link.href);
+
+          if (url.pathname.startsWith('/pages/')) {
+            url.pathname = url.pathname.replace(/^\/pages/, '');
+            link.href = url.pathname + url.search + url.hash;
+          }
+        });
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.age-display').forEach(function (element) {
+          const experienceDate = new Date(element.dataset.experiencedate + 'T00:00:00');
+          const today = new Date();
+          let age = today.getFullYear() - experienceDate.getFullYear();
+          const experiencedayThisYear = new Date(
+            today.getFullYear(),
+            experienceDate.getMonth(),
+            experienceDate.getDate()
+          );
+          if (today < experiencedayThisYear) {
+            age--;
+          }
+          element.textContent = age + '+';
+        });
+      });
+    </script> 
+    {% if request.path == '/collections' or request.path == '/products' %}
+      <script>
+        window.location.replace('/404');
+      </script>
+    {% endif %}
+  </body>
+</html>

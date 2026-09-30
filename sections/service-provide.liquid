@@ -1,0 +1,163 @@
+<section class="{{ section.settings.section-class }} service-provide-sec sec-padding" id="{{ section.settings.section-id }}">
+    <div class="container">
+        <div class="row gx-xl-5 gx-3 gy-3">
+            <div class="col-xl-6 col-lg-5">
+                <div class="wrap-service-head d-flex flex-column h-100">
+                    <div class="section_heading text-start">
+                        <span class="sec_subtitle mb-0 theme_black">
+                            <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                                    fill="#0B0C0E" />
+                            </svg>
+                            {{ section.settings.subtitle }}
+                        </span>
+                        <h2 class="sec_typo mb-0 mt-1">{{ section.settings.heading }}</h2>
+                    </div>
+                    <div class="btn-wp d-none d-lg-block">
+                        <a href="{{ section.settings.button-url }}" class="btn btn-with-arrow me-3 mb-0">{{ section.settings.button-text }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+                <div class="">
+                    <p class="mb-0 service-disc p_font_color">{{ section.settings.description }}</p>
+
+                    <div class="provide-service-label tech-stack">
+                        {% for service in section.settings.metaobject-list %}
+                            <a href="{{ service.system.url }}" class="sr-re-label">
+                                {{ service.text.value }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="btn-wp d-lg-none d-block mt-4">
+                        <a href="#" class="btn btn-with-arrow me-3 mb-0">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if section.settings.our_work-metaobject-list != blank %}
+        <div class="explore-service-wrap">
+            <div class="exp-top-wrap">
+                <h3 class="exp-title-service h5 font-sb mb-0">Our Projects</h3>
+                <a href="/pages/work" class="outline-btn font-sb">
+                    Explore Case Study
+                    <svg class="ms-1" width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.898438 8.09844H20.0984M12.4184 15.2984L20.0984 8.09844L12.4184 0.898437" stroke="#0B0C0E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="explore-services-list">
+                {% for our_work in section.settings.our_work-metaobject-list %}
+                <div class="explore-services-slide">
+                    <div class="expl-services-card">
+
+                        <div class="expl-services-img">
+                            <div class="service-img-link" tabindex="0">
+                                <img src="{{ our_work.service_page_list_image.value | image_url }}" alt="service image" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="expl-services-info">
+                            <div>
+                                <div class="service-tags tech-stack">
+                                    <span>{{ our_work.service_page_list_tag.value }}</span>
+                                </div>
+                                
+                                <div class="service-disc-wrap ts-platform-card">
+                                    <div class="ts-platform-left">
+                                        <h4 class="h6 mb-0 theme_black font-bl">{{ our_work.service_page_list_title.value }}</h4>
+                                        <p class="expl-service-disc mb-0 p_font_color font-300">
+                                            {{ our_work.service_page_list_desciption.value }}
+                                        </p>
+                                    </div>
+                                    <div class="ts-platform-right">
+                                        <h5 class="mb-0 theme_black font-bl">{{ our_work.service_page_list_platform_percentage.value }}</h5>
+                                        <span class="d-inline-block p_font_color font-300">{{ our_work.service_page_list_platform_label.value }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ our_work.system.url }}" class="outline-btn">
+                                Explore Case Study
+                                <svg class="ms-1" width="16" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.898438 8.09844H20.0984M12.4184 15.2984L20.0984 8.09844L12.4184 0.898437" stroke="#FCBC14" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% schema %}
+{
+ "name": "Service provide",
+ "settings": [
+    {
+        "type": "text",
+        "id": "section-id",
+        "label":"Section Id",
+        "default":"microsoft_ecosystem"
+    },
+    {
+        "type": "text",
+        "id": "section-class",
+        "label":"Section Class",
+        "default":"microsoft-azure-sec"
+    },
+    {
+        "type": "text",
+        "id": "subtitle",
+        "label":"Subtitle",
+        "default":"Microsoft Ecosystem"
+    },
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label":"Heading",
+        "default":"Microsoft Ecosystem Solutions That Connect, Automate & Empower."
+    },
+    {
+        "type": "text",
+        "id": "button-text",
+        "label":"Button Text",
+        "default":"View Details"
+    },
+    {
+        "type": "url",
+        "id": "button-url",
+        "label":"Button Url"
+    },
+    {
+        "type": "textarea",
+        "id": "description",
+        "label":"Description",
+        "default":"We help Australian organisations unlock the full potential of the Microsoft ecosystem-from Microsoft 365 and Dynamics 365 to Power Platform and Azure AD-driving productivity, automation and seamless collaboration across your business."
+    },
+    {
+        "type": "metaobject_list",
+        "id": "metaobject-list",
+        "label": "Services",
+        "metaobject_type": "service",
+        "limit": 12
+    },
+    {
+        "type": "metaobject_list",
+        "id": "our_work-metaobject-list",
+        "label": "Our Work",
+        "metaobject_type": "our_work",
+        "limit": 3
+    }
+ ],
+ "blocks": [],
+ "presets": [
+    {
+        "name": "Service provide",
+    }
+ ]
+}
+{% endschema %}

@@ -1,0 +1,111 @@
+<div class="container"> 
+    <div class="services-tabs-wrap"> 
+        {% for block in section.blocks %} 
+            {% if block.settings.tab_text != blank and block.settings.tab_link != blank %} 
+                <a href="{{ block.settings.tab_link }}" class="service-tab{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }} > 
+                    {{ block.settings.tab_text }} 
+                </a> 
+            {% endif %} 
+        {% endfor %} 
+    </div> 
+</div> 
+{% schema %} 
+{ 
+    "name": "Service Tabs", 
+    "tag": "section", 
+    "class": "services-tabs-sticky", 
+    "settings": [], 
+    "blocks": [ 
+        { 
+            "type": "link", 
+            "name": "Service Tab", 
+            "settings": [ 
+                { 
+                    "type": "text", 
+                    "id": "tab_text", 
+                    "label": "Tab Text", 
+                    "default": "Microsoft Ecosystem" 
+                }, 
+                { 
+                    "type": "text", 
+                    "id": "tab_link", 
+                    "label": "Tab Link", 
+                    "default": "#microsoft_ecosystem" 
+                } 
+            ] 
+        } 
+    ], 
+    "presets": [ 
+        { 
+            "name": "Service Tabs", 
+            "blocks": [ 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "Microsoft Ecosystem", 
+                        "tab_link": "#microsoft_ecosystem" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "Microsoft Azure", 
+                        "tab_link": "#microsoft_azure" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "AWS", 
+                        "tab_link": "#aws" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "DevOps & CI/CD", 
+                        "tab_link": "#devops" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "Big Data & AI / ML", 
+                        "tab_link": "#bigdata" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "Salesforce", 
+                        "tab_link": "#salesforce" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "Cybersecurity", 
+                        "tab_link": "#cybersecurity" 
+                    } 
+                }, 
+                { 
+                    "type": "link", 
+                    "settings": 
+                    { 
+                        "tab_text": "SiteCore & SharePoint", 
+                        "tab_link": "#sitecore" 
+                    } 
+                } 
+            ] 
+        } 
+    ], 
+    "max_blocks": 50
+} 
+{% endschema %}

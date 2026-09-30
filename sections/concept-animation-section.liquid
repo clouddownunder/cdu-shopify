@@ -1,0 +1,168 @@
+<section class="concept-animation-main">
+  <div class="pin-wrap">
+    <div class="container">
+      <div class="wrap-all-cs">
+        <div class="section_heading text-center">
+          <span class="sec_subtitle mb-0">
+            <img class="sec_sub_icon" src="{{ section.settings.sub_icon | img_url }}" alt="image">
+            {{ section.settings.section_subtitle }}
+          </span>
+        </div>
+        <div class="heading-stage">
+          <div class="ani-middle-heading">
+            <h2 class="sec_title mb-0 left">
+              {{ section.settings.heading_left }}
+            </h2>
+            <h2 class="sec_title mb-0 right">
+              {{ section.settings.heading_right }}
+            </h2>
+          </div>
+        </div>
+        <div class="ani-card-wrap">
+          <div class="row g-4 justify-content-center flex-column align-items-center">
+            {% for block in section.blocks %}
+            <a class="card_col" href="{{ block.settings.card_link }}">
+              <div class="ani-card">
+                <div class="ani-card-head">
+                  <h3 class="mb-0 ani-card-title">{{ block.settings.card_title }}</h3>
+                  <div class="ani-icons-wrap d-flex align-items-center">
+                    <img src="{{ section.settings.sub_icon | img_url }}" alt="image" class="sec_sub_icon">
+                    <img src="{{ section.settings.sub_icon | img_url }}" alt="image" class="sec_sub_icon opacity3">
+                    <img src="{{ section.settings.sub_icon | img_url }}" alt="image" class="sec_sub_icon opacity3">
+                  </div>
+                </div>
+                <div class="ani-card-image text-center m-auto">
+                  <img src="{{ block.settings.card_image | image_url:width:"1200" }}" alt="image">
+                </div>
+                <div class="ani-card-content">
+                  <p class="mb-0">{{ block.settings.card_description }}</p>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+ 
+          <div class="cs-build-something">
+            <div class="cs-build-something-left">
+              <span class="cs-build-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1149_5647)">
+                  <path d="M0 7.875L5.81818 7.87501" stroke="#FCBC14" stroke-width="1.7"/>
+                  <path d="M10.1797 7.875L15.9979 7.87501" stroke="#FCBC14" stroke-width="1.7"/>
+                  <path d="M7.875 5.81818V0" stroke="#FCBC14" stroke-width="1.7"/>
+                  <path d="M7.875 16.0057V10.1875" stroke="#FCBC14" stroke-width="1.7"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_1149_5647">
+                  <rect width="16" height="16" fill="#FCBC14"/>
+                  </clipPath>
+                  </defs>
+                </svg>
+              </span>
+              <h4 class="text-white mb-0">{{ section.settings.cta_title }}</h4>
+            </div>
+            <div class="cs-build-something-middle">
+              <p class="mb-0 p_font_color">{{ section.settings.cta_subtitle }}</p>
+            </div>
+            <div class="btn-wp">
+              <a href="{{ section.settings.button_link }}" class="btn btn-with-arrow">{{ section.settings.button_text }}</a>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+</section>
+ 
+{% schema %}
+{
+  "name": "Concept Animation",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "sub_icon",
+      "label": "Subtitle Icon"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "From concept to launch"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_left",
+      "label": "Heading Left",
+      "default": "25+ Services Across"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_right",
+      "label": "Heading Right",
+      "default": "the Full Tech Stack"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Ready to Build Something Amazing?"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtitle",
+      "label": "CTA Subtitle",
+      "default": "Helping ideas become successful products."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Let's Build Together"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service_card",
+      "name": "Service Card",
+      "settings": [
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card Link"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title",
+          "default": "Microsoft Ecosystem"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+          "type": "textarea",
+          "id": "card_description",
+          "label": "Card Description",
+          "default": "End-to-end Microsoft consulting from cloud migration to M365 deployment, Dynamics CRM, and Power Platform automation for Australian enterprises."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Concept Animation"
+    }
+  ]
+}
+{% endschema %}

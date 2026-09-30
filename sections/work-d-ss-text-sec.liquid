@@ -1,0 +1,125 @@
+{% if section.settings.description_content != blank or section.settings.service_point != blank or section.settings.bottom_image != blank or block.settings.heading != blank or block.settings.content != blank %}
+<section class="work-d-ss-text-sec">
+    <div class="work-d-ss-text-top sec-padding">
+        <div class="container">
+            <div class="work-d-ss-text-wrap">
+                <div class="row">
+                    <div class="col-md-8 col-12">
+                        <div class="work-d-text">
+                            {{ section.settings.description_content }}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <ul class="work-d-text-points">
+                            {% assign service_types = section.settings.service_point | split: ',' %}
+                            {% for service_type in service_types %}
+                                <li class="font-bl">{{ service_type | strip }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="work-d-ss-text-bottom" style="background-color:{{ section.settings.bottom_bg_color | default: '#45484F' }}">
+        <div class="container">
+            <div class="work-d-ss-text-wrap">
+                <div class="work-d-ss">
+                    {% if section.settings.bottom_image != blank %}
+                    <img alt="{{ section.settings.bottom_image_alt | default: 'Bottom Image' }}" src="{{ section.settings.bottom_image | image_url }}" loading="lazy">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="work-d-info-main">
+        <div class="container">
+            <div class="work-d-info">
+            {% for block in section.blocks %}
+                <div class="work-d-info-row">
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            <h3 class="font-sb">{{ block.settings.heading }}</h3>
+                        </div>
+                        <div class="col-md-8 col-12">
+                            {{ block.settings.content }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% schema %}
+{
+  "name": "Work Details Text Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description_content",
+      "label": "Description Content",
+      "default": "<p>Add your description content here...</p>"
+    },
+    {
+      "type": "header",
+      "content": "Service Points"
+    },
+    {
+      "type": "text",
+      "id": "service_point",
+      "label": "Service Point",
+      "default": "Strategy"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Section"
+    },
+    {
+      "type": "color",
+      "id": "bottom_bg_color",
+      "label": "Bottom Background Color",
+      "default": "#45484F"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_image",
+      "label": "Bottom Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work Details Text Section",
+      "settings": {
+        "description_content": "<p>City Fertility stands as a prominent IVF and fertility service provider in Australia, boasting 16 clinics, over 70 consulting rooms, and more than 60 fertility specialists nationwide.</p><p>Renowned in the industry, City Fertility has 3 team members recognized among the world's top researchers in female infertility from 2013 to 2023.</p><p>My Fertility Portal is a user-friendly companion app designed to support individuals throughout their fertility journey, regardless of whether they are City Fertility clients or associated with an affiliated clinic. The app offers easy access to treatment and stimulation plans, consent forms, and necessary documentation that is part of the cycle.</p>",
+        "service_point": "Strategy"
+      }
+    }
+  ]
+}
+{% endschema %}

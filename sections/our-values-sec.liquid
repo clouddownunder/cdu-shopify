@@ -1,0 +1,275 @@
+<section class="our-values-sec">
+    <div class="container">
+        <div class="our-values-top">
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-12 col-12">
+                    <div class="section_heading">
+                        <span class="sec_subtitle mb-0 theme_black">
+                            <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#000"></path>
+                            </svg>
+                            {{ section.settings.subtitle | default: 'About Us' }}</span>
+                        <h2 class="sec_typo mb-0 mt-1">{{ section.settings.section_title | default: 'Our Values & Achievements' }}</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 text-end align-self-center">
+                    <div class="cta-main">
+                        <a href="{{ section.settings.cta_link | default: '#' }}" class="btn btn-with-arrow">{{ section.settings.cta_text | default: 'Discuss your project' }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-values-bottom">
+            <div class="our-values-row">
+                <div class="our-values-col">
+                    <div class="our-values-text">
+                        <h3>{{ section.settings.defines_title | default: 'What Defines Us?' }}</h3>
+                        <p>{{ section.settings.defines_text | default: 'At Cloud Downunder, we have rounded up a splendid team of visionary developers, designers, and strategists. We tackle business challenges with top-notch IT solutions in Brisbane, all day long, backed by a forward-looking approach and a streamlined system!' }}</p>
+                    </div>
+                </div>
+                {% for block in section.blocks limit: 2 %}
+                <div class="our-values-col" {{ block.shopify_attributes }}>
+                    <div class="our-values-box" style="background-color:{{ block.settings.box_color }};">
+                        <div class="our-values-box-left">
+                            <div class="points-count-box">
+                                <h3 class="">{{ block.settings.stat_number }}</h3>
+                                <p>{{ block.settings.stat_label }}</p>
+                            </div>
+                        </div>
+                        <div class="our-values-box-img">
+                            <img src="{{ block.settings.stat_image | image_url: width: "1200" }}" alt="{{ block.settings.stat_label }}">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="our-values-row">
+                <div class="our-values-col">
+                    <div class="our-values-text">
+                        <h3>{{ section.settings.drives_title | default: 'What Drive Us?' }}</h3>
+                        <p>{{ section.settings.drives_text | default: 'Our drive? It is all about being top-notch and mad keen on innovation that meets the mark. We sort out challenges for our clients, finding straightforward solutions, even in UI/UX design, as we are all about our clients success.' }}</p>
+                    </div>
+                </div>
+                {% for block in section.blocks offset: 2 limit: 2 %}
+                <div class="our-values-col" {{ block.shopify_attributes }}>
+                    <div class="our-values-box" style="background-color:{{ block.settings.box_color }};">
+                        <div class="our-values-box-left">
+                            <div class="points-count-box">
+                                <h3 class="">{{ block.settings.stat_number }}</h3>
+                                <p>{{ block.settings.stat_label }}</p>
+                            </div>
+                        </div>
+                        <div class="our-values-box-img">
+                            <img src="{{ block.settings.stat_image | image_url: width: "1200" }}" alt="{{ block.settings.stat_label }}">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="achievements-wp">
+            <div class="achievements-logos-row">
+                {% for block in section.blocks offset: 4 %}
+                <div class="achievements-logos" {{ block.shopify_attributes }}>
+                    <img src="{{ block.settings.achievement_logo | image_url: width: "1200" }}" alt="{{ block.settings.achievement_name }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Values Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Our Values & Achievements"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Discuss your project"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "First Text Block"
+    },
+    {
+      "type": "text",
+      "id": "defines_title",
+      "label": "Defines Title",
+      "default": "What Defines Us?"
+    },
+    {
+      "type": "textarea",
+      "id": "defines_text",
+      "label": "Defines Text",
+      "default": "At Cloud Downunder, we have rounded up a splendid team of visionary developers, designers, and strategists. We tackle business challenges with top-notch IT solutions in Brisbane, all day long, backed by a forward-looking approach and a streamlined system!"
+    },
+    {
+      "type": "header",
+      "content": "Second Text Block"
+    },
+    {
+      "type": "text",
+      "id": "drives_title",
+      "label": "Drives Title",
+      "default": "What Drive Us?"
+    },
+    {
+      "type": "textarea",
+      "id": "drives_text",
+      "label": "Drives Text",
+      "default": "Our drive? It is all about being top-notch and mad keen on innovation that meets the mark. We sort out challenges for our clients, finding straightforward solutions, even in UI/UX design, as we are all about our clients success."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_box",
+      "name": "Stat Box",
+      "settings": [
+        {
+          "type": "color",
+          "id": "box_color",
+          "label": "Box Background Color",
+          "default": "#BCFFD8"
+        },
+        {
+          "type": "textarea",
+          "id": "stat_number",
+          "label": "Stat Number",
+          "default": "50+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat Label",
+          "default": "IT Experts on Board"
+        },
+        {
+          "type": "image_picker",
+          "id": "stat_image",
+          "label": "Stat Image"
+        }
+      ]
+    },
+    {
+      "type": "achievement_logo",
+      "name": "Achievement Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "achievement_logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "achievement_name",
+          "label": "Achievement Name",
+          "default": "Rating Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Values Section",
+      "settings": {
+        "subtitle": "About Us",
+        "section_title": "Our Values & Achievements",
+        "cta_text": "Discuss your project",
+
+        "defines_title": "What Defines Us?",
+        "defines_text": "At Cloud Downunder, we have rounded up a splendid team of visionary developers, designers, and strategists. We tackle business challenges with top-notch IT solutions in Brisbane, all day long, backed by a forward-looking approach and a streamlined system!",
+        "drives_title": "What Drive Us?",
+        "drives_text": "Our drive? It is all about being top-notch and mad keen on innovation that meets the mark. We sort out challenges for our clients, finding straightforward solutions, even in UI/UX design, as we are all about our clients success."
+      },
+      "blocks": [
+        {
+          "type": "stat_box",
+          "settings": {
+            "box_color": "#BCFFD8",
+            "stat_number": "50+",
+            "stat_label": "IT Experts on Board"
+          }
+        },
+        {
+          "type": "stat_box",
+          "settings": {
+            "box_color": "#FFE3E0",
+            "stat_number": "12+",
+            "stat_label": "Years of Experience"
+          }
+        },
+        {
+          "type": "stat_box",
+          "settings": {
+            "box_color": "#D3F2FF",
+            "stat_number": "500+",
+            "stat_label": "Projects Delivered"
+          }
+        },
+        {
+          "type": "stat_box",
+          "settings": {
+            "box_color": "#FFEFDE",
+            "stat_number": "40+",
+            "stat_label": "Industries Served"
+          }
+        },
+        {
+          "type": "achievement_logo",
+          "settings": {
+            "achievement_name": "Clutch"
+          }
+        },
+        {
+          "type": "achievement_logo",
+          "settings": {
+            "achievement_name": "DesignRush"
+          }
+        },
+        {
+          "type": "achievement_logo",
+          "settings": {
+            "achievement_name": "GoodFirms"
+          }
+        },
+        {
+          "type": "achievement_logo",
+          "settings": {
+            "achievement_name": "Google"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

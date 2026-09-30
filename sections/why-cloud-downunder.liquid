@@ -1,0 +1,184 @@
+<section class="swae-cdu-sec">
+  <div class="container">
+    <div class="swae-cdu-top">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="section_heading">
+            <span class="sec_subtitle text-black">
+              <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#000" />
+              </svg> 
+              {{ section.settings.section_subtitle }}
+            </span>
+            <h2 class="sec_typo">{{ section.settings.section_title }}</h2>
+            <p class="mb-0 p_font_color mt-lg-3 mt-3">{{ section.settings.section_description }}</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-start text-lg-end text-sm-start align-self-end">
+          <div class="cta-main">
+            <a href="{{ section.settings.button_link }}" class="btn btn-with-arrow">{{ section.settings.button_text }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="sep-devider">
+  <div class="">
+    <div class="container">
+      <div class="swae-wrap">
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 align-self-center mb-4 mb-lg-5">
+            <div class="swae-sec-video">
+              <div class="swae-v-img">
+                <img src="{{ section.settings.video_image | image_url : width :"1200" }}" alt="#" class="swae-img">
+                {% assign video_source = section.settings.video_link.sources | where: 'format', 'mp4' | first %}
+                <a href="{{ video_source.url }}" data-fancybox class="play-link"><img src="https://cdn.shopify.com/s/files/1/0786/1472/4748/files/play-icon.svg?v=1786337032" alt="#"></a>
+                <div class="swae-video-text">
+                  <div class="swae-video-local"><span>{{ section.settings.video_local_text }}</span></div>
+                  <div class="swae-video-expert"><span>{{ section.settings.video_expert_text }}</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="loc-right">
+              <div class="swae-loc-main">
+                {% for block in section.blocks %}
+                  {%  if block.type == 'feature' %}
+                    <div class="swae-loc-row">
+                      <div class="swae-loc-wp">
+                        <div class="swae-loc-img">
+                          <img src="https://cdn.shopify.com/s/files/1/0786/1472/4748/files/checked.svg?v=1787551378" alt="#">
+                        </div>
+                        <div class="swae-loc-info">
+                          {% comment %} <h6 class="swae-loc-title">{{ block.settings.feature_title }}</h6> {% endcomment %}
+                          <p class="swae-loc-info-sub">{{ block.settings.feature_subtitle }}</p>
+                          {% comment %} <span class="swae-loc-text">{{ block.settings.feature_description }}</span> {% endcomment %}
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swae-logos-main">
+        <div class="swae-logos-row">
+          {% for block in section.blocks %}
+            {% if block.type == 'logo' %}
+            <div class="swae-logos">
+              <img src="{{ block.settings.logo | image_url : width :"1200" }}" alt="#">
+            </div>
+            {% endif %}
+          {%  endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Cloud Downunder",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Why Cloud Downunder"
+    },
+    {
+      "type": "textarea",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Strict Compliance. Clear Communication. Timeliness."
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "As a Cloud consulting company and Certified Microsoft partner in Australia, CDU has played a game-changing role in some of the top organizations."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Start Your Project"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_image",
+      "label": "Video Image"
+    },
+    {
+      "type": "video",
+      "id": "video_link",
+      "label": "Video Link"
+    },
+    {
+      "type": "text",
+      "id": "video_local_text",
+      "label": "Video Local Text",
+      "default": "Why Local?"
+    },
+    {
+      "type": "text",
+      "id": "video_expert_text",
+      "label": "Video Expert Text",
+      "default": "Solutions with Aussie Expertise"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Business-First Approach"
+        },
+        {
+          "type": "text",
+          "id": "feature_subtitle",
+          "label": "Feature Subtitle",
+          "default": "We Solve Business Problems, Not Just Technical Ones"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "Every decision starts with your business goals, ensuring every feature delivers measurable value not unnecessary complexity."
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Cloud Downunder"
+    }
+  ]
+}
+{% endschema %}

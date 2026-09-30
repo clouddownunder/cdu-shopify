@@ -1,0 +1,49 @@
+<div class="sitemap-block">
+    <div class="sitemap-block-num">{{ block.settings.number }}</div>
+    <div class="">
+        <span class="sitemap-block-eyebrow">{{ block.settings.label }}</span>
+        <h2 class="sitemap-block-title mb-0">{{ block.settings.title }}</h2>
+    </div>
+</div>
+<div class="row sitemap-groups">
+    {% content_for 'blocks' %}
+</div>
+{% schema %}
+{
+  "name": "Sitemap Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Number",
+      "default": "01"
+    },
+    {
+        "type": "text",
+        "id": "label",
+        "label": "Label"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sitemap-heading"
+    },
+    {
+      "type": "sitemap-group"
+    },
+    {
+      "type": "sitemap-group-ul"
+    }
+  ],
+  "presets": [
+    {
+        "name": "Sitemap Header"
+    }
+  ]
+}
+{% endschema %}

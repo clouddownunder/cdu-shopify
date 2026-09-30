@@ -1,0 +1,28 @@
+<section class="page_banner_section text-center" style="padding:100px 0;">
+    <div class="container-fluid">
+        <h1 class="font-bold banner-heading">{{ section.settings.heading }}</h1>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Page Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Page Banner"
+    }
+  ]
+}
+{% endschema %}

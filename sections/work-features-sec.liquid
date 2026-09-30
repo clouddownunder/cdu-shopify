@@ -1,0 +1,123 @@
+{% if section.blocks.size > 0 %}
+<section class="work-features-sec sec-padding">
+    <div class="container">
+        <div class="work-features-top">
+            <div class="section_heading text-start">
+                <span class="sec_subtitle mb-0 theme_black">
+                    <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                            fill="#0B0C0E"></path>
+                    </svg>
+                    {{ section.settings.subtitle | default: 'Features' }}
+                </span>
+                <h2 class="sec_typo">{{ section.settings.heading | default: 'Application key Features' }}</h2>
+            </div>
+        </div>
+        <div class="work-features-bottom">
+            <div class="work-features-slider">
+                {% for block in section.blocks %}
+                <div class="work-features-slide" {{ block.shopify_attributes }}>
+                    <div class="work-features-box">
+                        <div class="work-features-img">
+                            {% if block.settings.feature_image != blank %}
+                            <img src="{{ block.settings.feature_image | image_url }}" alt="{{ block.settings.feature_name }}" loading="lazy">
+                            {% endif %}
+                        </div>
+                        <div class="work-features-text text-center">
+                            <p class="font-300 theme_black">{{ block.settings.feature_name }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% schema %}
+{
+  "name": "Work Features Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Features"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Application key Features"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_slide",
+      "name": "Feature Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Feature Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Feature Name",
+          "default": "Feature Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Work Features Section",
+      "settings": {
+        "subtitle": "Features",
+        "heading": "Application key Features"
+      },
+      "blocks": [
+        {
+          "type": "feature_slide",
+          "settings": {
+            "feature_name": "Splash Screen"
+          }
+        },
+        {
+          "type": "feature_slide",
+          "settings": {
+            "feature_name": "Home Screen"
+          }
+        },
+        {
+          "type": "feature_slide",
+          "settings": {
+            "feature_name": "Appointment Screen"
+          }
+        },
+        {
+          "type": "feature_slide",
+          "settings": {
+            "feature_name": "Menu Screen"
+          }
+        },
+        {
+          "type": "feature_slide",
+          "settings": {
+            "feature_name": "Document Screen"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,391 @@
+<section class="faqs-section">
+  <div class="container">
+    <div class="row gx-md-5">
+
+      <!-- Left Content -->
+      <div class="col-xxl-4 col-lg-5 col-md-12 col-12 pb-4 pb-lg-0">
+        <div class="section_heading">
+
+          {% if section.settings.section_subtitle != blank %}
+            <span class="sec_subtitle text-black text-center mb-2">
+              <svg
+                class="sec_sub_icon"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z"
+                  fill="#000"
+                />
+              </svg>
+
+              {{ section.settings.section_subtitle }}
+            </span>
+          {% endif %}
+
+          {% if section.settings.section_title != blank %}
+            <h2 class="sec_typo mb-3 mb-md-4">
+              {{ section.settings.section_title }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.section_description != blank %}
+            <p class="mb-0 p_font_color font-300 mt-lg-4 mt-3 method-disc">
+              {{ section.settings.section_description }}
+            </p>
+          {% endif %}
+
+        </div>
+
+        <!-- Contact Questions -->
+        <div class="sh-questions">
+
+          {% if section.settings.contact_title != blank %}
+            <h4>{{ section.settings.contact_title }}</h4>
+          {% endif %}
+
+          {% if section.settings.contact_description != blank %}
+            <div class="contact-description">
+              {{ section.settings.contact_description }}
+            </div>
+          {% endif %}
+
+          <ul class="contact-shq mt-4">
+
+            <!-- Phone -->
+            {% if section.settings.phone_number != blank %}
+              <li>
+                <div class="cm-icon">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <rect width="40" height="40" rx="20" fill="#EAEAEA"/>
+                    <path
+                      d="M21.8695 23.473C21.7041 23.5143 21.5296 23.498 21.3747 23.4269C19.2914 22.4044 17.6054 20.7206 16.5803 18.6385C16.5044 18.4828 16.4847 18.3056 16.5247 18.137C16.5646 17.9684 16.6616 17.8188 16.7993 17.7137L17.1504 17.4504C17.3367 17.3107 17.4879 17.1295 17.592 16.9212C17.6962 16.7129 17.7504 16.4832 17.7504 16.2503V14.0001C17.7504 13.6023 17.5924 13.2207 17.311 12.9394C17.0297 12.658 16.6482 12.5 16.2503 12.5H14.0001C13.6023 12.5 13.2207 12.658 12.9394 12.9394C12.658 13.2207 12.5 13.6023 12.5 14.0001C12.5 17.5808 13.9224 21.0149 16.4544 23.5468C18.9863 26.0788 22.4204 27.5012 26.0011 27.5012C26.3989 27.5012 26.7805 27.3432 27.0618 27.0618C27.3432 26.7805 27.5012 26.3989 26.0011 22.2508H23.7509C23.518 22.2508 23.2883 22.305 23.08 22.4092C22.8717 22.5133 22.6905 22.6645 22.5508 22.8508L22.2845 23.1996C22.1813 23.3352 22.0349 23.4316 21.8695 23.473Z"
+                      stroke="#0B0C0E"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <div class="call-mail-wp">
+                  <label>
+                    {{ section.settings.phone_label }}
+                  </label>
+
+                  <a
+                    class="call-mail-link"
+                    href="tel:{{ section.settings.phone_number | remove: ' ' }}"
+                  >
+                    {{ section.settings.phone_number }}
+                  </a>
+                </div>
+              </li>
+            {% endif %}
+
+            <!-- Email -->
+            {% if section.settings.email_address != blank %}
+              <li>
+                <div class="cm-icon">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <rect width="40" height="40" rx="20" fill="#EAEAEA"/>
+                    <path
+                      d="M27.5012 16.2498L20.7574 20.5446C20.5286 20.6775 20.2686 20.7475 20.004 20.7475C19.7393 20.7475 19.4794 20.6775 19.2505 20.5446L12.5 16.2498M14.0001 14H26.0011C26.8296 14 27.5012 14.6715 27.5012 15.4999V24.499C27.5012 25.3273 26.8296 25.9988 26.0011 25.9988H14.0001C13.1716 25.9988 12.5 25.3273 12.5 24.499V15.4999C12.5 14.6715 13.1716 14 14.0001 14Z"
+                      stroke="#0B0C0E"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <div class="call-mail-wp">
+                  <label>
+                    {{ section.settings.email_label }}
+                  </label>
+
+                  <a
+                    class="call-mail-link"
+                    href="mailto:{{ section.settings.email_address }}"
+                  >
+                    {{ section.settings.email_address }}
+                  </a>
+                </div>
+              </li>
+            {% endif %}
+
+          </ul>
+
+          {% if section.settings.response_text != blank %}
+            <div class="faq-response-time mb-0 mt-4">
+              {{ section.settings.response_text }}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="col-xxl-8 col-lg-7 col-md-12 col-12">
+        <div class="faqs-sec-right">
+          <div class="faqs-wrap">
+
+            <div
+              class="accordion"
+              id="accordionfaqs-{{ section.id }}"
+            >
+
+              {% for block in section.blocks %}
+
+                {% assign faq_id = 'faq-' | append: section.id | append: '-' | append: forloop.index %}
+
+                <div
+                  class="accordion-item"
+                  {{ block.shopify_attributes }}
+                >
+
+                  <h3 class="accordion-header">
+
+                    <button
+                      class="accordion-button {% unless forloop.first and section.settings.first_faq_open %}collapsed{% endunless %}"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#{{ faq_id }}"
+                      aria-expanded="{% if forloop.first and section.settings.first_faq_open %}true{% else %}false{% endif %}"
+                      aria-controls="{{ faq_id }}"
+                    >
+                      {{ block.settings.faq_question }}
+                    </button>
+
+                  </h3>
+
+                  <div
+                    id="{{ faq_id }}"
+                    class="accordion-collapse collapse {% if forloop.first and section.settings.first_faq_open %}show{% endif %}"
+                    data-bs-parent="#accordionfaqs-{{ section.id }}"
+                  >
+
+                    <div class="accordion-body">
+
+                      {% if block.settings.faq_answer != blank %}
+                        <div class="mb-3 faq-answer">
+                          {{ block.settings.faq_answer }}
+                        </div>
+                      {% endif %}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              {% endfor %}
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "tag": "section",
+  "class": "section-faqs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Client Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Everything you need to know about Cloud Downunder's services, process, and Australian-local approach."
+    },
+
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "richtext",
+      "id": "contact_description",
+      "label": "Contact Description",
+      "default": "<p>We're here to help. Reach out directly and our specialists will respond within 2 business hours.</p>"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone Label",
+      "default": "Call Us"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone Number",
+      "default": "1300 699 571"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Label",
+      "default": "Email Us"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Email Address",
+      "default": "hello@clouddownunder.com.au"
+    },
+    {
+      "type": "text",
+      "id": "response_text",
+      "label": "Response Time Text",
+      "default": "Responds within 2 business hours."
+    },
+
+    {
+      "type": "header",
+      "content": "FAQ Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_faq_open",
+      "label": "Open First FAQ by Default",
+      "default": true
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_question",
+          "label": "Question",
+          "default": "Are your engineers based in Australia?"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_answer",
+          "label": "Answer",
+          "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "FAQs",
+      "settings": {
+        "section_subtitle": "Client Testimonials",
+        "section_title": "Frequently Asked Questions",
+        "section_description": "Everything you need to know about Cloud Downunder's services, process, and Australian-local approach.",
+        "contact_title": "Still have questions?",
+        "contact_description": "<p>We're here to help. Reach out directly and our specialists will respond within 2 business hours.</p>",
+        "phone_label": "Call Us",
+        "phone_number": "1300 699 571",
+        "email_label": "Email Us",
+        "email_address": "hello@clouddownunder.com.au",
+        "response_text": "Responds within 2 business hours.",
+        "first_faq_open": true
+      },
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Are your engineers based in Australia?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "What Microsoft certifications does CDU hold?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "How do you handle Australian data sovereignty requirements?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "What is the typical project timeline and engagement model?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Do you provide ongoing support after project delivery?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Can CDU help us migrate from on-premise to cloud?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "faq_question": "How does CDU compare to larger consultancies like SSW or Avanade?",
+            "faq_answer": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers</p>"
+          }
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 50
+}
+{% endschema %}

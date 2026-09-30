@@ -1,0 +1,37 @@
+<ul class="social-link">
+  {%- if settings.social_facebook_link != blank -%}
+    <li>
+      <a href="{{ settings.social_facebook_link }}" >
+          {{- 'icon-facebook.svg' | inline_asset_content -}}
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_instagram_link != blank -%}
+    <li>
+      <a href="{{ settings.social_instagram_link }}" >
+          {{- 'icon-instagram.svg' | inline_asset_content -}}
+      </a>
+    </li>
+  {%- endif -%}
+    {%- if settings.social_twitter_link != blank -%}
+    <li>
+      <a href="{{ settings.social_twitter_link }}" >
+          {{- 'icon-twitter.svg' | inline_asset_content -}}
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_linkdin_link != blank -%}
+    <li>
+      <a href="{{ settings.social_linkdin_link }}" >
+          {{- 'icon-linkdln.svg' | inline_asset_content -}}
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <li>
+      <a href="{{ settings.social_youtube_link }}" >
+          {{- 'icon-youtube.svg' | inline_asset_content -}}
+      </a>
+    </li>
+  {%- endif -%}
+</ul>

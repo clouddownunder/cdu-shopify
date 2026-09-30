@@ -1,0 +1,334 @@
+<section class="banner-sec mh-auto banner-height-auto p-0 mt-2" >
+    <div class="banner-wrap  rounded-0">
+        <div class="container">
+            <div class="banner-links-main">
+                <ul class="breadcrumb">
+                    <li class="banner-links"><a href="/">Home</a></li>
+                    <li class="banner-links"><span>/</span></li>
+                    <li class="banner-links active"><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xxl-7 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="banner-text-wrap mb-2">
+                        <div class="banner-text">
+                            <div class="banner-heading-wrap">
+                                <h1 class="banner-heading text-uppercase mb-3 mt-lg-0 mt-2 mb-lg-0"><span class="font-we-rg">{{ section.settings.heading_prefix }}</span> {{ section.settings.heading }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-5 col-lg-6 col-md-12 col-sm-12 col-12 align-self-center">
+                    <div class="about-banner-right">
+                        <p class="black_text font20">{{ section.settings.banner_description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-page-sec">
+    <div class="container">
+        <div class="blog-page-row">
+
+            <div class="blog-categories-main">
+                <h3 class="blog-sub-title">Categories</h3>
+
+                <div class="select-menu">
+                    <div class="select-btn d-lg-none">
+                        <span class="sBtn-text">Categories Select</span>
+                        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.75L7 9.25L10.5 5.75" stroke="#131316" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+
+                    <ul class="blog-categories options">
+                        <li class="option active" data-category="all">
+                            <a href="#" class="option-text">All</a>
+                        </li>
+                        {% assign blog_handles = section.settings.blog_category | split: ',' %}
+                        {% for blog_handle in blog_handles %}
+                            {% assign blog_handle = blog_handle | strip %}
+                            {% assign blog_item = blogs[blog_handle] %}
+                            {% if blog_item != blank %}
+                                <li class="option" data-category="{{ blog_item.handle }}">
+                                    <a href="#" class="option-text">{{ blog_item.title }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="blog-page-lists">
+                <div class="category-content" data-category="all">
+                    <div class="blog-page-latest-blogs">
+                        <h3 class="blog-sub-title">Latest Insights</h3>
+                        <div class="blog-sec-main">
+                            <div class="blog-left w-100" id="latest-insights-{{ section.id }}">
+                                {% for blog_handle in blog_handles %}
+                                    {% assign blog_item = blogs[blog_handle] %}
+                                    {% if blog_item != blank %}
+                                        {% for article in blog_item.articles limit: 50 %}
+                                            <div
+                                                class="blog-left-col latest-article"
+                                                data-published="{{ article.published_at | date: '%s' }}"
+                                            >
+                                                <div class="blog-left-img">
+                                                    <a href="{{ article.url }}" class="blog-img-link">
+                                                        {% if article.image %}
+                                                            <img
+                                                                src="{{ article.image | image_url: width: 800 }}"
+                                                                alt="{{ article.title | escape }}"
+                                                                loading="lazy"
+                                                            >
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                                <div class="blog-left-info">
+                                                    <div class="blog-left-date">
+                                                        <span>By CDU</span>
+                                                        <span class="dots"></span>
+                                                        <span>
+                                                            {{ article.published_at | date: '%d %B, %Y' }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="blog-left-title">
+                                                        <a href="{{ article.url }}">
+                                                            <h4>{{ article.title }}</h4>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all-insights-main">
+                        <h3 class="blog-sub-title">All Insights</h3>
+                        <div class="all-insights-row">
+                            {% assign all_articles = "" | split: "" %}
+                            {% for blog_handle in blog_handles %}
+                                {% assign blog_item = blogs[blog_handle] %}
+                                {% if blog_item != blank %}
+                                    {% assign all_articles = all_articles | concat: blog_item.articles %}
+                                {% endif %}
+                            {% endfor %}
+                            {% assign sorted_articles = all_articles | sort: "published_at" | reverse %}
+                            {% for article in sorted_articles %}
+                                <div class="blog--col">
+                                    <div class="blog--img">
+                                        <a href="{{ article.url }}" class="blog-img-link">
+                                            {% if article.image %}
+                                                <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="blog--info">
+                                        <div class="blog--date">
+                                            <span>By CDU</span>
+                                            <span class="dots"></span>
+                                            <span>{{ article.published_at | date: '%d %B, %Y' }}</span>
+                                        </div>
+                                        <div class="blog--title">
+                                            <a href="{{ article.url }}">
+                                                <h4>{{ article.title }}</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% for blog_handle in blog_handles %}
+                    {% assign blog_item = blogs[blog_handle] %}
+                    {% if blog_item != blank %}
+                        <div class="category-content" data-category="{{ blog_item.handle }}" style="display:none;">
+                            <div class="all-insights-main">
+                                <h3 class="blog-sub-title">{{ blog_item.title }}</h3>
+                                <div class="all-insights-row">
+                                    {% for article in blog_item.articles %}
+                                        <div class="blog--col">
+                                            <div class="blog--img">
+                                                <a href="{{ article.url }}" class="blog-img-link">
+                                                    {% if article.image %}
+                                                        <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}">
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                            <div class="blog--info">
+                                                <div class="blog--date">
+                                                    <span>By CDU</span>
+                                                    <span class="dots"></span>
+                                                    <span>{{ article.published_at | date: '%d %B, %Y' }}</span>
+                                                </div>
+                                                <div class="blog--title">
+                                                    <a href="{{ article.url }}"><h4>{{ article.title }}</h4></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <p>No articles found in this category yet.</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const container = document.getElementById(
+        'latest-insights-{{ section.id }}'
+    );
+
+    if (!container) return;
+
+    const articles = Array.from(
+        container.querySelectorAll('.latest-article')
+    );
+
+    articles.sort(function (a, b) {
+
+        const dateA = parseInt(a.getAttribute('data-published'), 10);
+        const dateB = parseInt(b.getAttribute('data-published'), 10);
+
+        return dateB - dateA;
+
+    });
+    articles.forEach(function (article) {
+        article.remove();
+    });
+
+    articles.slice(0, 2).forEach(function (article) {
+        container.appendChild(article);
+    });
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var options = document.querySelectorAll('.blog-categories .option');
+    var contents = document.querySelectorAll('.category-content');
+    var selectBtnText = document.querySelector('.select-btn .sBtn-text');
+    var selectMenu = document.querySelector('.select-menu');
+    var selectBtn = document.querySelector('.select-btn');
+
+    function showCategory(category) {
+        options.forEach(function (opt) {
+            var link = opt.querySelector('.option-text');
+
+            if (link) {
+                link.classList.toggle(
+                    'active',
+                    opt.getAttribute('data-category') === category
+                );
+            }
+        });
+        contents.forEach(function (content) {
+            content.style.display =
+                content.getAttribute('data-category') === category
+                    ? 'block'
+                    : 'none';
+        });
+        var activeOption = document.querySelector(
+            '.blog-categories .option[data-category="' + category + '"] .option-text'
+        );
+
+        if (selectBtnText && activeOption) {
+            selectBtnText.textContent = activeOption.textContent.trim();
+        }
+    }
+    options.forEach(function (li) {
+        li.addEventListener('click', function (e) {
+            e.preventDefault();
+            var category = this.getAttribute('data-category');
+            options.forEach(function (opt) {
+                var link = opt.querySelector('.option-text');
+
+                if (link) {
+                    link.classList.remove('active');
+                }
+            });
+            var clickedLink = this.querySelector('.option-text');
+            if (clickedLink) {
+                clickedLink.classList.add('active');
+            }
+            showCategory(category);
+            if (selectMenu) {
+                selectMenu.classList.remove('active');
+            }
+        });
+    });
+
+    if (selectBtn && selectMenu) {
+        selectBtn.addEventListener('click', function () {
+            selectMenu.classList.toggle('active');
+        });
+    }
+
+    var defaultOption = document.querySelector(
+        '.blog-categories .option[data-category="all"]'
+    );
+    if (defaultOption) {
+        showCategory('all');
+    }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Blog Page",
+  "tag": "section",
+  "class": "blog_page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading Prefix",
+      "default": "All"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Blogs"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_description",
+      "label": "Banner Description",
+      "default": "What's Happening In Our Stratosphere? Get Insight Into The Happenings Here At With Our Blogs."
+    },
+    {
+        "type":"text",
+        "id":"blog_category",
+        "label": "Blog Category",
+        "default":"artificial-intelligence,cloud-computing,devops"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Page",
+      "settings": {
+        "heading_prefix": "All",
+        "heading": "Blogs",
+        "banner_description": "What's Happening In Our Stratosphere? Get Insight Into The Happenings Here At With Our Blogs."
+      }
+    }
+  ]
+}
+{% endschema %}

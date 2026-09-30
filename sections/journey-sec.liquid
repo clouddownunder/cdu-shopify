@@ -1,0 +1,202 @@
+<section class="journey-sec">
+    <div class="container">
+        <div class="journey-top">
+            <div class="section_heading">
+                <span class="sec_subtitle mb-0 theme_black">
+                    <svg class="sec_sub_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.3125 10L8.125 11.875L10 19.6875L11.875 11.875L19.6875 10L11.875 8.125L10 0.3125L8.125 8.125L0.3125 10Z" fill="#000"></path>
+                </svg>
+                {{ section.settings.subtitle | default: 'Our Journey' }}</span>
+                <h2 class="sec_typo mb-0 mt-1">{{ section.settings.section_title | default: 'Our Journey Since 2012' }}</h2>
+            </div>
+        </div>
+        <div class="journey-box-main">
+            <div class="row">
+                <div class="col-xl-7 col-lg-12 col-md-12 col-12">
+                    <div class="journey-content">
+                        <div class="journey-years d-flex">
+                            <div class="years-main d-flex align-items-center justify-content-center gap-3">
+                                <span>{{ section.settings.start_year | default: '2012' }}</span>
+                                <span class="right-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19.572" height="10.736" viewBox="0 0 19.572 10.736"> <path id="right-arrow" d="M14.2,107.5l-.872.872,3.879,3.879H0v1.233H17.212l-3.879,3.879.872.872,5.368-5.368Z" transform="translate(0 -107.5)"/> </svg>
+                                </span>
+                                <span>{{ section.settings.end_year | default: '2026' }}</span>
+                            </div>
+                        </div>
+                        {% for block in section.blocks %}
+                        <div class="card-text-main journey-text" {{ block.shopify_attributes }}>
+                            <h3>{{ block.settings.milestone_title }}</h3>
+                            <p>{{ block.settings.milestone_description }}</p>
+                            {% if block.settings.show_bullets %}
+                            <ul class="card-bullets">
+                                {% for i in (1..5) %}
+                                {% assign bullet_text = 'bullet_' | append: i %}
+                                {% if block.settings[bullet_text] != blank %}
+                                <li>{{ block.settings[bullet_text] }}</li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        {% unless forloop.last %}
+                        <div class="journey-content-border"></div>
+                        {% endunless %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-12 col-md-12 col-12">
+                    <div class="journey-img-main">
+                        <img src="{{ section.settings.journey_image | image_url: width: "1200" }}" alt="{{ section.settings.image_alt | default: 'Journey' }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Journey Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our Journey"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Our Journey Since 2012"
+    },
+    {
+      "type": "header",
+      "content": "Years Display"
+    },
+    {
+      "type": "text",
+      "id": "start_year",
+      "label": "Start Year",
+      "default": "2012"
+    },
+    {
+      "type": "text",
+      "id": "end_year",
+      "label": "End Year",
+      "default": "2026"
+    },
+    {
+      "type": "header",
+      "content": "Journey Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "journey_image",
+      "label": "Journey Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image Alt Text",
+      "default": "Journey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        {
+          "type": "text",
+          "id": "milestone_title",
+          "label": "Milestone Title",
+          "default": "Planting A Tree"
+        },
+        {
+          "type": "textarea",
+          "id": "milestone_description",
+          "label": "Milestone Description",
+          "default": "It all started in 2012, when with a maverick group of three, Cloud Downunder was born. Since then, we have assembled a large team of expert professionals to devise solutions that resolve a plethora of business solutions."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_bullets",
+          "label": "Show Bullet Points",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Bullet Point 1",
+          "default": "Started with Three Developers"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Bullet Point 2",
+          "default": "Offering One Language-Based Solution"
+        },
+        {
+          "type": "text",
+          "id": "bullet_3",
+          "label": "Bullet Point 3",
+          "default": "A Couple of Big-Ticket Clients"
+        },
+        {
+          "type": "text",
+          "id": "bullet_4",
+          "label": "Bullet Point 4"
+        },
+        {
+          "type": "text",
+          "id": "bullet_5",
+          "label": "Bullet Point 5"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Journey Section",
+      "settings": {
+        "subtitle": "Our Journey",
+        "section_title": "Our Journey Since 2012",
+        "start_year": "2012",
+        "end_year": "2026",
+        "image_alt": "Journey"
+      },
+      "blocks": [
+        {
+          "type": "milestone",
+          "settings": {
+            "milestone_title": "Planting A Tree",
+            "milestone_description": "It all started in 2012, when with a maverick group of three, Cloud Downunder was born. Since then, we have assembled a large team of expert professionals to devise solutions that resolve a plethora of business solutions.",
+            "show_bullets": true,
+            "bullet_1": "Started with Three Developers",
+            "bullet_2": "Offering One Language-Based Solution",
+            "bullet_3": "A Couple of Big-Ticket Clients"
+          }
+        },
+        {
+          "type": "milestone",
+          "settings": {
+            "milestone_title": "Creative Team Embracing A Creative Culture",
+            "milestone_description": "After dedicatedly evolving successfully for 12 years. Cloud Downunder has grown and expanded manifold. As its name suggests, Cloud Downunder offers every tech solution under the cloud or umbrella, meeting client requirements across the globe for diverse range of projects successfully, including our coveted web app development in Brisbane!",
+            "show_bullets": true,
+            "bullet_1": "50+ Developers",
+            "bullet_2": "500+ Successful Projects",
+            "bullet_3": "40+ Industry Needs Met"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

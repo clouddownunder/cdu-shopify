@@ -1,0 +1,205 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "form": {
+      "type": "contact-form",
+      "blocks": {
+        "panda_contact_form_builder_contact_form_kxd9XP": {
+          "type": "shopify://apps/panda-contact-form-builder/blocks/contact_form/019e789d-9002-76db-a812-202fb8e73bdf",
+          "settings": {
+            "form_id": "",
+            "margin_top": 32,
+            "margin_bottom": 32
+          }
+        },
+        "process_step_473nMJ": {
+          "type": "process_step",
+          "settings": {
+            "text": "Our friendly team will reach you within hours to organise a FREE chat about your project."
+          }
+        },
+        "process_step_Un9ait": {
+          "type": "process_step",
+          "settings": {
+            "text": "We lock down your idea with an NDA—your concept is safe as houses with us."
+          }
+        },
+        "process_step_MLUU3G": {
+          "type": "process_step",
+          "settings": {
+            "text": "We’ll dive deep into what you need, have a good yarn about your vision, and answer any burning questions."
+          }
+        },
+        "process_step_ELQRWC": {
+          "type": "process_step",
+          "settings": {
+            "text": "You’ll get a clear plan with costs, timelines, and next steps to get your project off the ground."
+          }
+        },
+        "award_8RPXjm": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/awards-1.png",
+            "alt_text": "CDU Award",
+            "link": ""
+          }
+        },
+        "award_fMjwqe": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/awards-2.png",
+            "alt_text": "CDU Award",
+            "link": ""
+          }
+        },
+        "award_Dq7Qi6": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/awards-3.png",
+            "alt_text": "CDU Award",
+            "link": ""
+          }
+        },
+        "award_iLBXKB": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/awards-4.png",
+            "alt_text": "CDU Award",
+            "link": ""
+          }
+        },
+        "award_Mp3paY": {
+          "type": "award",
+          "settings": {
+            "image": "shopify://shop_images/awards-5.png",
+            "alt_text": "CDU Award",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "panda_contact_form_builder_contact_form_kxd9XP",
+        "process_step_473nMJ",
+        "process_step_Un9ait",
+        "process_step_MLUU3G",
+        "process_step_ELQRWC",
+        "award_8RPXjm",
+        "award_fMjwqe",
+        "award_Dq7Qi6",
+        "award_iLBXKB",
+        "award_Mp3paY"
+      ],
+      "settings": {
+        "section_class": "",
+        "section_id": "contact-us",
+        "form_greeting": "Hello 👋",
+        "form_heading": "Got a vision?",
+        "form_subheading": "We can bring it to life! Let’s work together.",
+        "first_name_placeholder": "First Name",
+        "last_name_placeholder": "Last Name",
+        "email_placeholder": "Email",
+        "phone_placeholder": "Phone",
+        "message_placeholder": "Discuss about your project…",
+        "form_bottom_text": "We will add your info to our CRM for contacting you regarding your request. For more info please consult our privacy policy.",
+        "submit_button_text": "SUBMIT ENQUIRY",
+        "success_message": "Thank you! Your enquiry has been submitted successfully.",
+        "info_heading": "Here’s How It Works",
+        "info_description": "Pop in your details, and we’ll get back to you within 24 hours. Keen to get moving? Scroll down for more ways to connect.",
+        "more_info_heading": "Need More Info?",
+        "more_info_text": "We’re here for a chat anytime. Reach us on:",
+        "phone": "1300 699 571",
+        "email": "hello@clouddownunder.com.au",
+        "social_heading": "Stay connected:",
+        "awards_section_class": "",
+        "awards_section_id": "",
+        "awards_subtitle": "CDU Awards",
+        "awards_heading": "Awards and recognition"
+      }
+    },
+    "client_testimonials_4wUjWh": {
+      "type": "client-testimonials",
+      "blocks": {
+        "testimonial_34r7PU": {
+          "type": "testimonial",
+          "repeater": "{{ metaobjects.testimonial[\"testimonial-1\"].testimonial.value }}",
+          "settings": {
+            "rating": 5,
+            "review_text": "{{ block.repeater.review.value }}",
+            "user_image": "{{ block.repeater.user_image.value }}",
+            "user_name": "{{ block.repeater.user_name.value }}",
+            "user_role": "{{ block.repeater.user_role.value }}",
+            "company_logo": "{{ block.repeater.company_logo.value }}",
+            "company_name": "{{ block.repeater.rating.value }}"
+          }
+        },
+        "platform_jUagpi": {
+          "type": "platform",
+          "settings": {
+            "platform_logo": "{{ metaobjects.testimonial[\"testimonial-1\"].clutch.value }}",
+            "platform_name": "Clutch",
+            "platform_label": "{{ metaobjects.testimonial[\"testimonial-1\"].clutch_label.value }}",
+            "platform_rating": "{{ metaobjects.testimonial[\"testimonial-1\"].clutch_rating.value }}",
+            "rating_suffix": "out of 5"
+          }
+        },
+        "platform_bcbQdU": {
+          "type": "platform",
+          "settings": {
+            "platform_logo": "{{ metaobjects.testimonial[\"testimonial-1\"].google.value }}",
+            "platform_name": "Google",
+            "platform_label": "{{ metaobjects.testimonial[\"testimonial-1\"].google_label.value }}",
+            "platform_rating": "{{ metaobjects.testimonial[\"testimonial-1\"].google_rating.value }}",
+            "rating_suffix": "out of 5"
+          }
+        },
+        "platform_MTFXdB": {
+          "type": "platform",
+          "settings": {
+            "platform_logo": "{{ metaobjects.testimonial[\"testimonial-1\"].goodfirms.value }}",
+            "platform_name": "GoodFirms",
+            "platform_label": "{{ metaobjects.testimonial[\"testimonial-1\"].goodfirms_label.value }}",
+            "platform_rating": "{{ metaobjects.testimonial[\"testimonial-1\"].goodfirms_rating.value }}",
+            "rating_suffix": "out of 5"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_34r7PU",
+        "platform_jUagpi",
+        "platform_bcbQdU",
+        "platform_MTFXdB"
+      ],
+      "name": "Client Testimonials",
+      "settings": {
+        "section_subtitle": "Client Testimonials",
+        "section_title": "Trusted by Businesses.<br> Backed by Results.",
+        "section_description": "Real partnerships. Honest feedback. See why organisations across Australia trust Cloud Downunder to design, build, and support their digital products.",
+        "button_text": "Tell us about your project",
+        "button_link": "",
+        "overall_rating": "{{ metaobjects.testimonial[\"testimonial-1\"].average_rating.value }}",
+        "overall_rating_title": "Average Rating",
+        "overall_rating_subtitle": "Across Leading Review Platforms",
+        "platform_heading": "Independent reviews that speak for us",
+        "show_pagination": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "client_testimonials_4wUjWh"
+  ]
+}

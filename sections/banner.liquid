@@ -1,0 +1,122 @@
+<section class="banner-sec map-bg homepage" >
+    <div class="banner-wrap">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-xl-9 col-lg-10 col-12">	
+                    <div class="banner-text-wrap text-center align-items-center">
+                        <div class="banner-text mx-auto mw-100">
+                            <div class="banner-heading-wrap">
+                                <h1 class="font-rg banner-heading ">{{ section.settings.heading }}</h1>
+                            </div>
+                            <p class="font18 mx-auto mw-100">{{ section.settings.description }}</p>
+                        </div>
+                        <div class="banner-btn-main d-flex flex-wrap justify-content-center">
+                            <div class="btn-wp">
+                                <a href="{{ section.settings.button_1_link }}" class="btn btn-with-arrow me-3 mb-3">{{ section.settings.button_1_text }}</a>
+                            </div>
+                            <div class="btn-wp">	
+                                <a href="{{ section.settings.button_2_link }}" class="btn btn-with-arrow border-btn me-3 mb-3">{{ section.settings.button_2_text }}</a>
+                            </div>
+                        </div>
+                        <a href="{{ section.settings.team_link }}" class="ltdp-cdu-discuss-bubble home-ltdp">
+                          <div class="ltdp-cdu-discuss-avatar">
+                            <img src="{{ section.settings.team_image | image_url }}" alt="Team lead">
+                            <span class="phn-icon">
+                              <img src="https://cdn.shopify.com/s/files/1/0786/1472/4748/files/plus-with-call.svg?v=1786336810" alt="Phone">
+                            </span>
+                          </div>
+                          <div class="ltdp-cdu-discuss-text">
+                            <h4>{{ section.settings.team_title }}</h4>
+                            <p class="mb-0">{{ section.settings.team_subtitle }}</p>
+                          </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 d-none">	
+                    <div class="banner-sec-img">
+                        <div class="banner-v-img">
+                            <img src="{{ section.settings.banner_image | image_url }}" alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Banner Section",
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Book a Strategy Call"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "View Case Studies"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "team_image",
+      "label": "Team Image"
+    },
+    {
+      "type": "text",
+      "id": "team_title",
+      "label": "Team Title",
+      "default": "Discuss your projects"
+    },
+    {
+      "type": "text",
+      "id": "team_subtitle",
+      "label": "Team Subtitle",
+      "default": "Speak with the team lead"
+    },
+    {
+      "type": "url",
+      "id": "team_link",
+      "label": "Team Link"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Banner Section"
+    }
+  ]
+}
+{% endschema %}
